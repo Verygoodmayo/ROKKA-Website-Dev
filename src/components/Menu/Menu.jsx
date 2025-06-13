@@ -26,7 +26,6 @@ export default function Menu () {
     })
 
     useGSAP(() => {
-        console.log(menuItems)
         showHideAnimation = gsap.timeline({paused: true})
         menuItems.forEach((item, index) => {
                 showHideAnimation.to(item, {
