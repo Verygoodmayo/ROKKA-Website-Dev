@@ -1,0 +1,147 @@
+@use '../vars';
+@use '../Button/Button';
+
+.footer {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background: vars.$p-color;
+    display: flex;
+    flex-direction: column;
+    z-index: vars.$footer-index;
+
+    .main-section {
+        position: relative;
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        z-index: 2;
+
+        .info-section {
+            position: relative;
+            width: 330px;
+            padding: vars.$size3;
+            border-right: solid 1px vars.$content-invert;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .logotype-wrapper {
+                position: relative;
+                
+                img {
+                    margin-bottom: 20px;
+                }
+            }
+            
+            .info-wrapper {
+                position: relative;
+                font-family: vars.$p-font;
+                font-weight: 300;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .info {
+                    color: vars.$content-invert;
+                }
+            }
+        }
+
+        .footer-navigation-section {
+            padding: vars.$size2;
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            font-family: vars.$p-font;
+            font-weight: 300;
+            gap: 30px;
+
+            .header {
+                color: vars.$content-invert;
+                padding: vars.$size3;
+                border-bottom: solid 1px vars.$content-invert;
+            }
+
+            .navigation-section {
+                justify-self: stretch;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            #products-section {
+                position: relative;
+                height: 100%;
+                flex: 6;
+                .wrapper {
+                    gap: vars.$size3;
+                    display: flex;
+                    flex-direction: row;
+
+                    #core-tech-section {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    #plugins-section {
+                        gap: vars.$size3;
+                        display: flex;
+                        flex-direction: row;
+                        
+
+                        .wrapper {
+                            gap: 0px;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+
+            #by-need-section {
+                flex: 4;
+            }
+        }
+    }
+
+    .bottom-section {
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-top: solid 1px vars.$content-invert;
+        padding: vars.$size3;
+        gap: 30px;
+        z-index: 2;
+        
+
+        .footer-item {
+            color: vars.$content-invert;
+            font-family: vars.$p-font;
+        }
+
+        .footer-item::after {
+            content: '';
+            height: 5px;
+            width: 5px;
+            background: vars.$content-invert;
+        }
+    }
+
+    .footer-sketch {
+        position: absolute !important;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+    }
+}
+
+.nav-item {
+    color: vars.$content-invert;
+    padding: vars.$size3;
+    border-bottom: solid 1px vars.$content-invert;
+    white-space: nowrap;
+}
+

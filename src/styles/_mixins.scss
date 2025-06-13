@@ -1,0 +1,46 @@
+@use './vars';
+
+@mixin border {
+    border: solid 1px vars.$border;
+}
+
+@mixin border5_top {
+    border-top: solid 1px #00000020;
+}
+
+@mixin border5_left {
+    border-left: solid 1px #00000020;
+}
+
+@mixin border5_bottom {
+    border-bottom: solid 1px #00000020;
+}
+
+@mixin border5_right {
+    border-right: solid 1px #00000020;
+}
+
+@mixin header {
+    text-transform: uppercase;
+    font-family: vars.$header-font;
+    font-size: vars.$heading1;
+    line-height: 100%;
+}
+
+@mixin running-text {
+    font-family: vars.$p-font;
+    font-size: vars.$body1;
+    font-weight: 400;
+}
+
+@mixin transition1 {
+    transition: 0.35s ease;
+}
+
+@mixin transition2 {
+    transition: 0.5s ease;
+}
+
+@mixin transition3 {
+    transition: 0.75s ease;
+}

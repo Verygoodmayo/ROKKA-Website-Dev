@@ -1,0 +1,6 @@
+@keyframes scroll-for-more-animation-sequance {
+    0% {transform: rotate(90deg) translateX(0)};
+    50% {transform: rotate(90deg) translateX(250%)};
+    51% {transform: rotate(90deg) translateX(-250%)};
+    0% {transform: rotate(90deg) translateX(0)};
+}

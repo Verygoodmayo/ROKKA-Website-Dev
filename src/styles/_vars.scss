@@ -1,0 +1,50 @@
+@use './fonts/milling';
+@use './fonts/mono';
+@use './fonts/sans';
+// Color
+
+$p-color: #141cff;
+$-s-color: #000;
+$t-color: #000;
+
+// Tokens
+
+$border: #000;
+$border5: #00000011;
+$border15: #0000002c;
+$bg: #f7f5f5;
+
+$content: #000;
+$content-invert: #fff;
+
+// Sizes
+$size1: 10px;
+$size2: 20px;
+$size3: 30px;
+$size4: 45px;
+
+// ROKKA Frame
+
+$ROKKA-frame-bg: $bg;
+$ROKKA-frame-border: $border15;
+
+// Type
+
+$p-font: sans;
+$s-font: mono.$IBM_Plex_Mono_Family;
+$header-font: milling.$MILLINGROKKA-Familiy;
+
+$body1: 14pt;
+$body2: 12pt;
+$body3: 10pt;
+
+$heading1: 45pt;
+$heading2: 32pt;
+$heading3: 26pt;
+$heading4: 21pt;
+$heading5: 18pt;
+
+// zIndex Control
+
+$menu-index: 998;
+$footer-index: 999;

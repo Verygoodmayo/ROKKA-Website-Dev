@@ -1,0 +1,7 @@
+@use './scroll_for_more';
+
+@mixin scroll-for-more-animation {
+    animation: scroll-for-more-animation-sequance;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}

@@ -1,0 +1,25 @@
+@use './vars';
+@use './classes';
+@use './mixins';
+
+// Locals
+
+@use './pages/home_page/home_page.scss';
+
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: vars.$bg;
+}
+
+#root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow-x: hidden;
+}

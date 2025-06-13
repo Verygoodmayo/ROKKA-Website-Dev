@@ -1,0 +1,53 @@
+@use './vars';
+@use './mixins';
+@use './Button/Button';
+
+// Animations
+@use './animations/animations.scss';
+
+a {
+    text-decoration: none;
+}
+
+.section {
+    height: 100vh;
+    width: 100vw;
+    // @include mixins.border;
+    font-family: vars.$p-font;
+    color: vars.$content;
+}
+
+.sketch-container {
+    position: fixed !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    z-index: 0;
+}
+
+.scroll-for-more {
+    padding: 20px 30px 20px 30px;
+    font-family: vars.$p-font;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    border: solid 1px vars.$border;
+    border-radius: 500px;
+    overflow: hidden;
+
+    img {
+        transform: rotate(90deg);
+        height: 20px;
+        width: auto;
+        @include animations.scroll-for-more-animation
+    }
+}
+
+// dat.gui
+.dg.ac {
+  z-index: 9999999 !important;
+}
+
+
+
+

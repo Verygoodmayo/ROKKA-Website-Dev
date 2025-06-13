@@ -1,0 +1,49 @@
+@use '../vars';
+@use '../mixins';
+
+.ROKKA-frame {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    @include mixins.transition1;
+
+    display: flex;
+    flex-direction: row;
+
+    .frame-side {
+        display: flex;
+        flex-direction: column;
+        
+        .corner-wrapper {
+            height: 30px;
+            width: 30px;
+
+            .corner {
+                // background: red;
+                height: 100%;
+                width: 100%;
+
+                .fill {
+                    fill: vars.$ROKKA-frame-bg;
+                }
+
+                .border {
+                    stroke: vars.$ROKKA-frame-border;
+                }
+            }
+        }
+
+        .filler {
+            flex: 1;
+            background: vars.$ROKKA-frame-bg;
+            border-left: 1px solid vars.$border15;
+            border-bottom: 1px solid vars.$border15;
+            border-top: none
+        }
+
+    }
+
+    .frame-side:last-child {
+        transform: rotate(180deg);
+    }
+}

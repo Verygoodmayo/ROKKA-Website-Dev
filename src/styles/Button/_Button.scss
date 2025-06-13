@@ -1,0 +1,33 @@
+@use '../vars';
+
+.button {
+    position: relative;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: vars.$content;
+    font-family: vars.$p-font;
+    color: vars.$content-invert;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    border-radius: 500px;
+    font-weight: 300;
+    font-size: vars.$body2;
+
+    img {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+}
+
+.primary-button {
+  background: vars.$content;
+}
+
+.outline {
+  background: transparent !important;
+  border: solid 1px vars.$content;
+}
