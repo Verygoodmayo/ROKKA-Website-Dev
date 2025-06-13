@@ -50,7 +50,7 @@ export default function ParkModel() {
         {
             trigger: '#hero-section',
             start: "top top+=1px",
-            end: "bottom+=100vh top",
+            end: "bottom+=200vh top",
             // markers: true,
             scrub: 1
         }
@@ -100,6 +100,13 @@ export default function ParkModel() {
           value: 0.32,
           duration: 5
         }, '<') 
+        .to(camera.rotation, {
+        //   x: 0,
+        //   y: -30,
+          y: Math.PI,
+          duration: 5,
+          ease: 'power2.inOut'
+        }, '>-=4')
     });
 
     return () => ctx.revert();

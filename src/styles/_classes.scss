@@ -34,6 +34,7 @@ a {
     border: solid 1px vars.$border;
     border-radius: 500px;
     overflow: hidden;
+    @include mixins.glass;
 
     img {
         transform: rotate(90deg);

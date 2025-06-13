@@ -2,39 +2,51 @@ import ROKKAFrame from "../ROKKAFrame/ROKKAFrame";
 import MenuItem from "./MenuItem";
 
 import logotype from '../../../static/png/Logotype.png'
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react'
+import ProductsMenu from "./ProductsMenu";
 
 export default function Menu () {
 
     const isCollapsed = useState(false);
 
     const menuContainer = useRef();
+    const menuContent = useRef();
+    let menuItems
 
     let showHideAnimation;
     const menuItem1 = useRef()
     const menuItem2 = useRef()
     const menuItem3 = useRef()
-    const menuItems = [menuItem1, menuItem2, menuItem3]
+    
 
+    useLayoutEffect(() => {
+         menuItems = document.querySelectorAll('.menu-item');
+    })
 
     useGSAP(() => {
-
+        console.log(menuItems)
         showHideAnimation = gsap.timeline({paused: true})
-        showHideAnimation.to('.menu-item', {
-            opacity: 0,
-            width: 0
+        menuItems.forEach((item, index) => {
+                showHideAnimation.to(item, {
+                opacity: 0,
+                scale: '0 0',
+                width: '0px',
+                duration: 0.35,
+                ease: 'power1.inOut',
+            },  index * 0.1)
         })
-        showHideAnimation.to('.menu-item', {
-            display: 'none',
-            duration: 0
-        })
-
+       showHideAnimation.to(menuContent.current, {
+            gap: '0px',
+            duration: 0.35,
+            ease: 'power1.inOut',
+       }, '<')
         
     }, {dependencies: isCollapsed, scope: menuContainer})
 
     return (
+        <>
         <div
             id="menu-container"
             ref={menuContainer}
@@ -54,9 +66,11 @@ export default function Menu () {
                 // <MenuItem label={'Home'}></MenuItem>
                ]
             }
+            contentRef={menuContent}
             >
             </ROKKAFrame>
         </div>
-        
+        <ProductsMenu></ProductsMenu>
+        </>
     )
 }

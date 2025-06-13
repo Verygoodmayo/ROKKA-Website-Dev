@@ -48,11 +48,10 @@
     position: relative;
     height: 65%;
     width:90%;
-    background: #ffffff0c;
-    backdrop-filter: blur(50px);
+    @include mixins.glass;
     display: flex;
     flex-direction: column;
-    border: solid 1px #00000020;
+
 
     #header {
       padding: 20px;
@@ -141,6 +140,8 @@
   flex-direction: row;
   align-items: center;
   overflow-x: scroll;
+  background: vars.$bg;
+  border-top : solid 1px vars.$border15;
 
   #diagram-navigation {
     position: absolute;
