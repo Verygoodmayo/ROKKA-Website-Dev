@@ -30,6 +30,7 @@ export default function Menu () {
     });
 
     useGSAP(() => {
+        if (isMobile) return;
         // Menu Animation
         menuAnimation.current = gsap.timeline({paused: true});
         menuItems.current.forEach((item, index) => {
@@ -110,7 +111,7 @@ export default function Menu () {
 
     return (
         <div
-            id="menu-container"
+            className="menu-container desktop"
             ref={menuContainer}
             onMouseEnter={handleMenuMouseEnter}
             onMouseLeave={handleMenuMouseLeave}
@@ -124,7 +125,7 @@ export default function Menu () {
             key={2}
             label={'Home'}
             link="/"
-        />,
+        ></MenuItem>,
         <MenuItem
             key={3}
             label={'Products'}
@@ -135,7 +136,7 @@ export default function Menu () {
                 productsMenuAnimation.current && productsMenuAnimation.current.progress(1).reverse();
                 changeProductsMenuState(true);
             }}
-        />,
+        ></MenuItem>,
         <MenuItem key={4} label={'By Need'}></MenuItem>,
     ]
 }

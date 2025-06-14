@@ -1,0 +1,137 @@
+@use '../vars';
+@use '../mixins';
+
+@mixin menu-mobile {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    width: vars.$mobile-menu-width;
+    height: vars.$mobile-menu-height;
+    background: vars.$bg;
+    z-index: 999;
+
+    .header-wrapper {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+         border-bottom: solid 1px vars.$border15;
+
+        .logotype {
+            height: 45px;
+            width: auto;
+            margin-left: 20px;
+        }
+
+        .hamburger-icon-wrapper {
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .hamburger-line {
+                width: 100%;
+                height: 3px;
+                background: vars.$content;
+                transition: all 0.3s ease-in-out;
+
+                &:not(:last-child) {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+        
+    }
+
+    .menu-items-wrapper {
+        position: absolute;
+        top: calc(#{vars.$mobile-menu-height} - 1px);
+        left: 0;
+        height: auto;
+        width: 100%;
+        background: vars.$bg;
+         will-change: transform;
+        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        transform: translateY(-100%); // default closed state for CSS fallback
+        z-index: 10;
+        border-bottom: solid 1px vars.$border15;
+        border-top: solid 1px vars.$border15;
+
+        .mobile-menu-tabs {
+            display: flex;
+            flex-direction: row;
+            font-family: vars.$p-font;
+            font-weight: 300;
+            color: vars.$content;
+            font-size: vars.$body2;
+            border-bottom: solid 1px vars.$border15;
+
+            .menu-tab {
+               flex: 1;
+               padding: vars.$size2;
+                cursor: pointer;
+                @include mixins.transition1;
+                &:not(:last-child) {
+                    border-right: solid 1px vars.$border15;
+                }
+
+                &:hover {
+                    background: vars.$border15;
+                }
+            }
+
+
+        }
+
+        .products-section {
+            display: flex;
+            flex-direction: row;
+            font-family: vars.$p-font;
+            font-weight: 300;
+            color: vars.$content;
+            padding: vars.$size2;
+            gap: vars.$size2;
+
+            .core-tech-section {
+                flex: 3;
+            }
+
+            .plugins-section {
+                flex: 7;
+                display: flex;
+                flex-direction: column;
+
+                .inner-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    gap: vars.$size2;
+                }
+            }
+
+            .header {
+                font-weight: 400;
+                border-bottom: solid 1px vars.$border15;
+                padding-bottom: vars.$size1;
+                white-space: nowrap;
+            }
+
+            .menu-item {
+                padding: vars.$size1;
+                font-size: vars.$body2;
+                @include mixins.transition1;
+
+                &:hover {
+                    background: vars.$border15;
+                }
+            }
+        }
+    }
+} 
