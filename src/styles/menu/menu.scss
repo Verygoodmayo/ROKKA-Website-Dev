@@ -1,5 +1,6 @@
 @use '../vars';
 @use '../ROKKA_frame/ROKKA_frame';
+@use './products_menu';
 
 #menu-container {
     position: fixed;
@@ -33,7 +34,7 @@
             font-weight: 300;
             color: vars.$content;
             white-space: nowrap;
-
+            cursor: pointer;
         }
     }
 }

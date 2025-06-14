@@ -22,8 +22,11 @@
     }
 
     #intro-paragraph {
-      width: 60ch;
-      @include mixins.running-text
+      width: 50ch;
+      font-weight: 300;
+      font-size: vars.$body2;
+      text-align: center;
+      // @include mixins.running-text !important
     }
 }
 
@@ -32,9 +35,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+   
 
     p {
-      width: 250px;
+      font-family: mono;
+      font-size: vars.$body2;
+      font-weight: 300;
+      width: 285px;
     }
 }
 

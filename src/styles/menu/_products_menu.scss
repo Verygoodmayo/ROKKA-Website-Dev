@@ -1,0 +1,50 @@
+@use '../vars';
+
+.products-menu {
+    position: absolute;
+    top: 80%;
+    left: 60%;
+
+    .content-container {
+        justify-content: flex-start;
+        align-items: flex-start !important;
+
+        .sub-menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size2;
+
+            .header {
+                font-family: vars.$p-font;
+                white-space: nowrap;
+                width: 100%;
+                border-bottom: solid 1px vars.$border15;
+                padding-bottom: vars.$size1;
+            }
+
+            .menu-item {
+                padding: vars.$size1;
+                background: transparent;
+            }
+
+            .menu-item:hover {
+                background: vars.$border15;
+                
+                &.header {
+                    background: transparent;
+                }
+            }
+
+        }
+
+        .sub-menu-section:last-child {
+            flex-direction: column;
+
+            .plugins-inner-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: vars.$size2;
+            }
+        }
+    }
+}

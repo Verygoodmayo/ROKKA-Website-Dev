@@ -10,8 +10,6 @@ export default function HomePage() {
 
     return (
         <>
-        {/* Menu */}
-        <Menu></Menu>
         <HomePageSketch></HomePageSketch>
         <HeroSection></HeroSection>
         <AboutSection></AboutSection>

@@ -23,16 +23,16 @@ export default function FooterSketchMesh () {
         shaderMaterial.current.uniforms.u_time.value = clock.elapsedTime * 0.5
     })
 
-    useEffect(() => {
-            const gui = new GUI()
-            gui.add(shaderMaterial.current.uniforms.frequency, 'value', -1, 1,0.001).name('f')
-            gui.add(shaderMaterial.current.uniforms.amplitude, 'value', -2, 2,0.01).name('a')
-            gui.add(shaderMaterial.current.uniforms.maxDistance, 'value', -4, 4,0.01).name('maxD')
-            gui.domElement.style.opacity = 0
-            return () => {
-            gui.destroy()
-            }
-        }, [])
+    // useEffect(() => {
+    //         const gui = new GUI()
+    //         gui.add(shaderMaterial.current.uniforms.frequency, 'value', -1, 1,0.001).name('f')
+    //         gui.add(shaderMaterial.current.uniforms.amplitude, 'value', -2, 2,0.01).name('a')
+    //         gui.add(shaderMaterial.current.uniforms.maxDistance, 'value', -4, 4,0.01).name('maxD')
+    //         gui.domElement.style.opacity = 0
+    //         return () => {
+    //         gui.destroy()
+    //         }
+    //     }, [])
 
     SetUp()
     function SetUp() {
