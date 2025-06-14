@@ -1,7 +1,7 @@
 uniform vec2 u_resolution;
 uniform float u_time;
 uniform float u_saf;
-uniform bool isMobile;
+uniform float isMobile;
 
 in vec3 vertexPosition;
 in vec2 textureCoord;
@@ -34,7 +34,7 @@ void main() {
     float opacity = clamp(ov, 0., 1.);
 
     // gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 
-    if (isMobile) {
+    if (isMobile > 0.5) {
         gl_FragColor=vec4(1.05,0.05,0.7,1.-opacity); 
     } else {
         gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 

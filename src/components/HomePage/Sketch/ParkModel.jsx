@@ -1,6 +1,6 @@
 import vertex from '../../../../static/glsl/home_page/vertex.glsl'
 import fragment from '../../../../static/glsl/home_page/fragment.glsl'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber';
 
 
@@ -18,13 +18,8 @@ import useIsMobile from '../../Utils/UseIsMobile';
 export default function ParkModel() {
 
     const isMobile = useIsMobile();
-
-    // Refs
     const shaderMaterial = useRef();
-
-    const camera = useThree(({camera}) => {
-        return camera
-    })
+    const { camera, size } = useThree();
 
     // Render Loop
     useFrame(({clock}) => {
@@ -42,17 +37,28 @@ export default function ParkModel() {
     //     }
     // }, [])
 
-    useGSAP(() => {
-        gsap.registerPlugin(ScrollTrigger)
+     // Reset uniforms and camera on mount
+    useEffect(() => {
+        if (shaderMaterial.current) {
+            shaderMaterial.current.uniforms.frequency.value = 0.015;
+            shaderMaterial.current.uniforms.amplitude.value = 1.89;
+            shaderMaterial.current.uniforms.maxDistance.value = 2.14;
+            shaderMaterial.current.uniforms.u_time.value = 0;
+            shaderMaterial.current.uniforms.u_resolution.value.set(size.width, size.height);
+             shaderMaterial.current.uniforms.isMobile.value = isMobile ? 1.0 : 0.0;
+        }
+        camera.position.set(-100, 20, 130);
+        camera.rotation.set(0, 0.1, 0);
+    }, [size, isMobile, camera]);
 
+    useGSAP(() => {
+      gsap.registerPlugin(ScrollTrigger);
       let timeline = gsap.timeline({
           paused: false,
-          scrollTrigger:
-          {
+          scrollTrigger: {
               trigger: '#hero-section',
               start: "top top+=1px",
               end: "bottom+=200vh top",
-              // markers: true,
               scrub: 1
           }
       });
@@ -108,6 +114,11 @@ export default function ParkModel() {
             duration: 8,
             ease: 'power1.inOut'
           }, '>-=6')
+
+          return () => {
+            timeline.scrollTrigger && timeline.scrollTrigger.kill();
+            timeline.kill();
+        };
     });
 
     return (
@@ -131,7 +142,7 @@ export default function ParkModel() {
                         frequency: { type: 'f', value: 0.015 },
                         amplitude: { type: 'f', value: 1.89 },
                         maxDistance: { type: 'f', value: 2.14},
-                        isMobile: {type: 'bool', value: isMobile}
+                        isMobile: { type: 'f', value: isMobile ? 1.0 : 0.0 }
                     }
                 }
                 side={DoubleSide}

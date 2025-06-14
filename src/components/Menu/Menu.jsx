@@ -10,27 +10,18 @@ import useIsMobile from '../Utils/UseIsMobile';
 import MobileMenu from "./MobileMenu";
 
 export default function Menu () {
-
     const isMobile = useIsMobile();
 
-    if (isMobile) {
-        // Render your mobile menu here (can be a separate component)
-        return (
-           <MobileMenu></MobileMenu>
-        );
-    }
-
+    // Always call hooks!
     const [ProductsMenuState, changeProductsMenuState] = useState(false);
     const [menuState, chageMenuState] = useState(true);
     const [isProductsMenuHovered, setIsProductsMenuHovered] = useState(false);
-    const [isMenuHoverd, setMenuHoverd] = useState(false)
+    const [isMenuHoverd, setMenuHoverd] = useState(false);
 
     const menuContainer = useRef();
     const menuContent = useRef();
     const productsMenu = useRef();
     const menuItems = useRef([]);
-
-    // Animations
     const menuAnimation = useRef();
     const productsMenuAnimation = useRef();
 
@@ -78,6 +69,10 @@ export default function Menu () {
         });
     changeProductsMenuState(false); // <-- Ensure menu is closed on load
     });
+
+    if (isMobile) {
+        return <MobileMenu />;
+    }
 
     function handleMenuMouseEnter() {
         chageMenuState(true)

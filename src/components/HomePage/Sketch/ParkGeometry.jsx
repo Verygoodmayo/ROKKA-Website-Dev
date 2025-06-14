@@ -1,70 +1,56 @@
-
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-
 import modelSrc from '../../../../static/glb/ParkModel.glb?url'
 
-
 export default function ParkGeometry() {
-    
-    let positions, reference, model, count,
-        positionArray
+    const bufferGeometry = useRef();
 
-    const bufferGeometry = useRef()
+    // 1. Load the model ONCE
+    const gltf = useLoader(GLTFLoader, modelSrc);
 
-    SetUp()
-    function SetUp() {
-        model = loadModel()
+    // 2. Extract geometry data ONCE using useMemo
+    const { positions, reference } = useMemo(() => {
+        // Find the mesh with geometry
+        const mesh = gltf.scene.children.find(child => child.geometry);
+        if (!mesh) return { positions: new Float32Array(), reference: new Float32Array() };
 
-        positionArray = model.props.object.children[0].geometry.attributes.position.array
-        count = model.props.object.children[0].geometry.attributes.position.count
-        positions = new Float32Array(count * 3);
-        reference = new Float32Array(count * 2);
-        fillPositions()
-        // console.log(positions)
-    }
-
-    function loadModel() {
-            const gltf = useLoader(GLTFLoader, modelSrc)
-            return <primitive object={gltf.scene} />
-    } 
-
-    function fillPositions() {
-        // Fill Positions
+        const positionArray = mesh.geometry.attributes.position.array;
+        const count = mesh.geometry.attributes.position.count;
+        const positions = new Float32Array(count * 3);
+        const reference = new Float32Array(count * 2);
 
         for (let i = 0; i < count; i++) {
+            let x = positionArray[i * 3 + 0] / 100;
+            let y = positionArray[i * 3 + 1] / 100;
+            let z = positionArray[i * 3 + 2] / 100;
 
-            let x  = positionArray[i * 3 + 0] / 100
-            let y  = positionArray[i * 3 + 1] / 100
-            let z  = positionArray[i * 3 + 2] / 100
+            positions[i * 3 + 0] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
 
-            positions[i * 3 + 0] = x
-            positions[i * 3 + 1] = y
-            positions[i * 3 + 2] = z
+            reference[i * 2 + 0] = (i % count) / count;
+            reference[i * 2 + 1] = ~~(i / count) / count;
+        }
+        return { positions, reference };
+    }, [gltf]);
 
-            reference[i * 2 + 0] = (i % count)/count
-            reference[i * 2 + 1] = ~ ~ ( i / count ) / count;
-            }
-    }
-
+    // 3. Render geometry using the memoized arrays
     return (
-        <bufferGeometry
-            ref={bufferGeometry}
-        >
-                <bufferAttribute
-                    attach='attributes-position'
-                    count={positions.length / 3}
-                    array={positions}
-                    itemSize={3}
-                ></bufferAttribute>
-                <bufferAttribute
-                    attach='attributes-reference'
-                    name='reference'
-                    array={reference}
-                    count={reference.length / 2}
-                    itemSize={2}
-                ></bufferAttribute>
-            </bufferGeometry>
-    )
+        <bufferGeometry ref={bufferGeometry}>
+            <bufferAttribute
+                attach='attributes-position'
+                count={positions.length / 3}
+                array={positions}
+                itemSize={3}
+            />
+            <bufferAttribute
+                attach='attributes-reference'
+                name='reference'
+                array={reference}
+                count={reference.length / 2}
+                itemSize={2}
+            />
+        </bufferGeometry>
+    );
 }

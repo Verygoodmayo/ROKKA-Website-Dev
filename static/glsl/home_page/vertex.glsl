@@ -6,7 +6,7 @@ uniform float frequency;
 uniform float amplitude;
 uniform float maxDistance;
 uniform float u_saf;
-uniform bool isMobile;
+uniform float isMobile;
 
 //varying float distToCamera;
 
@@ -175,7 +175,7 @@ textureCoord = newPos.xy;
 
 vec4 mvPosition = modelViewMatrix * vec4( newPos, 1.0 ); 
 
-if (isMobile) {
+if (isMobile > 0.5) {
     // Mobile
     gl_PointSize = 100. * ( 1. / - mvPosition.z );
 } else {
