@@ -67,24 +67,38 @@
             .navigation-section {
                 justify-self: stretch;
                 display: flex;
+                height: 50%;
                 flex-direction: column;
             }
+
+            // .footer .main-section .footer-navigation-section #products-section .wrapper {
+            //     width: 100%;
+            // }
             
             #products-section {
                 position: relative;
-                height: 100%;
-                flex: 6;
+                width: 100%;
+                flex: 8;
+
                 .wrapper {
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
                     gap: vars.$size3;
                     display: flex;
                     flex-direction: row;
 
                     #core-tech-section {
+                        flex: 3;
+                        position: relative;
+                        height: 100%;
                         display: flex;
                         flex-direction: column;
+                        white-space: nowrap;
                     }
 
                     #plugins-section {
+                        flex: 6;
                         gap: vars.$size3;
                         display: flex;
                         flex-direction: row;
@@ -100,7 +114,7 @@
             }
 
             #by-need-section {
-                flex: 4;
+                flex: 2;
             }
         }
     }
@@ -139,9 +153,12 @@
 }
 
 .nav-item {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
     color: vars.$content-invert;
     padding: vars.$size3;
     border-bottom: solid 1px vars.$content-invert;
-    white-space: nowrap;
 }
 

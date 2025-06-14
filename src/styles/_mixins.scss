@@ -50,3 +50,31 @@
     backdrop-filter: blur(20px);
     border: solid 1px vars.$border15;
 }
+
+@mixin shadow1 {
+    /* https://smoothshadows.com/#djEsMSwxMCwwLjAzLDk1LDE0LDAsIzAzMDcxMiwjZjNmNGY2LCNmZmZmZmYsMg%3D%3D */
+  box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.00),
+  0px 1px 4px rgba(3, 7, 18, 0.01),
+  0px 1px 9px rgba(3, 7, 18, 0.01),
+  0px 2px 15px rgba(3, 7, 18, 0.01),
+  0px 4px 24px rgba(3, 7, 18, 0.01),
+  0px 5px 34px rgba(3, 7, 18, 0.02),
+  0px 7px 47px rgba(3, 7, 18, 0.02),
+  0px 9px 61px rgba(3, 7, 18, 0.02),
+  0px 11px 77px rgba(3, 7, 18, 0.03),
+  0px 14px 95px rgba(3, 7, 18, 0.03);
+
+}
+
+@mixin shadow2 { 
+    box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
+  0px 1px 4px rgba(3, 7, 18, 0.04),
+  0px 2px 8px rgba(3, 7, 18, 0.06),
+  0px 4px 14px rgba(3, 7, 18, 0.07),
+  0px 5px 22px rgba(3, 7, 18, 0.09),
+  0px 8px 32px rgba(3, 7, 18, 0.11),
+  0px 11px 43px rgba(3, 7, 18, 0.13),
+  0px 14px 56px rgba(3, 7, 18, 0.15);
+
+
+}

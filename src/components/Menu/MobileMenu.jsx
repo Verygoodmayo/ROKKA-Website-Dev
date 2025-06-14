@@ -17,18 +17,16 @@ export default function MobileMenu() {
     // GSAP animation for menu open/close
     useGSAP(() => {
         if (!menuItemWrapper.current) return;
-        gsap.set(menuItemWrapper.current, { y: "-100%", display: "none" }); // default closed
+        // gsap.set(menuItemWrapper.current, { y: "-100%", display: "none" }); // default closed
         if (menuOpen) {
             gsap.to(menuItemWrapper.current, {
                 y: 0,
-                display: "block",
                 duration: 0.4,
                 ease: "power2.out"
             });
         } else {
             gsap.to(menuItemWrapper.current, {
                 y: "-100%",
-                display: "none",
                 duration: 0.4,
                 ease: "power2.in"
             });

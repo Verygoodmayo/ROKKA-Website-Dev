@@ -20,7 +20,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-         border-bottom: solid 1px vars.$border15;
+        border-bottom: solid 1px vars.$border15;
+        background: vars.$bg;
+        z-index: 2;
 
         .logotype {
             height: 45px;
@@ -58,10 +60,9 @@
         height: auto;
         width: 100%;
         background: vars.$bg;
-         will-change: transform;
-        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        will-change: transform;
         transform: translateY(-100%); // default closed state for CSS fallback
-        z-index: 10;
+        z-index: 1;
         border-bottom: solid 1px vars.$border15;
         border-top: solid 1px vars.$border15;
 
@@ -86,6 +87,11 @@
                 &:hover {
                     background: vars.$border15;
                 }
+
+                &.active {
+                    background: vars.$border15;
+                    font-weight: 400;
+                }
             }
 
 
@@ -93,7 +99,7 @@
 
         .products-section {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             font-family: vars.$p-font;
             font-weight: 300;
             color: vars.$content;

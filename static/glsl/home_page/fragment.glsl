@@ -33,9 +33,10 @@ void main() {
     float ov =  smoothstep( (distToCamera + clamp(noise(st),-1.,0.5)) / 60., 0.,0.75);
     float opacity = clamp(ov, 0., 1.);
 
-    // gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 
+    // Mobile
     if (isMobile > 0.5) {
-        gl_FragColor=vec4(1.05,0.05,0.7,1.-opacity); 
+         gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 
+    // Desktop
     } else {
         gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 
 }  

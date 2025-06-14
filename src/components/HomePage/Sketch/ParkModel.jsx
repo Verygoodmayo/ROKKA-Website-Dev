@@ -52,14 +52,17 @@ export default function ParkModel() {
     }, [size, isMobile, camera]);
 
     useGSAP(() => {
+      let firstSectionTime = 4;
+      let cameraTransitionTime = 10;
+      let secondSectionTime = 5;
       gsap.registerPlugin(ScrollTrigger);
       let timeline = gsap.timeline({
           paused: false,
           scrollTrigger: {
               trigger: '#hero-section',
               start: "top top+=1px",
-              end: "bottom+=200vh top",
-              scrub: 1
+              end: "bottom+=100% top",
+              scrub: 4
           }
       });
 
@@ -76,15 +79,15 @@ export default function ParkModel() {
           })
           .from(shaderMaterial.current.uniforms.frequency, {
             value: 0.036,
-            duration: 4
+            duration: firstSectionTime
           })
           .from(shaderMaterial.current.uniforms.amplitude, {
             value: 2,
-            duration: 4
+            duration: firstSectionTime
           }, '<')
           .from(shaderMaterial.current.uniforms.maxDistance, {
             value: 0.32,
-            duration: 4
+            duration: firstSectionTime
           }, '<')
           
 
@@ -92,28 +95,28 @@ export default function ParkModel() {
           //   x: 0,
           //   y: -30,
             z: -0,
-            duration: 15
+            duration: cameraTransitionTime
           }, '<')
 
           .to(shaderMaterial.current.uniforms.frequency, {
             value: 0.036,
-            duration: 5
-          }, '>-7')
+            duration: secondSectionTime
+          }, '>-=' + secondSectionTime)
           .to(shaderMaterial.current.uniforms.amplitude, {
             value: 2.,
-            duration: 5
+            duration: secondSectionTime
           }, '<')
           .to(shaderMaterial.current.uniforms.maxDistance, {
             value: 0.32,
-            duration: 5
+            duration: secondSectionTime
           }, '<') 
           .to(camera.rotation, {
           //   x: 0,
           //   y: -30,
             y: Math.PI,
-            duration: 8,
+            duration: secondSectionTime,
             ease: 'power1.inOut'
-          }, '>-=6')
+          }, '>-=' + secondSectionTime)
 
           return () => {
             timeline.scrollTrigger && timeline.scrollTrigger.kill();

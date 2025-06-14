@@ -177,7 +177,7 @@ vec4 mvPosition = modelViewMatrix * vec4( newPos, 1.0 );
 
 if (isMobile > 0.5) {
     // Mobile
-    gl_PointSize = 100. * ( 1. / - mvPosition.z );
+    gl_PointSize = 50. * ( 1. / - mvPosition.z );
 } else {
     // Desktop
     gl_PointSize = 20. * ( 1. / - mvPosition.z );

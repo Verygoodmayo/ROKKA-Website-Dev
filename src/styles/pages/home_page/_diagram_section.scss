@@ -1,0 +1,234 @@
+@use '../../vars';
+@use '../../mixins';
+
+#diagram-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: vars.$bg;
+  border-top: solid 1px vars.$border15;
+
+  .diagram-header-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    background: vars.$bg;
+    border-bottom: solid 1px vars.$border15;
+    padding: vars.$size4;
+
+    .diagram-header {
+      @include mixins.header;
+      font-weight: 300;
+      font-size: vars.$heading2;
+      margin-bottom: vars.$size2;
+    }
+
+    .diagram-intro {
+      width: 80ch;
+      font-family: vars.$s-font;
+      font-size: vars.$body3;
+      font-weight: 300;
+      line-height: 150%;
+      // margin-bottom: vars.$size2;
+    }
+  }
+
+  #diagram-navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    .diagram-nav {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mixins.border5_right;
+      @include mixins.transition1;
+      background: transparent;
+
+      &:hover {
+        background: #0000000e;
+      }
+    }
+
+    #diagram-nav-right {
+      border: none;
+      @include mixins.border5_left;
+    }
+  }
+
+  .diagram-cards-wrapper {
+    padding: vars.$size4;
+    gap: vars.$size4;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+
+    .diagram-card {
+      flex: 0 0 auto;
+      position: relative;
+      height: 100%;
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: vars.$p-color;
+      z-index: 1;
+      color: vars.$content-invert;
+      padding: vars.$size4;
+      gap: vars.$size3;
+      @include mixins.shadow1;
+
+      .header-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: vars.$size2;
+        width: 100%;
+      }
+
+      .title {
+        text-transform: uppercase;
+        font-family: vars.$header-font;
+        font-size: vars.$heading3;
+      }
+
+      .categories {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: vars.$size2 vars.$size1;
+        width: 100%;
+        flex-wrap: wrap;
+
+        .category {
+          padding: 10px 20px;
+          border-radius: 500px;
+          border: solid 1px vars.$content-invert;
+          font-size: vars.$body1;
+          font-weight: 300;
+          transition: all 0.2s ease-in-out;
+          cursor: pointer;
+          background: transparent;
+          color: vars.$content-invert;
+          font-family: vars.$p-font;
+          margin-right: 8px;
+
+          &:hover {
+            background: vars.$content-invert;
+            color: vars.$p-color;
+          }
+
+          &.active {
+            background: vars.$content-invert;
+            color: vars.$p-color;
+            font-weight: 300;
+          }
+        }
+      }
+
+      .description {
+        position: relative;
+        justify-self: flex-end;
+        align-self: flex-end;
+        width: 100%;
+        height: 100%;
+        margin-top: vars.$size4;
+
+        p {
+          position: absolute;
+          font-weight: 300;;
+          bottom: 0px;
+          left: 0px;
+          height: 100%;
+          width: 50ch;
+          line-height: 150%;
+          opacity: 1; // Ensure GSAP can animate opacity
+          transition: opacity 0.4s;
+        }
+      }
+    }
+
+    .diagram-card.opportunities-card {
+      border: 2px solid vars.$p-color;
+      background: vars.$bg;
+      color: vars.$p-color !important;
+
+      .categories {
+        .category {
+          border: solid 1px vars.$p-color;
+          color: vars.$p-color;
+
+          &:hover {
+            background: vars.$content-invert;
+            color: vars.$p-color;
+          }
+
+          &.active {
+            background: vars.$p-color;
+            color: vars.$content-invert;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #diagram-container {
+    height: auto;
+
+    .diagram-cards-wrapper {
+      padding: vars.$size2;
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: vars.$size2;
+
+      .diagram-card {
+        width: 100%;
+        height: auto;
+        padding: vars.$size3;
+        margin-bottom: 0px;
+
+        .title {
+          font-size: vars.$heading4;
+        }
+
+        .categories {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: vars.$size1;
+
+          .category {
+            width: 100%;
+            text-align: center;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
