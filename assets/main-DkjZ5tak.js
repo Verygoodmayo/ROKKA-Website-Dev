@@ -4113,7 +4113,7 @@ vec4 mvPosition = modelViewMatrix * vec4( newPos, 1.0 );
 
 if (isMobile > 0.5) {
     
-    gl_PointSize = 100. * ( 1. / - mvPosition.z );
+    gl_PointSize = 50. * ( 1. / - mvPosition.z );
 } else {
     
     gl_PointSize = 20. * ( 1. / - mvPosition.z );
@@ -4157,7 +4157,8 @@ void main() {
 
     
     if (isMobile > 0.5) {
-        gl_FragColor=vec4(1.05,0.05,0.7,1.-opacity); 
+         gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 
+    
     } else {
         gl_FragColor=vec4(0.05,0.05,0.7,1.-opacity); 
 }  
