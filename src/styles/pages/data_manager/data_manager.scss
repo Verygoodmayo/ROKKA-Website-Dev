@@ -1,0 +1,71 @@
+@use '../../app.scss';
+@use '../../vars.scss';
+@use '../../mixins.scss';
+
+.hero-section {
+    position: relative;
+    background: vars.$p-color;
+    z-index: 1;
+
+    .sketch-container {
+        position: absolute !important;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding: vars.$size4;
+        // height: 50vh;
+        width: 65vh;
+        background: vars.$bg;
+        z-index: 2;
+        @include mixins.border5-top;
+        @include mixins.border5-right;
+        display: flex;
+        flex-direction: column;
+        gap: vars.$size3;
+
+        .logo {
+            height: 35px;
+            width: 35px;
+        }
+
+        .hero-title {
+            font-family: vars.$header-font;
+            text-transform: uppercase;
+            font-size: vars.$heading1;
+        }
+
+        .hero-description {
+            font-family: vars.$p-font;
+            font-size: vars.$body2;
+            width: 45ch;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: vars.$size2;
+        }
+    }
+}
+
+.features-container {
+    position: relative;
+    @include mixins.border5-top;
+    background: vars.$bg;
+    z-index: 3;
+
+    .feature-card {
+        height: 100vh;
+        width: 100%;
+    }
+}

@@ -1,5 +1,6 @@
 import DiagramCard from "./DiagramCard";
 import DiagramNavigation from "./DiagramNavigation";
+import * as THREE from "three";
 
 const cardsInfo = [
     {
@@ -66,6 +67,7 @@ export default function Diagram() {
                     description={cardsInfo[0].description}
                     isOpportunities={false}
                     defaultIndex={2}
+                    meshType={new THREE.IcosahedronGeometry(100, 136)}
                 />
                 <DiagramCard
                     key={1}
@@ -75,6 +77,7 @@ export default function Diagram() {
                     description={cardsInfo[1].description}
                     isOpportunities={false}
                     defaultIndex={1}
+                    meshType={new THREE.RingGeometry(50, 100, 400, 400, 0, Math.PI * 2)}
                 />
                 <DiagramCard
                     key={2}
@@ -84,6 +87,7 @@ export default function Diagram() {
                     description={cardsInfo[2].description}
                     isOpportunities={false}
                     defaultIndex={0}
+                    meshType={new THREE.CapsuleGeometry(50,100,300,300,300)}
                 />
                 <DiagramCard
                     key={3}

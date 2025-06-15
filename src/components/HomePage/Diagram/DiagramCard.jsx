@@ -1,8 +1,11 @@
 import { useState, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { Canvas } from "@react-three/fiber";
+import IcoBufferMesh from "../../Sketchs/IcoBufferMesh";
+import * as THREE from "three";
 
-export default function DiagramCard({ keyName, title, categories, description, isOpportunities, defaultIndex = 0 }) {
+export default function DiagramCard({ keyName, title, categories, description, isOpportunities, defaultIndex = 0, meshType = new THREE.BoxGeometry(50, 50, 50, 50, 100, 100, 100), geoComplexity = 136 }) {
     const [activeIndex, setActiveIndex] = useState(defaultIndex);
     const [fadeState, setFadeState] = useState("in");
     const descRef = useRef();
@@ -47,6 +50,9 @@ export default function DiagramCard({ keyName, title, categories, description, i
             <div className="description">
                 <p ref={descRef}>{description[activeIndex]}</p>
             </div>
+            <Canvas key={1} className="card-sketch-container">
+                <IcoBufferMesh meshType={meshType} geoComplexity={geoComplexity}></IcoBufferMesh>
+            </Canvas>
         </div>
     );
 }

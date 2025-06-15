@@ -4,48 +4,28 @@ import { useGSAP } from "@gsap/react";
 import arrowRight from '../../../static/svg/Arrow_Right.svg';
 import arrowLeft from '../../../static/svg/Arrow_Left.svg';
 
+import no_code_svg from '../../../static/svg/values/no_code.svg'
+import manage_data_svg from '../../../static/svg/values/manage_data_simply.svg';
+import reasoning_service_svg from '../../../static/svg/values/reasoning_as_a_service.svg';
+
 // Value data
 const values = [
     {
         title: "No Code",
         description: "Empower everyone to build and automate without writing a single line of code. Our platform democratizes technology, enabling users of all backgrounds to create powerful solutions with intuitive visual tools.",
-        image: (
-            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
-                <rect x="30" y="30" width="120" height="120" rx="24" fill="#141cff"/>
-                <rect x="50" y="50" width="80" height="80" rx="16" fill="#fff"/>
-                <path d="M70 90h40M90 70v40" stroke="#141cff" strokeWidth="6" strokeLinecap="round"/>
-                <rect x="60" y="60" width="20" height="20" rx="4" fill="#f7f5f5" stroke="#141cff" strokeWidth="2"/>
-                <rect x="100" y="100" width="20" height="20" rx="4" fill="#f7f5f5" stroke="#141cff" strokeWidth="2"/>
-            </svg>
-        ),
+        image: no_code_svg,
         imageName: "no-code-isometric.svg"
     },
     {
         title: "Manage Data Simply",
         description: "Seamlessly organize, visualize, and control your data. We simplify complex data management, providing clear dashboards and smart automation so you can focus on insights, not infrastructure.",
-        image: (
-            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
-                <rect x="30" y="60" width="120" height="60" rx="16" fill="#141cff"/>
-                <rect x="50" y="80" width="80" height="20" rx="6" fill="#fff"/>
-                <rect x="60" y="90" width="20" height="8" rx="2" fill="#f7f5f5" stroke="#141cff" strokeWidth="2"/>
-                <rect x="100" y="90" width="20" height="8" rx="2" fill="#f7f5f5" stroke="#141cff" strokeWidth="2"/>
-                <circle cx="90" cy="70" r="8" fill="#fff" stroke="#141cff" strokeWidth="2"/>
-            </svg>
-        ),
+        image: manage_data_svg,
         imageName: "manage-data-isometric.svg"
     },
     {
         title: "Reasoning as a Service",
         description: "Leverage advanced AI to turn raw data into actionable intelligence. Our platform delivers automated reasoning, providing recommendations and insights that drive smarter decisions at every level.",
-        image: (
-            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
-                <rect x="40" y="40" width="100" height="100" rx="20" fill="#141cff"/>
-                <ellipse cx="90" cy="90" rx="36" ry="24" fill="#fff"/>
-                <path d="M90 66v48M66 90h48" stroke="#141cff" strokeWidth="6" strokeLinecap="round"/>
-                <circle cx="90" cy="90" r="10" fill="#f7f5f5" stroke="#141cff" strokeWidth="2"/>
-                <rect x="80" y="120" width="20" height="10" rx="3" fill="#f7f5f5" stroke="#141cff" strokeWidth="2"/>
-            </svg>
-        ),
+        image: reasoning_service_svg,
         imageName: "reasoning-service-isometric.svg"
     }
 ];
@@ -129,22 +109,7 @@ export default function ValuesSection() {
                     </div>
                     <div id="image">
                         <div className="value-image-container" ref={imageRef}>
-                            {values[current].image}
-                            {/* <button
-                                style={{
-                                    marginTop: 12,
-                                    background: "#141cff",
-                                    color: "#fff",
-                                    border: "none",
-                                    borderRadius: 6,
-                                    padding: "6px 16px",
-                                    cursor: "pointer",
-                                    fontFamily: "inherit"
-                                }}
-                                onClick={handleDownload}
-                            >
-                                Download SVG
-                            </button> */}
+                            <img src={values[current].image} alt={values[current].imageName} />
                         </div>
                     </div>
                 </div>

@@ -2,13 +2,13 @@ import { useFrame, useThree } from "@react-three/fiber"
 import * as THREE from 'three'
 import vertex from '../../../../static/glsl/footer/vertex.glsl'
 import fragment from '../../../../static/glsl/footer/fragment.glsl'
-import { useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef } from "react"
 
 import { GUI } from 'dat.gui'
 
 export default function FooterSketchMesh () {
 
-    let positions, reference, model, count,
+    let model, count,
         positionArray
 
     // Refs
@@ -34,59 +34,48 @@ export default function FooterSketchMesh () {
     //         }
     //     }, [])
 
-    SetUp()
-    function SetUp() {
-        // Geometry
-        const geometry = new THREE.IcosahedronGeometry(100, 136);
-            // Array
-            positionArray = geometry.attributes.position.array
-            // Count
-            count = geometry.attributes.position.count
-
-        // Arrays
-        positions = new Float32Array(count * 3);
-        reference = new Float32Array(count * 2);
-        fillPositions()
-    }
-
-    function fillPositions() {
-        // Fill Positions
-
-        for (let i = 0; i < count; i++) {
-
-            let x  = positionArray[i * 3 + 0] / 100
-            let y  = positionArray[i * 3 + 1] / 100
-            let z  = positionArray[i * 3 + 2] / 100
-
-            positions[i * 3 + 0] = x
-            positions[i * 3 + 1] = y
-            positions[i * 3 + 2] = z
-
-            reference[i * 2 + 0] = (i % count)/count
-            reference[i * 2 + 1] = ~ ~ ( i / count ) / count;
+    const { positions, reference } = useMemo(() => {
+            const mesh = new THREE.IcosahedronGeometry(100, 136);
+            // If no mesh is found, return empty arrays
+            if (!mesh) return { positions: new Float32Array(), reference: new Float32Array() };
+            const positionArray = mesh.attributes.position.array;
+            const count = mesh.attributes.position.count;
+            const positions = new Float32Array(count * 3);
+            const reference = new Float32Array(count * 2);
+    
+            for (let i = 0; i < count; i++) {
+                let x = positionArray[i * 3 + 0] / 100;
+                let y = positionArray[i * 3 + 1] / 100;
+                let z = positionArray[i * 3 + 2] / 100;
+    
+                positions[i * 3 + 0] = x;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = z;
+    
+                reference[i * 2 + 0] = (i % count) / count;
+                reference[i * 2 + 1] = ~~(i / count) / count;
             }
-    }
+            return { positions, reference };
+    });
 
     return (
 
         <points>
-            <bufferGeometry
-            ref={bufferGeometry}
-        >
-                <bufferAttribute
-                    attach='attributes-position'
-                    count={positions.length / 3}
-                    array={positions}
-                    itemSize={3}
-                ></bufferAttribute>
-                <bufferAttribute
-                    attach='attributes-reference'
-                    name='reference'
-                    array={reference}
-                    count={reference.length / 2}
-                    itemSize={2}
-                ></bufferAttribute>
-            </bufferGeometry>
+            <bufferGeometry ref={bufferGeometry}>
+            <bufferAttribute
+                attach='attributes-position'
+                count={positions.length / 3}
+                array={positions}
+                itemSize={3}
+            />
+            <bufferAttribute
+                attach='attributes-reference'
+                name='reference'
+                array={reference}
+                count={reference.length / 2}
+                itemSize={2}
+            />
+        </bufferGeometry>
 
             <shaderMaterial
                 ref={shaderMaterial}

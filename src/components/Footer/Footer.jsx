@@ -19,7 +19,7 @@ export default function Footer() {
                 <div className="info-section">
                     <div className="logotype-wrapper">
                         <img className="logotype-white" src={logotype_white}></img>
-                        <Button label={"Let's Talk"} isPrimary={true} imgSrc={phoneSVG}></Button>
+                        <Button label={"Let's Talk"} isPrimary={false} Outline={true} imgSrc={phoneSVG}></Button>
                     </div>
                     <div className="info-wrapper">
                         <p className="info">Yiga'al Alon 108, Tel Aviv-Jaffa</p>

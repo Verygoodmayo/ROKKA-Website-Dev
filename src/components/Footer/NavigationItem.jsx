@@ -1,4 +1,4 @@
-export default function NavigationItem ({label, link}) {
+export default function NavigationItem ({label, link, iconSrc}) {
 
     return (
         <div className="nav-item">

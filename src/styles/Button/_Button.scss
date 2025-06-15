@@ -25,9 +25,21 @@
 
 .primary-button {
   background: vars.$content;
+
+  &.outline {
+    background: transparent !important;
+    border: solid 1px vars.$content;
+    color: vars.$content;
+  }
 }
 
-.outline {
-  background: transparent !important;
-  border: solid 1px vars.$content;
+.secondary-button {
+  background: vars.$bg;
+  color: vars.$p-color;
+
+  &.outline {
+    background: transparent !important;
+    border: solid 1px vars.$bg;
+    color: vars.$bg;
+  }
 }

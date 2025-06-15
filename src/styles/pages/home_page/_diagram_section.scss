@@ -103,6 +103,7 @@
         flex-direction: column;
         gap: vars.$size2;
         width: 100%;
+        z-index: 2;
       }
 
       .title {
@@ -153,6 +154,7 @@
         width: 100%;
         height: 100%;
         margin-top: vars.$size4;
+        z-index: 2;
 
         p {
           position: absolute;
@@ -165,6 +167,15 @@
           opacity: 1; // Ensure GSAP can animate opacity
           transition: opacity 0.4s;
         }
+      }
+
+      .card-sketch-container {
+        position: absolute !important;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
       }
     }
 

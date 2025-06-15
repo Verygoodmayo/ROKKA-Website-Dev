@@ -162,3 +162,49 @@
     border-bottom: solid 1px vars.$content-invert;
 }
 
+@media screen and (max-width: 768px) {
+    .footer {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+
+        .main-section {
+            flex-direction: column;
+            width: 100%;
+
+            .info-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: solid 1px vars.$content-invert;
+                gap: vars.$size3;
+
+                .info-wrapper {
+                    justify-content: space-between;
+                    flex-direction: row;
+                }
+            }
+
+            .footer-navigation-section {
+                width: 100%;
+                flex-direction: column;
+                padding: vars.$size3;
+
+                #products-section {
+                    width: 100%;
+                    flex-direction: column;
+
+                    .wrapper {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+
+        .bottom-section {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
+}
+
