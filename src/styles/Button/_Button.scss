@@ -30,6 +30,11 @@
     background: transparent !important;
     border: solid 1px vars.$content;
     color: vars.$content;
+
+    &:hover {
+      background: vars.$content-invert;
+      color: vars.$bg;
+    }
   }
 }
 
@@ -40,6 +45,11 @@
   &.outline {
     background: transparent !important;
     border: solid 1px vars.$bg;
-    color: vars.$bg;
+    color: vars.$content-invert;
+
+    &:hover {
+      background: vars.$content-invert !important;
+      color: vars.$p-color !important;
+    }
   }
 }

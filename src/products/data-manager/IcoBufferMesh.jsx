@@ -6,7 +6,29 @@ import { useEffect, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import GUI from 'lil-gui'; // Use 'lil-gui' as 'dat.gui' is deprecated
 
-export default function DataManagerSketch() {
+const defaultProps = {
+    frequency: 0.426,
+    amplitude: 1,
+    maxDistance: 0.5,
+    isMobile: false,
+    cameraZ: 1.85,
+};
+
+export default function DataManagerSketch({ 
+    geoComplexity = 136,
+    meshType = new THREE.IcosahedronGeometry(100, geoComplexity),
+    frequency = defaultProps.frequency,
+    setFrequency,
+    amplitude = defaultProps.amplitude,
+    setAmplitude,
+    maxDistance = defaultProps.maxDistance,
+    setMaxDistance,
+    isMobile = defaultProps.isMobile,
+    setIsMobile,
+    cameraZ = defaultProps.cameraZ,
+    setCameraZ
+}) {
+    
     const shaderMaterial = useRef();
 
      // Mouse state
@@ -14,13 +36,36 @@ export default function DataManagerSketch() {
     const [mouseInfluence, setMouseInfluence] = useState(1.0);
 
     useThree(({camera}) => {
-       camera.position.z = 1.85
+        // cameraRef.current = camera;
+       camera.position.z = cameraZ
     })
 
     useFrame(({ clock }) => {
         if (shaderMaterial.current) {
             shaderMaterial.current.uniforms.u_time.value = clock.elapsedTime * 0.5;
         }
+        if (frequency !== undefined) {
+            setFrequency(frequency);
+            shaderMaterial.current.uniforms.frequency.value = frequency;
+        }
+        if (amplitude !== undefined) {
+            setAmplitude(amplitude);
+            shaderMaterial.current.uniforms.amplitude.value = amplitude;
+        }
+        if (maxDistance !== undefined) {
+            setMaxDistance(maxDistance);
+            shaderMaterial.current.uniforms.maxDistance.value = maxDistance;
+        }
+        if (isMobile !== undefined) {
+            setIsMobile(isMobile);
+            shaderMaterial.current.uniforms.isMobile.value = isMobile;
+        }
+        if (cameraZ !== undefined) {
+            setCameraZ(cameraZ);
+            // Update camera position if needed
+            
+        }
+
     });
 
     useEffect(() => {
@@ -48,17 +93,17 @@ export default function DataManagerSketch() {
     return (
         <points>
             {/* Replace with your geometry component or bufferGeometry */}
-            <IcoBufferGeometry></IcoBufferGeometry>
+            <IcoBufferGeometry meshType={meshType} geoComplexity={geoComplexity}></IcoBufferGeometry>
             {/* Shader Material */}
             <shaderMaterial
                 ref={shaderMaterial}
                 uniforms={{
                     u_time: { value: 0. },
                     u_resolution: { value: new THREE.Vector2() },
-                    frequency: { type: 'f', value: 0.926 },
-                    amplitude: { type: 'f', value: 2 },
-                    maxDistance: { type: 'f', value: 4 },
-                    isMobile: { type: 'bool', value: false },
+                    frequency: { type: 'f', value: frequency },
+                    amplitude: { type: 'f', value: amplitude },
+                    maxDistance: { type: 'f', value: maxDistance },
+                    isMobile: { type: 'bool', value: isMobile },
                     u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
                     u_mouseInfluence: { value: mouseInfluence }
                 }}

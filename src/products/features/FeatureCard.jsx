@@ -1,13 +1,14 @@
+import ByNeedSection from "./ByNeedSection";
+
 export default function FeatureCard({ data }) {
+  // console.log("FeatureCard data:", data);
   return (
     <div className="feature-card">
-      <div className="feature-icon">
-        <img src={data.icon} alt={data.title} />
+      <div className="feature-card-header">
+          <h2 className="feature-title">{data.title}</h2>
+          <p className="feature-description">{data.description}</p>
       </div>
-      <div className="feature-content">
-        <h3>{data.title}</h3>
-        <p>{data.description}</p>
-      </div>
+      <ByNeedSection data={data}></ByNeedSection>
     </div>
   );
 }

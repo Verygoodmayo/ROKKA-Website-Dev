@@ -1,11 +1,12 @@
 import Button from "../../components/Button";
-import HeroSectionSketch from "./HeroSectionSketch";
+import HeroSectionSketch from "./DataManagerSketch";
+import dataManagerIcon from '../../../static/svg/products/Data_Management_B.svg'
 
 export default function HeroSection() {
   return (
     <div className="hero-section section">
       <div className="hero-content">
-        <img src="/images/logo.png" alt="Data Manager Logo" className="logo" />
+        <img src={dataManagerIcon} alt="Data Manager Logo" className="logo" />
         <div className="hero-title">
           NO CODE. <br/>
           Deep Analytics.
@@ -16,7 +17,6 @@ export default function HeroSection() {
           <Button label={'watch a promo'} isPrimary={true} Outline={true}></Button>
         </div>
       </div>
-      <HeroSectionSketch></HeroSectionSketch>
     </div>
   );
 }

@@ -6,26 +6,30 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: vars.$bg;
-  border-top: solid 1px vars.$border15;
+  height: auto;
 
   .diagram-header-wrapper {
-    width: 100%;
+    width: 50vw;
+    min-height: 50vh;
     position: relative;
     z-index: 3;
     background: vars.$bg;
-    border-bottom: solid 1px vars.$border15;
+    @include mixins.border5_top;
+    @include mixins.border5_right;
     padding: vars.$size4;
+
 
     .diagram-header {
       @include mixins.header;
       font-weight: 300;
-      font-size: vars.$heading2;
+      font-size: vars.$heading1;
+      width: 70%;
       margin-bottom: vars.$size2;
     }
 
     .diagram-intro {
-      width: 80ch;
+      width: 90%;
+      max-width: 60ch;
       font-family: vars.$s-font;
       font-size: vars.$body3;
       font-weight: 300;
@@ -77,15 +81,18 @@
     align-items: stretch;
     justify-content: flex-start;
     width: 100%;
-    height: 100%;
+    height: auto;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
+    background: vars.$bg;
+    @include mixins.border5_top;
 
     .diagram-card {
       flex: 0 0 auto;
       position: relative;
       height: 100%;
+      min-height: 600px;
       width: 600px;
       display: flex;
       flex-direction: column;
