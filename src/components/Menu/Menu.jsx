@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom';
 import useIsMobile from '../Utils/UseIsMobile';
 import MobileMenu from "./MobileMenu";
 
+// SASS
+import '../../styles/menu/menu.scss';
+
 export default function Menu () {
     const isMobile = useIsMobile();
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 
 export default function FooterNavigationSection () {
@@ -9,9 +10,15 @@ export default function FooterNavigationSection () {
                 <p className="header">Products</p>
                 <div className="wrapper">
                     <div id="core-tech-section">
-                        <NavigationItem label='Data Manager'></NavigationItem>
-                        <NavigationItem label='Monitoring'></NavigationItem>
-                        <NavigationItem label='PILA'></NavigationItem>
+                        <Link to="/products/data-manager">
+                            <NavigationItem label='Data Manager'></NavigationItem>
+                        </Link>
+                        <Link to="/products/monitoring">
+                            <NavigationItem label='Monitoring'></NavigationItem>
+                        </Link>
+                        <Link to="/products/PILA">
+                            <NavigationItem label='PILA'></NavigationItem>
+                        </Link>
                     </div>
                     <div id="plugins-section">
                         <div className="wrapper">

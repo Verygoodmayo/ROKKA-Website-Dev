@@ -24,7 +24,7 @@ export default function ProductsMenu({ menuRef, state, changeState, onMouseEnter
                     <div key={2} className="plugins-section sub-menu-section">
                         <p className="menu-item header">Plugins</p>
                         <div className="plugins-inner-wrapper">
-                            <MenuItem label={'Call Center'}></MenuItem>
+                            <MenuItem label={'Call Center'} link={'/plugins'}></MenuItem>
                             <MenuItem label={'Election Day'}></MenuItem>
                             <MenuItem label={'Ecosystem Analyzer'}></MenuItem>
                         </div>

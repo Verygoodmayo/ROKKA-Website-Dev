@@ -1,3 +1,4 @@
+import '../../styles/pages/home_page/hero_section.scss';
 import ScrollforMore from "../ScrollforMore";
 
 export default function HeroSection() {

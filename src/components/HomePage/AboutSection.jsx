@@ -1,3 +1,5 @@
+import '../../styles/pages/home_page/about_section.scss';
+
 export default function AboutSection() {
     return (
         <section

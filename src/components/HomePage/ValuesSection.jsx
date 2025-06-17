@@ -8,6 +8,9 @@ import no_code_svg from '../../../static/svg/values/no_code.svg'
 import manage_data_svg from '../../../static/svg/values/manage_data_simply.svg';
 import reasoning_service_svg from '../../../static/svg/values/reasoning_as_a_service.svg';
 
+// SASS
+import '../../styles/pages/home_page/values_section.scss';
+
 // Value data
 const values = [
     {

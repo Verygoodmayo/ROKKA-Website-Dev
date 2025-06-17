@@ -1,4 +1,5 @@
 
+import '../styles/Button/Button.scss'
 
 export default function Button({label, isPrimary, Outline, imgSrc}) {
 

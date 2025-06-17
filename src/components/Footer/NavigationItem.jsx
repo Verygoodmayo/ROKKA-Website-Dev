@@ -1,10 +1,9 @@
-export default function NavigationItem ({label, link, iconSrc}) {
+export default function NavigationItem ({label, iconSrc}) {
 
     return (
         <div className="nav-item">
-            <a
-                href={link}
-            >{label}</a>
+            {iconSrc && <img src={iconSrc} alt={label + '-icon'} className="nav-icon" />}
+            <span className="nav-label">{label}</span>
         </div>
     )
 

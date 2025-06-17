@@ -4,6 +4,10 @@ import Button from "../Button";
 import phoneSVG from '../../../static/svg/products/Phone.svg'
 import FooterSketch from "./Sketch/FooterSketch";
 import FooterNavigationSection from "./FooterNavigationSection";
+import { Link } from "react-router-dom";
+
+//SASS
+import '../../styles/footer/footer.scss';
 
 const menuItems = {
 
@@ -18,7 +22,9 @@ export default function Footer() {
             <div className="main-section">
                 <div className="info-section">
                     <div className="logotype-wrapper">
-                        <img className="logotype-white" src={logotype_white}></img>
+                        <Link to="/" className="logotype-link">
+                            <img className="logotype-white" src={logotype_white}></img>
+                        </Link>
                         <Button label={"Let's Talk"} isPrimary={false} Outline={true} imgSrc={phoneSVG}></Button>
                     </div>
                     <div className="info-wrapper">

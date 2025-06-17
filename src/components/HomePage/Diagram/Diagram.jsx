@@ -2,6 +2,9 @@ import DiagramCard from "./DiagramCard";
 import DiagramNavigation from "./DiagramNavigation";
 import * as THREE from "three";
 
+// SASS
+import '../../../styles/pages/home_page/diagram_section.scss';
+
 const cardsInfo = [
     {
         title: "Select Field",

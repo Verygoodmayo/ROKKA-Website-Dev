@@ -24,7 +24,7 @@
     text-transform: uppercase;
     font-family: vars.$header-font;
     font-size: vars.$heading1;
-    line-height: 100%;
+    line-height: 1;
 }
 
 @mixin running-text {
