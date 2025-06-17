@@ -23,10 +23,21 @@
         flex-direction: column;
         gap: vars.$size3;
 
-        .logo {
-            height: 35px;
-            width: 35px;
+        .hero-logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: vars.$size1;
+            font-size: vars.$body1;
+            font-weight: 400;
+
+            .logo {
+                height: 30px;
+                width: 30px;
+            }
         }
+
+        
 
         .hero-title {
             font-family: vars.$header-font;
@@ -48,10 +59,44 @@
             gap: vars.$size2;
         }
     }
+
+    .hero-decoration {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100px;
+        height: 95%;
+        z-index: 99;
+        display: flex;
+        flex-direction: column;
+        gap: vars.$size2;
+
+        .tag {
+            color: vars.$content-invert;
+            text-align: center;
+        }
+
+        .line {
+            position: relative;
+            flex: 1;
+            width: 1px;
+            background: vars.$content-invert;
+            margin: auto;   
+        }
+    }
+
+    .scroll-for-more {
+        position: absolute !important;
+        right: vars.$size3;
+        bottom: vars.$size3;
+    }
 }
 
 #data-manager-sketch {
-    // position: fixed !important;
+    position: absolute !important;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -94,6 +139,12 @@
                 gap: vars.$size2;
                 @include mixins.border5-bottom;
 
+                &.active {
+                    flex-direction: column;
+                    align-items: flex-start !important;
+                    justify-content: flex-end;
+                }
+
                 .title {
                      font-family: vars.$header-font;
                     font-size: vars.$body1;
@@ -101,6 +152,21 @@
                     color: vars.$content;
                     font-weight: 200;
                     white-space: nowrap;
+
+                    &.active {
+                        display:  none;
+                    }
+                }
+
+                .scroll-for-more {
+                    color: vars.$content;
+                    font-family: vars.$p-font;
+                    font-size: vars.$body2;
+                    font-weight: 300;
+                    white-space: nowrap;
+                    padding: vars.$size1 vars.$size2;
+                    width: auto;
+
                 }
 
                 .index {
@@ -184,6 +250,7 @@
                     font-size: vars.$heading4;
                     text-transform: uppercase;
                     line-height: 0.75;
+                    margin-top:  vars.$size1;
                     color: vars.$content;
                     font-weight: 200;
                     padding: vars.$size2;
@@ -197,22 +264,22 @@
                     display: flex;
                     flex-direction: row;
                     overflow: hidden;
-                    gap: vars.$size3;
-                    padding: vars.$size3;
+                    // gap: vars.$size3;
+                    // padding: vars.$size3;
                     overflow-x: auto;
 
                     .by-need-item {
                         position: relative;
                         flex: 0 0 auto;
-                        height: 75%;
-                        background: vars.$p-color;
+                        height: 100%;
+                        background: vars.$bg;
                         @include mixins.shadow1;
                         display: flex;
                         flex-direction: column;
-                        padding: vars.$size3;
-                        justify-content: flex-start;
+                        padding: vars.$size4;
+                        justify-content: center;
                         align-items: flex-start;
-                        color: vars.$content-invert;
+                        color: vars.$content;
                         font-family: vars.$p-font;
                         font-size: vars.$body2;
                         font-weight: 300;
@@ -222,14 +289,18 @@
                         .by-need-item-title {
                             font-family: vars.$p-font;
                             font-size: vars.$heading5;
-                            color: vars.$content-invert;
+                            color: vars.$content;
                             font-weight: 200;
                             margin-bottom: vars.$size2;
                         }
 
                         .by-need-item-description {
-                            max-width: 35ch;
+                            height: 100%;
+                            max-width: 50ch;;
                             text-align: left;
+                            line-height: 1.5;
+                            
+                            // padding-bottom: vars.$size3;
                         }
 
                         // &:hover {

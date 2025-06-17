@@ -4,6 +4,8 @@ import Menu from './components/Menu/Menu';
 import DataManager from './products/data-manager/DataManager';
 import Monitoring from './products/monitoring/Monitoring';
 import PILA from './products/PILA/PILA';
+import { useEffect, useState } from 'react';
+import Loader from './components/Loader/Loader';
 
 function AppRoutes() {
   const location = useLocation();
@@ -17,11 +19,23 @@ function AppRoutes() {
   );
 }
 
-export default function App() {
+function AppWrapper() {
   return (
     <BrowserRouter basename="/ROKKA-Website-Dev/">
       <Menu />
       <AppRoutes />
     </BrowserRouter>
   );
+}
+
+export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading (replace with your real loading logic)
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return loading ? <Loader /> : <AppWrapper />;
 }

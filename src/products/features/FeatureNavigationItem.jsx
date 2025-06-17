@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import ScrollForMore from "../../components/ScrollforMore"; // Adjust the import path as necessary
 
 export default function FeaturesNavigationItem({ title, index, globalIndex, setGlobalIndex }) {
   const isActive = globalIndex === index;
@@ -47,7 +48,9 @@ export default function FeaturesNavigationItem({ title, index, globalIndex, setG
     >
       <span className="index">{index + 1}</span>
       {!isActive && <h2 className="title">{title}</h2>}
-      {isActive && <h2 className="title">{title}</h2>}
+      {isActive && <h2 className="title active">{title}</h2>}
+      {/* {isActive && <div className="scroll-for-more">{"Scroll for More"}</div>} */}
+      {isActive && <ScrollForMore />}
     </div>
   );
 }
