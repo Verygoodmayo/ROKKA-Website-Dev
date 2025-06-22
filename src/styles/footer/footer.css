@@ -1,0 +1,264 @@
+@font-face {
+  font-family: milling;
+  src: url("../../static/fonts/MILLING/MILLINGROKKA.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Text.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+.footer {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: #141cff;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+.footer .main-section {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+}
+.footer .main-section .info-section {
+  position: relative;
+  width: 330px;
+  padding: 30px;
+  border-right: solid 1px #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.footer .main-section .info-section .logotype-wrapper {
+  position: relative;
+}
+.footer .main-section .info-section .logotype-wrapper img {
+  margin-bottom: 20px;
+}
+.footer .main-section .info-section .info-wrapper {
+  position: relative;
+  font-family: sans;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer .main-section .info-section .info-wrapper .info {
+  color: #fff;
+}
+.footer .main-section .footer-navigation-section {
+  padding: 20px;
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  font-family: sans;
+  font-weight: 300;
+  gap: 30px;
+}
+.footer .main-section .footer-navigation-section .section-header {
+  color: #fff;
+  padding: 30px;
+  border-bottom: solid 1px #fff;
+}
+.footer .main-section .footer-navigation-section .navigation-section {
+  justify-self: stretch;
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+}
+.footer .main-section .footer-navigation-section #products-section {
+  position: relative;
+  width: 100%;
+  flex: 8;
+}
+.footer .main-section .footer-navigation-section #products-section .wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.footer .main-section .footer-navigation-section #products-section .wrapper #core-tech-section {
+  flex: 3;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+.footer .main-section .footer-navigation-section #products-section .wrapper #core-tech-section a {
+  height: 100%;
+}
+.footer .main-section .footer-navigation-section #products-section .wrapper #plugins-section {
+  flex: 6;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.footer .main-section .footer-navigation-section #products-section .wrapper #plugins-section .wrapper {
+  gap: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.footer .main-section .footer-navigation-section #by-need-section {
+  flex: 2;
+}
+.footer .bottom-section {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: solid 1px #fff;
+  padding: 30px;
+  gap: 30px;
+  z-index: 2;
+}
+.footer .bottom-section .footer-item {
+  color: #fff;
+  font-family: sans;
+}
+.footer .bottom-section .footer-item::after {
+  content: "";
+  height: 5px;
+  width: 5px;
+  background: #fff;
+}
+.footer .footer-sketch {
+  position: absolute !important;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.nav-item {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  padding: 30px;
+  border-bottom: solid 1px #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+  }
+  .footer .main-section {
+    flex-direction: column;
+    width: 100%;
+  }
+  .footer .main-section .info-section {
+    width: 100%;
+    border-right: none;
+    border-bottom: solid 1px #fff;
+    gap: 30px;
+  }
+  .footer .main-section .info-section .info-wrapper {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .footer .main-section .footer-navigation-section {
+    width: 100%;
+    flex-direction: column;
+    padding: 30px;
+  }
+  .footer .main-section .footer-navigation-section #products-section {
+    width: 100%;
+    flex-direction: column;
+  }
+  .footer .main-section .footer-navigation-section #products-section .wrapper {
+    flex-direction: column;
+  }
+  .footer .bottom-section {
+    flex-direction: column;
+    align-items: center;
+  }
+}/*# sourceMappingURL=footer.css.map */

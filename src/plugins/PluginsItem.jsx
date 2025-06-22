@@ -1,10 +1,15 @@
-export default function PluginsItem () {
+export default function PluginsItem ({data}) {
+
+    console.log("Plugin Item Data:", data);
 
     return (
         <div className="plugin-item">
-            <h2>Plugin Name</h2>
-            <p>Description of the plugin goes here.</p>
-            <a href="/plugins/plugin-name" className="btn btn-secondary">Learn More</a>
+            <div className="content-wrapper">
+                <h2>{data.title}</h2>
+                <p>{data.description}</p>
+                <a href="/plugins/plugin-name" className="btn btn-secondary">Learn More</a>
+            </div>
+            <img src={data.image} alt={data.title} className="plugin-image" />
         </div>
     );
 }

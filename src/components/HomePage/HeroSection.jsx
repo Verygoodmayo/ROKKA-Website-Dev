@@ -7,7 +7,7 @@ export default function HeroSection() {
             id="hero-section"
             className="section"
         >
-            <div id="header">
+            <div className="header center-text">
                 Data Is Everywhere. <br/> Let it come to you.
             </div>
 

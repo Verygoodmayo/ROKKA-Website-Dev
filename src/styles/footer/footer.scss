@@ -57,7 +57,7 @@
             font-weight: 300;
             gap: 30px;
 
-            .header {
+            .section-header {
                 color: vars.$content-invert;
                 padding: vars.$size3;
                 border-bottom: solid 1px vars.$content-invert;
@@ -94,6 +94,10 @@
                         display: flex;
                         flex-direction: column;
                         white-space: nowrap;
+
+                        a {
+                            height: 100%;
+                        }
                     }
 
                     #plugins-section {

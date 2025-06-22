@@ -87,7 +87,7 @@ export default function ValuesSection() {
         <div id="values-container" className="section">
             <div id="wrapper">
                 <div id="header">
-                    <p>We Believe In</p>
+                    <h1 className="header adjust-single-line">We Believe In</h1>
                 </div>
                 <div id="content">
                     <div id="info">

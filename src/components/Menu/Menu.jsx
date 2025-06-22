@@ -50,7 +50,7 @@ export default function Menu () {
             gap: '0px',
             duration: 0.35,
             ease: 'power1.inOut',
-        }, '-=1.5'); // adjust this value for more/less overlap
+        }, '-=0.75'); // adjust this value for more/less overlap
         
         // Products Menu Animation
         productsMenuAnimation.current = gsap.timeline({ paused: true });
@@ -131,7 +131,7 @@ export default function Menu () {
         ></MenuItem>,
         <MenuItem
             key={3}
-            label={'Products'}
+            label={'Core Technology'}
             onClick={() => {
                 if (productsMenu.current) {
                     productsMenu.current.style.display = 'block'; // Ensure visible before animating
@@ -140,7 +140,10 @@ export default function Menu () {
                 changeProductsMenuState(true);
             }}
         ></MenuItem>,
-        <MenuItem key={4} label={'By Need'}></MenuItem>,
+        <Link key={5} to="/plugins">
+            <MenuItem key={4} label={'Plugins'}></MenuItem> 
+        </Link>
+        // <MenuItem key={4} label={'By Need'}></MenuItem>,
     ]
 }
 contentRef={menuContent}

@@ -11,10 +11,15 @@ import feature4_svg from '../../../static/svg/Features/Data_Manager/Visualizatio
 import DataManagerSketchContainer from './DataManagerSketch'
 import { useState } from 'react'
 
+import PILA_feature1_svg from '../../../static/svg/Features/PILA/RAG.svg'
+import PILA_feature2_svg from '../../../static/svg/Features/PILA/Action_Items.svg'
+import PILA_feature3_svg from '../../../static/svg/Features/PILA/Mobile.svg'
+import PILA_feature4_svg from '../../../static/svg/Features/PILA/Agents.svg'
+
 const feature1 = {
-  title: "Prediction Models",
-  description: "Build complex predictive models with simple clicks. No data science degree needed - just select your data and let our AI do the heavy lifting. From basic forecasting to advanced predictions, everything happens without writing a single line of code.",
-  image: feature1_svg,
+  title: "RAG",
+  description: "Our system uses RAG - Retrieval Augmented Generation - which means it first retrieves precise information from your data, then generates clear answers based on that real information. Unlike standard chatbots that make up responses, PILA finds actual data and turns it into meaningful insights. Think of it as a smart librarian for your data - it knows exactly where to look, what to pull, and how to use it.",
+  image: PILA_feature1_svg,
   byNeed: {
     political: {title: "Political Need", description: "Description of political need."},
     social: {title: "Intelligence Need", description: "Description of social need."},
@@ -24,9 +29,9 @@ const feature1 = {
 }
 
 const feature2  = {
-  title: "Database Aggregation",
-  description: "Connect and manage multiple data sources through an intuitive interface. No SQL, no database language - just point, click, and unify your data sources instantly.",
-  image: feature2_svg,
+  title: "Action Items",
+  description: "PILA doesn't just analyze data - it transforms insights into actionable steps. The system  identifies key points requiring attention and turning your insights into practical action plans. Every analysis becomes a strategic roadmap, eliminating the gap between understanding and execution.",
+  image: PILA_feature2_svg,
   byNeed: {
     political: {title: "Political Need", description: "Predictive models help researchers identify potential outcomes, streamline their studies, and allocate resources more effectively, ultimately leading to more accurate and impactful findings."},
     social: {title: "Intelligence Need", description: "Predictive models help researchers identify potential outcomes, streamline their studies, and allocate resources more effectively, ultimately leading to more accurate and impactful findings."},
@@ -36,9 +41,9 @@ const feature2  = {
 }
 
 const feature3  = {
-  title: "Segmentation",
-  description: "Create and manage sophisticated audience segments effortlessly. Combine automatic pattern discovery with powerful filtering - group users by behavior, preferences, or any custom criteria.",
-  image: feature3_svg,
+  title: "PILA Mobile App",
+  description: "Stay connected to your data insights anywhere, anytime. PILA's mobile app keeps you in constant conversation with your data - whether you're in a meeting, commuting, or working remotely.  Simply speak or type your questions, and PILA responds with precise insights.",
+  image: PILA_feature3_svg,
   byNeed: {
     political: {title: "Political Need", description: "Description of political need."},
     social: {title: "Intelligence Need", description: "Description of social need."},
@@ -48,9 +53,9 @@ const feature3  = {
 }
 
 const feature4  = {
-  title: "Visualisation",
-  description: "See your database clearly, instantly. Our system automatically mirrors your data in clear, easy-to-understand visual formats. No complex setup needed - your information is instantly transformed into intuitive visualizations that make sense. Direct reflection of your data, just easier to understand.",
-  image: feature4_svg,
+  title: "Agents",
+  description: "At PILA's core lies a multi-agent architecture - the foundation of its unique capabilities. Each agent brings unique capabilities - from data cleaning to statistical analysis  - creating a powerful analytical team at your disposal. These agents collaborate seamlessly to break down complex queries into specialized tasks, ensuring thorough and accurate analysis across all dimensions of your data.",
+  image: PILA_feature4_svg,
   byNeed: {
     political: {title: "Political Need", description: "Description of political need."},
     social: {title: "Intelligence Need", description: "Description of social need."},

@@ -4,6 +4,7 @@
 @use './products_menu';
 @use './desktop';
 @use './mobile';
+@use '../type/index.scss';
 
 .menu-container {
     position: relative;

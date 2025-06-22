@@ -1,0 +1,143 @@
+@font-face {
+  font-family: milling;
+  src: url("../../static/fonts/MILLING/MILLINGROKKA.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Text.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  z-index: 9999;
+}
+
+.progress-bar-wrapper {
+  position: relative;
+  width: 90%;
+  height: 2px;
+  border-radius: 500px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.1725490196);
+}
+.progress-bar-wrapper .progress-bar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 500px;
+  transform-origin: left;
+  background: #141cff;
+  animation: progressBar 2s ease-in-out 1;
+  transform: scale(1, 1);
+}
+
+@keyframes progressBar {
+  0% {
+    transform: scale(0, 1);
+  }
+  35% {
+    transform: scale(0.35, 1);
+  }
+  45% {
+    transform: scale(0.35, 1);
+  }
+  80% {
+    transform: scale(0.6754, 1);
+  }
+  94% {
+    transform: scale(0.6754, 1);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+.loader-text {
+  font-family: sans;
+}/*# sourceMappingURL=loader.css.map */

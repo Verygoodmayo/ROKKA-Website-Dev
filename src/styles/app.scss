@@ -1,10 +1,7 @@
 @use './vars';
 @use './classes';
 @use './mixins';
-
-// Locals
-
-@use './pages/home_page/home_page.scss';
+@use './type/index';
 
 *, *::after, *::before {
     padding: 0;

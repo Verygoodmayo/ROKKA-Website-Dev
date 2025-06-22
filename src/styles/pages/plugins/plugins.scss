@@ -1,0 +1,18 @@
+@use '../../type/index.scss';
+
+#plugins-features {
+  
+  .features-navigation {
+      // max-width: 400px !important;
+      // min-width: 400px !important;
+  }
+
+  .feature-card-header {
+      height: 100% !important;
+  }
+
+  .features-image {
+    border-left: none !important;
+  }
+}
+

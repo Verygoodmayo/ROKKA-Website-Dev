@@ -1,0 +1,23 @@
+@use '../vars';
+@use '../mixins';
+
+.header {
+    @include mixins.header;
+    font-weight: 300;
+    color: vars.$content;
+    text-align: left;
+
+    &.invert {
+        color: vars.$content-invert;
+    }
+
+    &.center-text {
+        text-align: center;
+    }
+
+    &.adjust-single-line {
+        line-height: 0.65;
+        padding-top:  vars.$size2;
+    }
+
+}

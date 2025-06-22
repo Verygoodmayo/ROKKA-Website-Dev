@@ -1,0 +1,310 @@
+@font-face {
+  font-family: milling;
+  src: url("../../static/fonts/MILLING/MILLINGROKKA.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Text.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+#diagram-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+}
+#diagram-container .diagram-header-wrapper {
+  width: 50vw;
+  min-height: 50vh;
+  position: relative;
+  z-index: 3;
+  background: #f7f5f5;
+  border-top: solid 1px rgba(0, 0, 0, 0.1254901961);
+  border-right: solid 1px rgba(0, 0, 0, 0.1254901961);
+  padding: 45px;
+}
+#diagram-container .diagram-header-wrapper .diagram-header {
+  text-transform: uppercase;
+  font-family: milling;
+  font-size: 45pt;
+  line-height: 1;
+  font-weight: 300;
+  font-size: 45pt;
+  width: 70%;
+  margin-bottom: 20px;
+}
+#diagram-container .diagram-header-wrapper .diagram-intro {
+  width: 90%;
+  max-width: 60ch;
+  font-family: mono;
+  font-size: 10pt;
+  font-weight: 300;
+  line-height: 150%;
+}
+#diagram-container #diagram-navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+#diagram-container #diagram-navigation .diagram-nav {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid 1px rgba(0, 0, 0, 0.1254901961);
+  transition: 0.35s ease;
+  background: transparent;
+}
+#diagram-container #diagram-navigation .diagram-nav:hover {
+  background: rgba(0, 0, 0, 0.0549019608);
+}
+#diagram-container #diagram-navigation #diagram-nav-right {
+  border: none;
+  border-left: solid 1px rgba(0, 0, 0, 0.1254901961);
+}
+#diagram-container .diagram-cards-wrapper {
+  padding: 45px;
+  gap: 45px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  background: #f7f5f5;
+  border-top: solid 1px rgba(0, 0, 0, 0.1254901961);
+}
+#diagram-container .diagram-cards-wrapper .diagram-card {
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+  min-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #141cff;
+  z-index: 1;
+  color: #fff;
+  padding: 45px;
+  gap: 30px;
+  /* https://smoothshadows.com/#djEsMSwxMCwwLjAzLDk1LDE0LDAsIzAzMDcxMiwjZjNmNGY2LCNmZmZmZmYsMg%3D%3D */
+  box-shadow: 0px 0px 1px rgba(3, 7, 18, 0), 0px 1px 4px rgba(3, 7, 18, 0.01), 0px 1px 9px rgba(3, 7, 18, 0.01), 0px 2px 15px rgba(3, 7, 18, 0.01), 0px 4px 24px rgba(3, 7, 18, 0.01), 0px 5px 34px rgba(3, 7, 18, 0.02), 0px 7px 47px rgba(3, 7, 18, 0.02), 0px 9px 61px rgba(3, 7, 18, 0.02), 0px 11px 77px rgba(3, 7, 18, 0.03), 0px 14px 95px rgba(3, 7, 18, 0.03);
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .header-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  z-index: 2;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .header-wrapper .title {
+  text-transform: uppercase;
+  font-family: milling;
+  font-size: 26pt;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .header-wrapper .categories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .header-wrapper .categories .category {
+  padding: 10px 20px;
+  border-radius: 500px;
+  border: solid 1px #fff;
+  font-size: 10pt;
+  font-weight: 300;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  background: transparent;
+  color: #fff;
+  font-family: sans;
+  margin-right: 8px;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .header-wrapper .categories .category:hover {
+  background: #fff;
+  color: #141cff;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .header-wrapper .categories .category.active {
+  background: #fff;
+  color: #141cff;
+  font-weight: 300;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .description {
+  position: relative;
+  justify-self: flex-end;
+  align-self: flex-end;
+  max-height: 200px;
+  min-height: 200px;
+  width: 100%;
+  flex: 0 0 auto;
+  z-index: 2;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .description p {
+  position: relative;
+  font-weight: 300;
+  bottom: 0px;
+  left: 0px;
+  height: 100%;
+  line-height: 150%;
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card .card-sketch-container {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card.opportunities-card {
+  border: 2px solid #141cff;
+  background: #f7f5f5;
+  color: #141cff !important;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card.opportunities-card .categories .category {
+  border: solid 1px #141cff;
+  color: #141cff;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card.opportunities-card .categories .category:hover {
+  background: #fff;
+  color: #141cff;
+}
+#diagram-container .diagram-cards-wrapper .diagram-card.opportunities-card .categories .category.active {
+  background: #141cff;
+  color: #fff;
+  font-weight: 300;
+}
+
+@media screen and (max-width: 768px) {
+  #diagram-container {
+    height: auto;
+  }
+  #diagram-container .diagram-cards-wrapper {
+    padding: 20px;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  #diagram-container .diagram-cards-wrapper .diagram-card {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    margin-bottom: 0px;
+  }
+  #diagram-container .diagram-cards-wrapper .diagram-card .title {
+    font-size: 21pt;
+  }
+  #diagram-container .diagram-cards-wrapper .diagram-card .categories {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  #diagram-container .diagram-cards-wrapper .diagram-card .categories .category {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+  }
+}/*# sourceMappingURL=diagram_section.css.map */

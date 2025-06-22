@@ -11,6 +11,9 @@ import feature4_svg from '../../../static/svg/Features/Data_Manager/Visualizatio
 import DataManagerSketchContainer from './DataManagerSketch'
 import { useState } from 'react'
 
+// SASS
+import '../../styles/pages/data_manager/data_manager.scss'
+
 const feature1 = {
   title: "Prediction Models",
   description: "Build complex predictive models with simple clicks. No data science degree needed - just select your data and let our AI do the heavy lifting. From basic forecasting to advanced predictions, everything happens without writing a single line of code.",

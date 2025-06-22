@@ -7,7 +7,7 @@ export default function FooterNavigationSection () {
         <div className="footer-navigation-section">
 
             <div id="products-section" className="navigation-section">
-                <p className="header">Products</p>
+                <p className="section-header">Products</p>
                 <div className="wrapper">
                     <div id="core-tech-section">
                         <Link to="/products/data-manager">
@@ -37,7 +37,7 @@ export default function FooterNavigationSection () {
             </div>
 
             <div id="by-need-section" className="navigation-section">
-                <p className="header">By Need</p>
+                <p className="section-header">By Need</p>
                 <NavigationItem label='Intelligence'></NavigationItem>
                 <NavigationItem label='Political'></NavigationItem>
                 <NavigationItem label='Commercial'></NavigationItem>

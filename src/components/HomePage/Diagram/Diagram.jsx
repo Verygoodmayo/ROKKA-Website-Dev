@@ -60,14 +60,14 @@ export default function Diagram() {
     return (
         <section id='diagram-container' className="section">
             <div className="diagram-header-wrapper">
-                <h2 className="diagram-header">Our Technology by Need</h2>
+                <h1 className="header">Our Technology by Need</h1>
                 <p className="diagram-intro">
                     Explore the different opportunities ROKKA's technology offers across Intelligence/OSInt, Commercial, Political, and Research fields. 
                     Use the diagram below to select a field, role, and technology to see how our solutions can empower your organization. 
                     Click on each category to view tailored descriptions and discover how ROKKA can help you achieve your goals.
                 </p>
             </div>
-            <DiagramNavigation />
+            {/* <DiagramNavigation /> */}
             <div className="diagram-cards-wrapper">
                 <DiagramCard
                     key={0}
@@ -87,7 +87,7 @@ export default function Diagram() {
                     description={cardsInfo[1].description}
                     isOpportunities={false}
                     defaultIndex={1}
-                    meshType={new THREE.RingGeometry(50, 100, 400, 400, 0, Math.PI * 2)}
+                    meshType={new THREE.OctahedronGeometry(100, 100, 100, 100)}
                 />
                 <DiagramCard
                     key={2}
@@ -97,7 +97,7 @@ export default function Diagram() {
                     description={cardsInfo[2].description}
                     isOpportunities={false}
                     defaultIndex={0}
-                    meshType={new THREE.CapsuleGeometry(50,100,300,300,300)}
+                    meshType={new THREE.CapsuleGeometry(50,100,100,100,100)}
                 />
                 <DiagramCard
                     key={3}

@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import GUI from 'lil-gui'; // Use 'lil-gui' as 'dat.gui' is deprecated
 
-export default function IcoBufferMesh({geoComplexity = 136, meshType = new THREE.IcosahedronGeometry(100, geoComplexity)}) {
+export default function IcoBufferMesh({geoComplexity = 136, meshType = new THREE.IcosahedronGeometry(100, geoComplexity), blueParticles = false}) {
+    const [blueParticlesState, setBlueParticlesState] = useState(blueParticles);
     const shaderMaterial = useRef();
 
      // Mouse state
@@ -14,7 +15,7 @@ export default function IcoBufferMesh({geoComplexity = 136, meshType = new THREE
     const [mouseInfluence, setMouseInfluence] = useState(1.0);
 
     useThree(({camera}) => {
-       camera.position.z = 1
+       camera.position.z = 0.25
     })
 
     useFrame(({ clock }) => {
@@ -56,12 +57,13 @@ export default function IcoBufferMesh({geoComplexity = 136, meshType = new THREE
                 uniforms={{
                     u_time: { value: 0. },
                     u_resolution: { value: new THREE.Vector2() },
-                    frequency: { type: 'f', value: 0.326 },
-                    amplitude: { type: 'f', value: 6.6 },
-                    maxDistance: { type: 'f', value: 2 },
-                    isMobile: { type: 'bool', value: false },
+                    frequency: { type: 'f', value: 0.175 },
+                    amplitude: { type: 'f', value: 3.5 },
+                    maxDistance: { type: 'f', value: 2.85 },
+                    // isMobile: { type: 'f',value: isMobile ? 1.0 : 0.0 },
                     u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
-                    u_mouseInfluence: { value: mouseInfluence }
+                    u_mouseInfluence: { value: mouseInfluence },
+                    blueParticles: { type: 'f', value: blueParticlesState ? 1.0 : 0.0}  
                 }}
                 side={THREE.DoubleSide}
                 vertexShader={vertex}

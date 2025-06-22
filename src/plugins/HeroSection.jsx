@@ -1,11 +1,18 @@
 export default function HeroSection () {
     
     return (
-        <div className="hero-section">
+        <div className="hero-section section">
             <div className="hero-content">
-                <h1>Welcome to ROKKA</h1>
-                <p>Your one-stop solution for data management and monitoring.</p>
-                <a href="/products/data-manager" className="btn btn-primary">Get Started</a>
+                <h1 className="header">PLUGINS</h1>
+                <p>
+                    Beyond our core technology, we've developed a
+                    rapid deployment system that seamlessly connects
+                    with your current solutions. For clients starting
+                    fresh, we offer a customization process with
+                    powerful add-ons to our core platform, enabling
+                    precise tailoring to your specific operational needs
+                    and industry requirements. 
+                </p>
             </div>
         </div>
     )

@@ -87,10 +87,28 @@ export default function PluginsContainer ({data}) {
 
     return (
         <div className="plugins-container">
-            <div className="Plugins-wrapper" ref={wrapperRef}>
-                <PluginsItem></PluginsItem>
-                <PluginsItem></PluginsItem>
-                <PluginsItem></PluginsItem>
+            <div className="nav-container">
+              {data.map((item, index) => (
+                    <div
+                        key={index}
+                        className="nav-item"
+                        // data={item}
+                        // isActive={index === activeIndex}
+                        // onClick={() => handleNavClick(index)}
+                    >
+                      {item.title}
+                    </div>
+                ))}
+            </div>
+            <div className="content-wrapper" ref={wrapperRef}>
+                {data.map((item, index) => (
+                    <PluginsItem
+                        key={index}
+                        data={item}
+                        // isActive={index === activeIndex}
+                        // onClick={() => handleNavClick(index)}
+                    />
+                ))}
             </div>
         </div>
     )

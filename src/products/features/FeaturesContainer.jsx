@@ -9,6 +9,7 @@ import * as THREE from "three";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaturesContainer({
+  id,
   data,
   amplitude = 1,
   setAmplitude,
@@ -16,8 +17,8 @@ export default function FeaturesContainer({
   setFrequency,
   maxDistance = 0.5,
   setMaxDistance,
-  isMobile = false,
-  setIsMobile,
+  // isMobile = false,
+  // setIsMobile,
   cameraZ = 1.85,
   setCameraZ,
   geoComplexity = 136,
@@ -25,7 +26,7 @@ export default function FeaturesContainer({
 }) {
   const wrapperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  // const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Mobile detection
   useEffect(() => {
@@ -104,7 +105,7 @@ export default function FeaturesContainer({
   const handleNavClick = (idx) => setActiveIndex(idx);
 
   return (
-    <div className="features-container">
+    <div className="features-container" id={id}>
       <div className="seeker-wrapper" ref={wrapperRef}>
         <FeaturesNavigation
           data={data}

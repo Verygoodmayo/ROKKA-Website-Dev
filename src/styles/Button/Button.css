@@ -1,0 +1,137 @@
+@font-face {
+  font-family: milling;
+  src: url("../../static/fonts/MILLING/MILLINGROKKA.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: mono;
+  src: url("../../static/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Text.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: sans;
+  src: url("../../static/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+.button {
+  position: relative;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #000;
+  font-family: sans;
+  color: #fff;
+  padding: 10px 20px 10px 20px;
+  border: none;
+  border-radius: 500px;
+  font-weight: 300;
+  font-size: 12pt;
+}
+.button img {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.primary-button {
+  background: #000;
+}
+.primary-button.outline {
+  background: transparent !important;
+  border: solid 1px #000;
+  color: #000;
+}
+.primary-button.outline:hover {
+  background: #fff;
+  color: #f7f5f5;
+}
+
+.secondary-button {
+  background: #f7f5f5;
+  color: #141cff;
+}
+.secondary-button.outline {
+  background: transparent !important;
+  border: solid 1px #f7f5f5;
+  color: #fff;
+}
+.secondary-button.outline:hover {
+  background: #fff !important;
+  color: #141cff !important;
+}/*# sourceMappingURL=Button.css.map */
