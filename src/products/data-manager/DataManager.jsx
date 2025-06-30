@@ -1,5 +1,4 @@
 import Footer from '../../components/Footer/Footer'
-import '../../styles/pages/data_manager/data_manager.scss'
 import FeaturesContainer from '../features/FeaturesContainer'
 import HeroSection from './HeroSection'
 import * as THREE from 'three'
@@ -13,6 +12,7 @@ import { useState } from 'react'
 
 // SASS
 import '../../styles/pages/data_manager/data_manager.scss'
+import resetPage from '../../components/Utils/resetPage'
 
 const feature1 = {
   title: "Prediction Models",
@@ -89,6 +89,8 @@ export default function DataManager() {
   const [maxDistance, setMaxDistance] = useState(defaultSettings.maxDistance);
   const [isMobile, setIsMobile] = useState(defaultSettings.isMobile);
   const [cameraZ, setCameraZ] = useState(defaultSettings.cameraZ);
+
+  resetPage();
 
   return (
     <>

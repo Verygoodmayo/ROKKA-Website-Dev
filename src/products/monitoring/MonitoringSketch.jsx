@@ -1,10 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 
-import DataManagerSketch from "./IcoBufferMesh";
+import DataManagerSketch from "./MonitoringMesh";
+import MonitoringMesh from "./MonitoringMesh";
 // import { GUI } from 'dat.gui'; // Uncomment if you want to use GUI for debugging
 
-export default function DataManagerSketchContainer({
+export default function MonitoringSketch({
     geoComplexity = 136,
     meshType = new THREE.IcosahedronGeometry(100, geoComplexity),
     frequency = 0.426,
@@ -30,7 +31,7 @@ export default function DataManagerSketchContainer({
             className="sketch-container"
             id="data-manager-sketch"
         >
-            <DataManagerSketch
+            <MonitoringMesh
                 geoComplexity={geoComplexity}
                 meshType={meshType}
                 frequency={frequency}
@@ -43,7 +44,7 @@ export default function DataManagerSketchContainer({
                 setIsMobile={setIsMobile}
                 cameraZ={cameraZ}
                 setCameraZ={setCameraZ}
-            ></DataManagerSketch>
+            ></MonitoringMesh>
         </Canvas>    
     )
 

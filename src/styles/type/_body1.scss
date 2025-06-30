@@ -1,0 +1,10 @@
+@use '../vars';
+@use '../mixins';
+
+.body1 {
+    font-size: vars.$body1;
+    font-family: vars.$p-font;
+    font-weight: 400;
+    line-height: 1.45;
+    color: vars.$content;
+}

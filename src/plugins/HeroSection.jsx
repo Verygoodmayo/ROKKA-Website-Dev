@@ -1,7 +1,9 @@
+import ScrollforMore from '../components/ScrollforMore';
+
 export default function HeroSection () {
     
     return (
-        <div className="hero-section section">
+        <div id='plugins-hero-section' className="hero-section section">
             <div className="hero-content">
                 <h1 className="header">PLUGINS</h1>
                 <p>
@@ -13,7 +15,9 @@ export default function HeroSection () {
                     precise tailoring to your specific operational needs
                     and industry requirements. 
                 </p>
+                <ScrollforMore />
             </div>
+            
         </div>
     )
 }

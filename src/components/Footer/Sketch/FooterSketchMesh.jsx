@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef } from "react"
 
 import { GUI } from 'dat.gui'
 
-export default function FooterSketchMesh () {
+export default function FooterSketchMesh ({color}) {
 
     let model, count,
         positionArray
@@ -86,7 +86,8 @@ export default function FooterSketchMesh () {
                         frequency: { type: 'f', value: 0.426 },
                         amplitude: { type: 'f', value: 1.68 },
                         maxDistance: { type: 'f', value: 2.14},
-                        isMobile: {type: 'bool', value: false}
+                        isMobile: {type: 'bool', value: false},
+                        u_color: { type: 'vec3', value: color ? new THREE.Color(color[0], color[1], color[2]) : new THREE.Color(1.,1.,1.) }
                     }
                 }
                 side={THREE.DoubleSide}

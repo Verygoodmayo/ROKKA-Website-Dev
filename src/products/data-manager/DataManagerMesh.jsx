@@ -14,7 +14,7 @@ const defaultProps = {
     cameraZ: 1.85,
 };
 
-export default function DataManagerSketch({ 
+export default function DataManagerMesh({ 
     geoComplexity = 136,
     meshType = new THREE.IcosahedronGeometry(100, geoComplexity),
     frequency = defaultProps.frequency,
@@ -68,15 +68,15 @@ export default function DataManagerSketch({
 
     });
 
-    useEffect(() => {
-        if (!shaderMaterial.current) return;
-        const gui = new GUI();
-        gui.add(shaderMaterial.current.uniforms.frequency, 'value', -1, 1, 0.001).name('frequency');
-        gui.add(shaderMaterial.current.uniforms.amplitude, 'value', -2, 2, 0.01).name('amplitude');
-        gui.add(shaderMaterial.current.uniforms.maxDistance, 'value', -4, 4, 0.01).name('maxDistance');
-        gui.domElement.style.opacity = 0.8;
-        return () => gui.destroy();
-    }, []);
+    // useEffect(() => {
+    //     if (!shaderMaterial.current) return;
+    //     const gui = new GUI();
+    //     gui.add(shaderMaterial.current.uniforms.frequency, 'value', -1, 1, 0.001).name('frequency');
+    //     gui.add(shaderMaterial.current.uniforms.amplitude, 'value', -2, 2, 0.01).name('amplitude');
+    //     gui.add(shaderMaterial.current.uniforms.maxDistance, 'value', -4, 4, 0.01).name('maxDistance');
+    //     gui.domElement.style.opacity = 0.8;
+    //     return () => gui.destroy();
+    // }, []);
 
     useEffect(() => {
         function handleMouseMove(e) {

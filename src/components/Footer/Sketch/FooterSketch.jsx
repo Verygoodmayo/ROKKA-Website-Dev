@@ -1,11 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import FooterSketchMesh from "./FooterSketchMesh";
 
-export default function FooterSketch () {
+export default function FooterSketch ({id, color = [1., 1., 1.]}) {
 
     return (
-        <Canvas className="footer-sketch">
-            <FooterSketchMesh />
+        <Canvas id={id} className="footer-sketch">
+            <FooterSketchMesh color={color} />
         </Canvas>
     )
 

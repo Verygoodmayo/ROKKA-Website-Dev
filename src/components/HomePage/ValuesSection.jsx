@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import arrowRight from '../../../static/svg/Arrow_Right.svg';
-import arrowLeft from '../../../static/svg/Arrow_Left.svg';
+import arrowRight from '../../../static/svg/UI/Arrow_Right.svg';
+import arrowLeft from '../../../static/svg/UI/Arrow_Left.svg';
 
 import no_code_svg from '../../../static/svg/values/no_code.svg'
 import manage_data_svg from '../../../static/svg/values/manage_data_simply.svg';

@@ -4,7 +4,9 @@ import * as THREE from "three";
 import DataManagerSketch from "./IcoBufferMesh";
 // import { GUI } from 'dat.gui'; // Uncomment if you want to use GUI for debugging
 
-export default function DataManagerSketchContainer({
+// import birchTree from '../../../static/glb/birchTree.glb'
+
+export default function PILASketchContainer({
     geoComplexity = 136,
     meshType = new THREE.IcosahedronGeometry(100, geoComplexity),
     frequency = 0.426,

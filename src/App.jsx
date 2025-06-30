@@ -7,8 +7,11 @@ import PILA from './products/PILA/PILA';
 import { useEffect, useState } from 'react';
 import Loader from './components/Loader/Loader';
 import Plugins from './plugins/Plugins';
+import About from './components/About/About';
 
-function AppRoutes() {
+
+
+function AppRoutes({}) {
   const location = useLocation();
   return (
     <Routes location={location} key={location.pathname}>
@@ -22,10 +25,15 @@ function AppRoutes() {
 }
 
 function AppWrapper() {
+  
   return (
     <BrowserRouter basename="/ROKKA-Website-Dev/">
-      <Menu />
+      <Menu 
+        // aboutState={aboutState}
+        // setAboutState={setAboutState}
+      />
       <AppRoutes />
+      <About />
     </BrowserRouter>
   );
 }

@@ -1,4 +1,4 @@
-import arrowRight from '../../static/svg/Arrow_Right.svg'
+import arrowRight from '../../static/svg/UI/Arrow_Right.svg'
 
 export default function ScrollforMore () {
 

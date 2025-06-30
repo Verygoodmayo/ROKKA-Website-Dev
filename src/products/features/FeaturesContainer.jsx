@@ -6,6 +6,8 @@ import FeaturesImage from "./FeaturesImage";
 import FeatureCard from "./FeatureCard";
 import * as THREE from "three";
 
+import '../../styles/features/FeaturesContainer.scss';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaturesContainer({
@@ -66,34 +68,21 @@ export default function FeaturesContainer({
           gsap.to(menu, {
             x: 330,
           })
-          // setCameraZ(1)
-          // setFrequency(0.426);
-          // setAmplitude(1);
-          // setMaxDistance(0.5);
         },
         onLeave: () => {
           gsap.to(menu, {
             x: 0,
           });
-          // setCameraZ(0.5)
-          // setFrequency(2.426);
-          // setAmplitude(0.1);
-          // setMaxDistance(3.5);
         },
         onEnterBack: () => {
           gsap.to(menu, {
             x: 330,
           });
-          // setCameraZ(1)
-          // setFrequency(0.426);
-          // setAmplitude(1);
-          // setMaxDistance(0.5);
         },
         onLeaveBack: () => {
           gsap.to(menu, {
             x: 0,
           });
-          // setCameraZ(1.85)
         },
       });
     }, wrapperRef);

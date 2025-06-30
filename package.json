@@ -1,9 +1,20 @@
 {
-  "name": "ROKKA-Website-Dev",
-  "homepage": "https://verygoodmayo.github.io/ROKKA-Website-Dev",
-  "private": true,
+  "name": "rokka-website-dev",
   "version": "0.0.0",
+  "private": true,
+  "description": "ROKKA Website | Dev 🚀",
+  "homepage": "https://verygoodmayo.github.io/ROKKA-Website-Dev",
+  "bugs": {
+    "url": "https://github.com/Verygoodmayo/ROKKA-Website-Dev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verygoodmayo/ROKKA-Website-Dev.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

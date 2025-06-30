@@ -1,7 +1,7 @@
 import ROKKAFrame from "../ROKKAFrame/ROKKAFrame";
 import MenuItem from "./MenuItem";
 import logotype from '../../../static/png/Logotype.png'
-import { useLayoutEffect, useRef, useState } from "react";
+import { useContext, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react'
 import ProductsMenu from "./ProductsMenu";
@@ -20,6 +20,8 @@ export default function Menu () {
     const [menuState, chageMenuState] = useState(true);
     const [isProductsMenuHovered, setIsProductsMenuHovered] = useState(false);
     const [isMenuHoverd, setMenuHoverd] = useState(false);
+    // About Context
+    const [ aboutState, setAboutState ] = useState(false);
 
     const menuContainer = useRef();
     const menuContent = useRef();
@@ -27,6 +29,7 @@ export default function Menu () {
     const menuItems = useRef([]);
     const menuAnimation = useRef();
     const productsMenuAnimation = useRef();
+    const aboutTL = useRef();
 
     useLayoutEffect(() => {
         menuItems.current = document.querySelectorAll('.menu-item');
@@ -71,6 +74,9 @@ export default function Menu () {
                 productsMenu.current.style.pointerEvents = 'auto'; // Enable pointer events after animation
             }
         });
+
+        aboutTL.current = gsap.timeline({ paused: true });
+        aboutTL.current.to('.about-container', { opacity: 1, x: '0%', duration: 0.5, ease: 'power1.inOut' })
     changeProductsMenuState(false); // <-- Ensure menu is closed on load
     });
 
@@ -142,8 +148,11 @@ export default function Menu () {
         ></MenuItem>,
         <Link key={5} to="/plugins">
             <MenuItem key={4} label={'Plugins'}></MenuItem> 
-        </Link>
-        // <MenuItem key={4} label={'By Need'}></MenuItem>,
+        </Link>,
+        <MenuItem key={4} label={'About'} onClick={() => {
+            aboutTL.current.play(0)
+
+        }}></MenuItem>,
     ]
 }
 contentRef={menuContent}

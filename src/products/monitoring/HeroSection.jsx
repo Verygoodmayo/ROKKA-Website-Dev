@@ -1,6 +1,5 @@
 import Button from "../../components/Button";
-import HeroSectionSketch from "./DataManagerSketch";
-import dataManagerIcon from '../../../static/svg/products/Data_Management_B.svg'
+// import dataManagerIcon from '../../../static/svg/products/Data_Management_B.svg'
 
 export default function HeroSection() {
   return (

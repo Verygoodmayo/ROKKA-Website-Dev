@@ -50,9 +50,9 @@ export default function DiagramCard({ keyName, title, categories, description, i
             <div className="description">
                 <p ref={descRef}>{description[activeIndex]}</p>
             </div>
-            <Canvas key={1} className="card-sketch-container">
+            {/* <Canvas key={1} className="card-sketch-container">
                 <IcoBufferMesh meshType={meshType} geoComplexity={geoComplexity}></IcoBufferMesh>
-            </Canvas>
+            </Canvas> */}
         </div>
     );
 }

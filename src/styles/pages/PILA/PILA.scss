@@ -7,19 +7,24 @@
     z-index: 2;
 
     .hero-content {
-        background: red;
         position: absolute;
-        height: auto;
         bottom: -1px;
         left: 0px;
         padding: vars.$size4;
+        height: 50vh;
+        width: 65vh;
         z-index: 2;
         @include mixins.border5-top;
         @include mixins.border5-right;
         display: flex;
         flex-direction: column;
         gap: vars.$size3;
-        // background: vars.$bg;
+        background: vars.$bg;
+
+        .logo {
+            height: 30px;
+            width: 30px;
+        }
 
         .hero-logo {
             display: flex;
@@ -28,14 +33,7 @@
             gap: vars.$size1;
             font-size: vars.$body1;
             font-weight: 400;
-
-            .logo {
-                height: 30px;
-                width: 30px;
-            }
         }
-
-        
 
         .hero-title {
             font-family: vars.$header-font;

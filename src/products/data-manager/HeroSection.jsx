@@ -1,6 +1,6 @@
 import Button from "../../components/Button";
 import HeroSectionSketch from "./DataManagerSketch";
-import dataManagerIcon from '../../../static/svg/products/Data_Management_B.svg'
+import dataManagerIcon from '../../../static/svg/Products/DataManager/Data_Manager_B.svg'
 import ScrollforMore from "../../components/ScrollforMore";
 
 export default function HeroSection() {
