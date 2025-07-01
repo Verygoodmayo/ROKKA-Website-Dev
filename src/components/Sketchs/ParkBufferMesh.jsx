@@ -1,18 +1,18 @@
 import * as THREE from 'three';
 import vertex from '../../../static/glsl/sketchs/vertex.glsl';
 import fragment from '../../../static/glsl/sketchs/fragment.glsl';
-import IcoBufferGeometry from "./IcoBufferGeometry";
+import ParkGeometry from "../HomePage/Sketch/ParkGeometry";
 import { useEffect, useRef, useState, forwardRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 
-const IcoBufferMesh = forwardRef(function IcoBufferMesh({
+const ParkBufferMesh = forwardRef(function ParkBufferMesh({
     geoComplexity = 100, 
     meshType = new THREE.IcosahedronGeometry(100, geoComplexity), 
     particleColor = [1.0, 1.0, 1.0], // RGB color array [r, g, b]
     
     // Mesh positioning props
     meshPosition = [0, 0, 0], // [x, y, z] position
-    meshRotation = [0, 0, 0], // [x, y, z] rotation
+    meshRotation = [0, -2.1, 0], // [x, y, z] rotation
     
     // Shader control props
     frequency = 0.175,
@@ -99,7 +99,6 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
             const rect = e.target.getBoundingClientRect();
             mouse.current.x = (e.clientX - rect.left) / rect.width;
             mouse.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
-            // shaderMaterial.current.uniforms.u_mouse.value.set(mouse.current.x, mouse.current.y);
         }
         
         function handleMouseClick(e) {
@@ -133,9 +132,6 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
                 particleColor[1], 
                 particleColor[2]
             );
-            
-            // Debug: Log color updates (remove in production)
-            console.log('🎨 Particle color updated:', particleColor);
         }
     }, [particleColor]);
 
@@ -168,13 +164,13 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
     return (
         <points
             ref={ref}
-            position={meshPosition}
             rotation={meshRotation}
+            position={meshPosition}
         >
-            {/* Use standard geometry */}
-            <IcoBufferGeometry meshType={meshType} />
+            {/* Use Park Geometry */}
+            <ParkGeometry />
             
-            {/* Shader Material */}
+            {/* Shader Material with same uniforms as IcoBufferMesh */}
             <shaderMaterial
                 ref={shaderMaterial}
                 uniforms={{
@@ -212,51 +208,4 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
     );
 });
 
-export default IcoBufferMesh;
-
-/*
-PARTICLE COLOR CONNECTION FLOW - VERIFIED ✅
-
-1. DIAGRAM.JSX (Source)
-   └── shaderConfigs.{cardType}.particleColor: [r, g, b]
-   
-2. DIAGRAM.JSX (Distribution)
-   └── <DiagramCard shaderProps={shaderConfigs.{cardType}} />
-   
-3. DIAGRAMCARD.JSX (Forwarding)
-   └── <IcoBufferMesh {...shaderProps} />
-   
-4. ICOBUFFERMESH.JSX (Prop Handling)
-   └── particleColor prop → THREE.Vector3 uniform
-   └── Real-time updates via useFrame & useEffect
-   
-5. FRAGMENT.GLSL (Shader Usage)
-   └── uniform vec3 particleColor → finalColor calculation
-   
-STATUS: All connections verified and working ✅
-
-MOUSE CLICK INTERACTION FLOW - VERIFIED ✅
-
-1. USER INTERACTION
-   └── Mouse click event on canvas
-   
-2. ICOBUFFERMESH.JSX (Event Handling)
-   └── handleMouseClick() captures click position & time
-   └── mouseClick.current updates with normalized coordinates
-   
-3. SHADER UNIFORMS (Real-time Updates)
-   └── u_mouseClick: vec4(x, y, time, active)
-   └── u_clickInfluence, u_clickWaveSpeed, u_clickDecayRate
-   
-4. VERTEX.GLSL (Wave Effect Calculation)
-   └── calculateClickEffect() creates expanding wave
-   └── Distance-based intensity with time decay
-   └── Applied to vertex positions for visual feedback
-   
-5. VISUAL RESULT
-   └── Expanding wave effect from click point
-   └── Particles pushed outward in ripple pattern
-   └── Effect fades over time with configurable decay
-   
-STATUS: Click interaction fully implemented ✅
-*/
+export default ParkBufferMesh;

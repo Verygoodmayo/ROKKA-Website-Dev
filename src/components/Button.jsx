@@ -1,12 +1,14 @@
 
 import '../styles/Button/Button.scss'
 
-export default function Button({label, isPrimary, Outline, imgSrc}) {
-
+export default function Button({label, isPrimary, Outline, imgSrc, onClick}) {
 
     function handleClick() {
-        
-        console.log('click')
+        if (onClick) {
+            onClick();
+        } else {
+            console.log('click');
+        }
     }
     
     function checkStyles() {

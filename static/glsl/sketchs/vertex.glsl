@@ -3,6 +3,12 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_mouseInfluence;
 
+// Mouse click uniforms
+uniform vec4 u_mouseClick; // x, y, time, active
+uniform float u_clickInfluence;
+uniform float u_clickWaveSpeed;
+uniform float u_clickDecayRate;
+
 // Core animation controls
 uniform float frequency;
 uniform float amplitude;
@@ -182,6 +188,39 @@ float fbm(vec2 p) {
     return value;
 }
 
+// Calculate mouse click wave effect
+vec3 calculateClickEffect(vec3 position) {
+    if (u_mouseClick.w < 0.5) return vec3(0.0); // Not active
+    
+    // Convert screen space click position to 3D space
+    vec2 clickPos = u_mouseClick.xy;
+    vec3 clickPos3D = vec3((clickPos.x - 0.5) * 2.0, (clickPos.y - 0.5) * 2.0, 0.0);
+    
+    // Calculate distance from vertex to click position
+    float dist = distance(position.xy, clickPos3D.xy);
+    
+    // Calculate time since click
+    float timeSinceClick = u_time - u_mouseClick.z;
+    
+    // Create expanding wave effect
+    float waveRadius = timeSinceClick * u_clickWaveSpeed;
+    float waveThickness = 0.3; // How thick the wave is
+    
+    // Calculate wave intensity (peaks at the wave front)
+    float waveIntensity = 1.0 - abs(dist - waveRadius) / waveThickness;
+    waveIntensity = max(0.0, waveIntensity);
+    
+    // Apply decay over time
+    float decay = exp(-timeSinceClick * u_clickDecayRate);
+    waveIntensity *= decay;
+    
+    // Calculate direction from click to vertex
+    vec3 direction = normalize(position - clickPos3D);
+    
+    // Apply wave effect
+    return direction * waveIntensity * u_clickInfluence;
+}
+
 void main() {
     vUv = reference;
 
@@ -201,6 +240,10 @@ void main() {
 
     // Apply distortion strength as master control
     vec3 target = position + curlForce * amplitude * distortionStrength;
+    
+    // Calculate and apply click effect
+    vec3 clickEffect = calculateClickEffect(position);
+    target += clickEffect;
     
     float d = length(position - target) / maxDistance;
 

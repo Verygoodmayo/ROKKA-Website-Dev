@@ -13,6 +13,7 @@
     align-items: center;
     justify-content: center;
     gap: vars.$size4;
+    background: transparent !important;
     
     .scroll-for-more {
       position: relative !important;
@@ -40,6 +41,11 @@
 
   .features-image {
     border-left: none !important;
+
+    .features-image-header{
+      border-bottom: none !important;
+      background: transparent !important;
+    }
     
     // PLUGINS PAGE - INDIVIDUAL IMAGE CONTROLS
     // Customize each plugin image individually
@@ -109,3 +115,6 @@
   }
 }
 
+#plugins-sketch {
+  background: vars.$bg !important;
+}

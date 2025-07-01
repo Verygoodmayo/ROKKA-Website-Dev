@@ -14,27 +14,28 @@ import '../../styles/pages/home_page/values_section.scss';
 // Value data
 const values = [
     {
-        title: "No Code",
-        description: "Empower everyone to build and automate without writing a single line of code. Our platform democratizes technology, enabling users of all backgrounds to create powerful solutions with intuitive visual tools.",
-        image: no_code_svg,
-        imageName: "no-code-isometric.svg"
-    },
-    {
-        title: "Manage Data Simply",
-        description: "Seamlessly organize, visualize, and control your data. We simplify complex data management, providing clear dashboards and smart automation so you can focus on insights, not infrastructure.",
-        image: manage_data_svg,
-        imageName: "manage-data-isometric.svg"
-    },
-    {
-        title: "Reasoning as a Service",
-        description: "Leverage advanced AI to turn raw data into actionable intelligence. Our platform delivers automated reasoning, providing recommendations and insights that drive smarter decisions at every level.",
+        title: "Monitoring",
+        description: "ROKKA's monitoring system revolutionizes how organizations track and understand their digital landscape. Unlike traditional monitoring tools that simply track keywords and count mentions, our system is objective-driven, understanding what success means for your specific goals and filtering the endless stream of online content accordingly. It transforms the overwhelming flood of digital information into strategic intelligence that matters to your mission, providing not just data, but insight that drives decision-making.",
         image: reasoning_service_svg,
-        imageName: "reasoning-service-isometric.svg"
+        imageName: "monitoring-isometric.svg"
+    },
+    {
+        title: "Data Manager",
+        description: "The Data Manager serves as your intelligent data operation center, designed to eliminate the technical barriers that typically separate strategic thinkers from their data. It seamlessly integrates information from multiple sources - whether legacy databases, real-time feeds, or external APIs - and transforms complex analytical operations into simple, visual workflows. This isn't just about storing data; it's about creating a living, breathing analytical environment where your information becomes the foundation for predictive modeling, audience segmentation, and strategic planning.",
+        image: manage_data_svg,
+        imageName: "data-manager-isometric.svg"
+    },
+    {
+        title: "PILA AI",
+        description: "PILA AI represents a fundamental shift in how we interact with data and analysis. Rather than requiring users to learn complex query languages or analytical frameworks, PILA understands natural language questions and translates them into sophisticated analytical operations. It's built on advanced RAG technology that ensures every answer is grounded in your actual data, not generic responses. PILA doesn't just provide information - it serves as your analytical partner, understanding context, providing strategic recommendations, and transforming insights into actionable next steps.",
+        image: no_code_svg,
+        imageName: "pila-ai-isometric.svg"
     }
 ];
 
 export default function ValuesSection() {
     const [current, setCurrent] = useState(0);
+    const [direction, setDirection] = useState(1); // Track navigation direction
 
     // Refs for animation
     const indexRef = useRef();
@@ -43,23 +44,41 @@ export default function ValuesSection() {
 
     // Animate transitions
     useGSAP(() => {
-        // Animate index
-        gsap.fromTo(indexRef.current, { x: '150%' }, { x: 0, duration: 0.5, ease: "power2.out" });
+        // Animate index slide in (corrected directions)
+        // Right arrow (direction = 1): index slides in from left (was sliding out right)
+        // Left arrow (direction = -1): index slides in from right (was sliding out left)
+        gsap.fromTo(indexRef.current, 
+            { x: direction === 1 ? '-200%' : '200%' }, 
+            { x: 0, duration: 0.8, ease: "power2.out" }
+        );
 
         // Animate card content
-        gsap.fromTo(cardRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+        gsap.fromTo(cardRef.current, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" });
 
-        // Animate image slide in
-        gsap.fromTo(imageRef.current, { x:'200%' }, { x: 0, duration: 0.6, ease: "power2.out" });
+        // Animate image fade in
+        gsap.fromTo(imageRef.current, 
+            { opacity: 0 }, 
+            { opacity: 1, duration: 0.9, ease: "power2.out" }
+        );
     }, [current]);
 
     // Navigation handler
     const handleNav = (dir) => {
-        // Animate out
-        gsap.to([indexRef.current, imageRef.current], 
-        {
+        // Store direction for animation
+        setDirection(dir);
+        
+        // Animate index out (corrected directions)
+        // Right arrow (dir = 1): index slides out right, then slides in from left
+        // Left arrow (dir = -1): index slides out left, then slides in from right
+        gsap.to(indexRef.current, {
             x: dir === 1 ? '200%' : '-200%',
-            duration: 0.3,
+            duration: 0.5
+        });
+
+        // Animate image fade out
+        gsap.to(imageRef.current, {
+            opacity: 0,
+            duration: 0.5,
             onComplete: () => {
                 setCurrent((prev) => (prev + dir + values.length) % values.length);
             }
@@ -87,12 +106,12 @@ export default function ValuesSection() {
         <div id="values-container" className="section">
             <div id="wrapper">
                 <div id="header">
-                    <h1 className="header adjust-single-line">We Believe In</h1>
+                    <h1 className="header adjust-single-line">Our Core Technology</h1>
                 </div>
                 <div id="content">
                     <div id="info">
                         <p>
-                            We want to communicate three pillars for our company. These three values reflect onto our product and every project we participate in.
+                            Our main focus is to create technological tools to empower individuals and teams and give access to code only platforms to non technical folks.
                         </p>
                         <span id="index" ref={indexRef}>
                             {current + 1}

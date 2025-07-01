@@ -16,10 +16,19 @@
     border-radius: 500px;
     font-weight: 300;
     font-size: vars.$body2;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
     img {
       padding: 0 !important;
       margin: 0 !important;
+      transition: all 0.3s ease;
+    }
+
+    .button-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
     }
 }
 
@@ -33,7 +42,7 @@
 
     &:hover {
       background: vars.$content-invert;
-      color: vars.$bg;
+      color: vars.$content;
     }
   }
 }

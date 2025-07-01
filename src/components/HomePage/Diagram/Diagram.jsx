@@ -27,17 +27,33 @@ export default function Diagram() {
     // Shader configurations for each card type
     const shaderConfigs = {
         field: {
+            // Core animation controls
             frequency: 0.175,
             amplitude: 3.5,
             maxDistance: 2.85,
             timeSpeed: 0.5,
-            noiseScale: 1.0,
-            noiseDensity: 1.2,
+            
+            // Visual controls
+            particleColor: [1.0, 1.0, 1.0], // White
             particleSize: 1.0,
             colorIntensity: 1.0,
             mouseInfluenceStrength: 0.0,
-            particleColor: [1.0, 1.0, 1.0], // White
-            // Advanced noise controls
+            
+            // Mouse click controls
+            clickInfluenceStrength: 2.0,
+            clickWaveSpeed: 3.0,
+            clickDecayRate: 0.8,
+            
+            // Camera configuration
+            cameraPosition: [0, 0, 0.5],
+            cameraLookAt: [0, 0, 0],
+            cameraFov: 75,
+            cameraNear: 0.1,
+            cameraFar: 1000,
+            
+            // Noise controls
+            noiseScale: 1.0,
+            noiseDensity: 1.2,
             noiseOctaves: 3.0,
             noiseLacunarity: 2.0,
             noiseGain: 0.5,
@@ -47,17 +63,33 @@ export default function Diagram() {
             distortionStrength: 1.0
         },
         role: {
+            // Core animation controls
             frequency: 0.2,
             amplitude: 4.0,
             maxDistance: 3.0,
             timeSpeed: 0.3,
-            noiseScale: 1.2,
-            noiseDensity: 0.8,
+            
+            // Visual controls
+            particleColor: [1.0, 1.0, 1.0], // White
             particleSize: 1.1,
             colorIntensity: 1.0,
             mouseInfluenceStrength: 0.0,
-            particleColor: [1.0, 1.0, 1.0], // White
-            // Advanced noise controls - more dynamic
+            
+            // Mouse click controls
+            clickInfluenceStrength: 2.5,
+            clickWaveSpeed: 3.5,
+            clickDecayRate: 0.9,
+            
+            // Camera configuration
+            cameraPosition: [0, 0, 0.5],
+            cameraLookAt: [0, 0, 0],
+            cameraFov: 75,
+            cameraNear: 0.1,
+            cameraFar: 1000,
+            
+            // Noise controls - more dynamic
+            noiseScale: 1.2,
+            noiseDensity: 0.8,
             noiseOctaves: 4.0,
             noiseLacunarity: 2.2,
             noiseGain: 0.6,
@@ -67,17 +99,33 @@ export default function Diagram() {
             distortionStrength: 1.1
         },
         technology: {
+            // Core animation controls
             frequency: 0.15,
             amplitude: 2.8,
             maxDistance: 2.5,
             timeSpeed: 0.7,
-            noiseScale: 0.8,
-            noiseDensity: 1.5,
+            
+            // Visual controls
+            particleColor: [1.0, 1.0, 1.0], // White
             particleSize: 0.9,
             colorIntensity: 1.0,
             mouseInfluenceStrength: 0.0,
-            particleColor: [1.0, 1.0, 1.0], // White
-            // Advanced noise controls - precise/technical
+            
+            // Mouse click controls
+            clickInfluenceStrength: 1.8,
+            clickWaveSpeed: 4.0,
+            clickDecayRate: 0.7,
+            
+            // Camera configuration
+            cameraPosition: [0, 0, 0.5],
+            cameraLookAt: [0, 0, 0],
+            cameraFov: 75,
+            cameraNear: 0.1,
+            cameraFar: 1000,
+            
+            // Noise controls - precise/technical
+            noiseScale: 0.8,
+            noiseDensity: 1.5,
             noiseOctaves: 2.0,
             noiseLacunarity: 1.8,
             noiseGain: 0.4,
@@ -87,17 +135,33 @@ export default function Diagram() {
             distortionStrength: 0.9
         },
         opportunities: {
+            // Core animation controls
             frequency: 0.22,
             amplitude: 3.2,
             maxDistance: 2.7,
             timeSpeed: 0.4,
-            noiseScale: 1.1,
-            noiseDensity: 1.0,
+            
+            // Visual controls
+            particleColor: [0.1, 0.1, 1.0], // Blue
             particleSize: 1.05,
             colorIntensity: 1.0,
             mouseInfluenceStrength: 0.0,
-            particleColor: [0.1, 0.1, 1.0], // Blue
-            // Advanced noise controls - complex/detailed
+            
+            // Mouse click controls
+            clickInfluenceStrength: 3.0,
+            clickWaveSpeed: 2.5,
+            clickDecayRate: 1.0,
+            
+            // Camera configuration
+            cameraPosition: [0, 0, 0.5],
+            cameraLookAt: [0, 0, 0],
+            cameraFov: 75,
+            cameraNear: 0.1,
+            cameraFar: 1000,
+            
+            // Noise controls - complex/detailed
+            noiseScale: 1.1,
+            noiseDensity: 1.0,
             noiseOctaves: 5.0,
             noiseLacunarity: 2.5,
             noiseGain: 0.7,

@@ -10,7 +10,7 @@ import moinitoring_feature2_svg from '../../../static/svg/Features/Monitoring/An
 import moinitoring_feature3_svg from '../../../static/svg/Features/Monitoring/Tracker.svg'
 import moinitoring_feature4_svg from '../../../static/svg/Features/Monitoring/PostAnalysis.svg'
 import { useState } from 'react'
-import MonitoringSketch from './MonitoringSketch'
+import PageSketch from '../../components/Sketchs/PageSketch'
 
 const feature1 = {
   title: "Objective Oriented Approach",
@@ -77,20 +77,59 @@ const defaultSettings = {
     maxDistance: 0.5,
     isMobile: false,
     cameraZ: 1.85,
-    meshType: new THREE.OctahedronGeometry(100,236),
-    geoComplexity: 136,
+    meshType: new THREE.IcosahedronGeometry(100, 20), // Balanced complexity for good morphing
+    geoComplexity: 20, // Balanced complexity that still looks smooth
+};
+
+// Monitoring-specific shader configuration
+const monitoringShaderConfig = {
+    // Core animation controls
+    frequency: 0.02,
+    amplitude: 0.002,
+    maxDistance: 0.001,
+    timeSpeed: 0.6,
+    
+    // Visual controls
+    particleColor: [0.8, 0.9, 1.0], // Slightly blue-tinted white for monitoring theme
+    particleSize: 4.0, // Much larger particles for better visibility
+    colorIntensity: 1.0,
+    mouseInfluenceStrength: 10.8,
+    
+    // Mouse click controls for monitoring
+    clickInfluenceStrength: 3.0,   // Strong click waves for monitoring interaction
+    clickWaveSpeed: 4.0,           // Fast wave propagation for responsive feel
+    clickDecayRate: 1.2,           // Moderate decay for visible effect duration
+    
+    // Camera configuration for monitoring
+    cameraPosition: [-100, 20, 50], // Park model viewing position (similar to home page)
+    cameraLookAt: [0, 0, 0],       // Center focus
+    cameraFov: 75,                 // Standard field of view
+    
+    // Noise controls for monitoring-specific feel
+    noiseScale: 1.1,
+    noiseDensity: 1.3,
+    noiseOctaves: 4.0,
+    noiseLacunarity: 2.1,
+    noiseGain: 0.6,
+    turbulenceStrength: 1.1,
+    flowDirection: 180.0, // Downward flow for monitoring data stream effect
+    waveSpeed: 0.9,
+    distortionStrength: 1.2
 };
 
 export default function Monitoring() {
 
-  // State variables for the sketch parameters
-  const [geoComplexity, setGeoComplexity] = useState(136);
+  // Legacy state variables for backward compatibility with FeaturesContainer
+  const [geoComplexity, setGeoComplexity] = useState(defaultSettings.geoComplexity);
   const [meshType, setMeshType] = useState(defaultSettings.meshType);
   const [frequency, setFrequency] = useState(defaultSettings.frequency);
   const [amplitude, setAmplitude] = useState(defaultSettings.amplitude);
   const [maxDistance, setMaxDistance] = useState(defaultSettings.maxDistance);
   const [isMobile, setIsMobile] = useState(defaultSettings.isMobile);
   const [cameraZ, setCameraZ] = useState(defaultSettings.cameraZ);
+
+  // Monitoring page-specific shader configuration
+  const [monitoringConfig, setMonitoringConfig] = useState(monitoringShaderConfig);
 
   return (
     <>
@@ -112,20 +151,26 @@ export default function Monitoring() {
         meshType={meshType}
       ></FeaturesContainer>
       <Footer></Footer>
-      <MonitoringSketch
+      <PageSketch
+        // Canvas configuration
+        className="sketch-container"
+        id="monitoring-sketch"
+        
+        // Geometry configuration
         geoComplexity={geoComplexity}
         meshType={meshType}
-        frequency={frequency}
-        setFrequency={setFrequency}
-        amplitude={amplitude}
-        setAmplitude={setAmplitude}
-        maxDistance={maxDistance}
-        setMaxDistance={setMaxDistance}
-        isMobile={isMobile}
-        setIsMobile={setIsMobile}
-        cameraZ={cameraZ}
-        setCameraZ={setCameraZ}
-      ></MonitoringSketch>
+        useParkModel={true} // Enable Park Model for monitoring
+        
+        // Mesh positioning
+        meshPosition={[50, 0, 0]} // Translate X by 50
+        meshRotation={[0, -2.1, 0]} // Keep default park rotation
+        
+        // GUI configuration
+        showDatGui={false} // Hide dat.gui controls
+        
+        // Apply monitoring-specific shader configuration
+        {...monitoringConfig}
+      />
     </>
   )
 }

@@ -1,9 +1,24 @@
+import { useState } from 'react';
 import Button from "../../components/Button";
+import VideoOverlay from "../../components/VideoOverlay";
 import HeroSectionSketch from "./DataManagerSketch";
 import dataManagerIcon from '../../../static/svg/Products/DataManager/Data_Manager_B.svg'
+import videoIcon from '../../../static/svg/General/VideoIcon.svg'
 import ScrollforMore from "../../components/ScrollforMore";
 
 export default function HeroSection() {
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  // Data Manager video URL
+  const vimeoUrl = "https://player.vimeo.com/video/1033090156";
+
+  const handleWatchPromo = () => {
+    setIsVideoVisible(true);
+  };
+
+  const handleCloseVideo = () => {
+    setIsVideoVisible(false);
+  };
+
   return (
     <div className="hero-section section">
       <div className="hero-content">
@@ -19,7 +34,13 @@ export default function HeroSection() {
         <p className="hero-description">Transform your data management into strategic advantage.  Our comprehensive platform brings together advanced prediction, intelligent segmentation, and crystal-clear visualization - all designed to amplify your organization intelligence.</p>
         <div className="hero-buttons">
           <Button label={'Book a Demo'} isPrimary={true}></Button>
-          <Button label={'watch a promo'} isPrimary={true} Outline={true}></Button>
+          <Button 
+            label={'watch a promo'} 
+            isPrimary={true} 
+            Outline={true}
+            imgSrc={videoIcon}
+            onClick={handleWatchPromo}
+          />
         </div>
       </div>
        <div className="hero-decoration">
@@ -28,6 +49,12 @@ export default function HeroSection() {
         <div className="tag" id="tag-2">Simple</div>
       </div>
       <ScrollforMore></ScrollforMore>
+      
+      <VideoOverlay 
+        isVisible={isVideoVisible}
+        onClose={handleCloseVideo}
+        vimeoUrl={vimeoUrl}
+      />
     </div>
   );
 }

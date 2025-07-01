@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Canvas } from "@react-three/fiber";
 import IcoBufferMesh from "../../Sketchs/IcoBufferMesh";
+import CameraController from "../../Sketchs/CameraController";
 import * as THREE from "three";
 
 export default function DiagramCard({ 
@@ -75,6 +76,13 @@ export default function DiagramCard({
                 <p ref={descRef}>{description[activeIndex]}</p>
             </div>
             <Canvas key={1} className="card-sketch-container">
+                <CameraController 
+                    position={shaderProps.cameraPosition || [0, 0, 0.25]}
+                    lookAt={shaderProps.cameraLookAt || [0, 0, 0]}
+                    fov={shaderProps.cameraFov || 75}
+                    near={shaderProps.cameraNear || 0.1}
+                    far={shaderProps.cameraFar || 1000}
+                />
                 <IcoBufferMesh 
                     meshType={meshType} 
                     geoComplexity={geoComplexity}

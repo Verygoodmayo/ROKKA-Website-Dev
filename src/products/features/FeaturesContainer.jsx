@@ -134,6 +134,48 @@ export default function FeaturesContainer({
   // Click-to-change support (always enabled)
   const handleNavClick = (idx) => setActiveIndex(idx);
 
+  // Mobile layout - vertical scrolling with all features
+  if (isMobile) {
+    return (
+      <div className="features-container mobile" id={id}>
+        <div className="mobile-features-wrapper">
+          {/* Fixed header for mobile */}
+          <div className="mobile-features-header">
+            <div className="features-image-header">
+              <div className="features-image-title">
+                {location.pathname.includes('/data-manager') && 'Data Manager'}
+                {location.pathname.includes('/monitoring') && 'Monitoring'}
+                {location.pathname.includes('/PILA') && 'PILA'}
+                {location.pathname.includes('/plugins') && 'Plugins'}
+              </div>
+              <div className="features-image-icon">
+                {/* Add icon based on page if needed */}
+              </div>
+            </div>
+          </div>
+          
+          {/* All features in a column */}
+          {data.map((feature, index) => (
+            <div key={index} className="mobile-feature-item">
+              <FeatureCard
+                data={feature}
+                index={index}
+                isMobile={isMobile}
+              />
+              <FeaturesImage
+                data={feature}
+                index={index}
+                isMobile={isMobile}
+                hideHeader={true}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop layout
   return (
     <div className="features-container" id={id}>
       <div className="seeker-wrapper" ref={wrapperRef}>

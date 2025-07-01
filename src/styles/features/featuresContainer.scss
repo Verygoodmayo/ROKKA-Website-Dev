@@ -479,3 +479,177 @@
 
     }
 }
+
+// MOBILE LAYOUT - Vertical scrolling with features stacked
+@media screen and (max-width: 768px) {
+    .features-container.mobile {
+        height: auto;
+        min-height: 100vh;
+        
+        .mobile-features-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            
+            .mobile-features-header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: vars.$bg;
+                @include mixins.border5-bottom;
+                
+                .features-image-header {
+                    padding: vars.$size3;
+                    display: flex;
+                    flex-direction: row-reverse;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: vars.$size2;
+                    
+                    .features-image-title {
+                        font-family: vars.$header-font;
+                        font-size: vars.$body1;
+                        text-transform: uppercase;
+                        color: vars.$content;
+                        font-weight: 200;
+                    }
+                    
+                    .features-image-icon {
+                        width: 30px;
+                        height: 30px;
+                        object-fit: contain;
+                    }
+                }
+            }
+            
+            .mobile-feature-item {
+                display: flex;
+                flex-direction: column;
+                
+                .feature-card {
+                    width: 100%;
+                    
+                    .feature-card-header {
+                        height: auto;
+                        min-height: 200px;
+                        padding: vars.$size3;
+                        @include mixins.border5-bottom;
+                        background: vars.$bg;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        gap: vars.$size2;
+                        
+                        .feature-index {
+                            font-family: vars.$header-font;
+                            font-size: 150pt;
+                            color: vars.$content;
+                            font-weight: 200;
+                            align-self: flex-start;
+                            line-height: 0.8;
+                            padding-top: vars.$size2;
+                        }
+                        
+                        .feature-title {
+                            font-family: vars.$header-font;
+                            font-size: vars.$heading1;
+                            text-transform: uppercase;
+                            color: vars.$content;
+                            font-weight: 200;
+                        }
+                        
+                        .feature-description {
+                            font-family: vars.$p-font;
+                            font-size: vars.$body2;
+                            color: vars.$content;
+                            font-weight: 300;
+                            line-height: 1.5;
+                        }
+                    }
+                    
+                    .by-need-section {
+                        height: auto;
+                        min-height: 300px;
+                        width: 100%;
+                        background: vars.$bg;
+                        @include mixins.border5-bottom;
+                        
+                        .by-need-title {
+                            position: relative;
+                            font-family: vars.$header-font;
+                            font-size: vars.$heading4;
+                            text-transform: uppercase;
+                            line-height: 0.75;
+                            margin-top: vars.$size1;
+                            color: vars.$content;
+                            font-weight: 200;
+                            padding: vars.$size2;
+                            border-bottom: solid 1px vars.$border15;
+                            overflow: hidden;
+                        }
+                        
+                        .by-need-wrapper {
+                            padding: vars.$size3;
+                            display: flex;
+                            flex-direction: column;
+                            gap: vars.$size2;
+                            
+                            .by-need-item {
+                                position: relative;
+                                background: vars.$bg;
+                                @include mixins.shadow1;
+                                display: flex;
+                                flex-direction: column;
+                                padding: vars.$size4;
+                                justify-content: center;
+                                align-items: flex-start;
+                                color: vars.$content;
+                                font-family: vars.$p-font;
+                                font-size: vars.$body2;
+                                font-weight: 300;
+                                gap: vars.$size2;
+                                
+                                .by-need-item-title {
+                                    font-family: vars.$p-font;
+                                    font-size: vars.$heading5;
+                                    color: vars.$content;
+                                    font-weight: 200;
+                                    margin-bottom: vars.$size2;
+                                }
+                                
+                                .by-need-item-description {
+                                    max-width: 100%;
+                                    text-align: left;
+                                    line-height: 1.5;
+                                    color: vars.$content;
+                                    font-family: vars.$p-font;
+                                    font-size: vars.$body2;
+                                    font-weight: 300;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .features-image {
+                    position: relative;
+                    width: 100%;
+                    height: 400px;
+                    @include mixins.border5-bottom;
+                    background: vars.$bg;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+        }
+    }
+}

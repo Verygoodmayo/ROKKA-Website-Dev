@@ -5,7 +5,7 @@ import dataManagerIcon from '../../../static/svg/Products/DataManager/Data_Manag
 import monitoringIcon from '../../../static/svg/Products/Monitoring/Monitoring_Icon_B.svg';
 import PILAIcon from '../../../static/svg/Products/PILA/PILA_Icon_B.svg';
 
-export default function FeaturesImage({ data, index }) {
+export default function FeaturesImage({ data, index, hideHeader = false }) {
   const imageRef = useRef(null);
 
   // Generate page-specific class name based on current URL path
@@ -76,16 +76,18 @@ export default function FeaturesImage({ data, index }) {
 
   return (
     <div className="features-image seeker-section">
-      <div className="features-image-header">
-        <h2 className="features-image-title">{headerInfo.title}</h2>
-        {headerInfo.icon && (
-          <img 
-            src={headerInfo.icon} 
-            alt={`${headerInfo.title} icon`} 
-            className="features-image-icon" 
-          />
-        )}
-      </div>
+      {!hideHeader && (
+        <div className="features-image-header">
+          <h2 className="features-image-title">{headerInfo.title}</h2>
+          {headerInfo.icon && (
+            <img 
+              src={headerInfo.icon} 
+              alt={`${headerInfo.title} icon`} 
+              className="features-image-icon" 
+            />
+          )}
+        </div>
+      )}
       <img 
         ref={imageRef} 
         src={data.image} 
