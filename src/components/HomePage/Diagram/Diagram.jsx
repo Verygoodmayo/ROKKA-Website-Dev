@@ -1,62 +1,220 @@
 import DiagramCard from "./DiagramCard";
 import DiagramNavigation from "./DiagramNavigation";
 import * as THREE from "three";
+import { useState, useCallback, useRef, useEffect } from "react";
+import { gsap } from "gsap";
+
+// Data imports
+import { fieldsData } from "./data/fieldsData";
+import { rolesData } from "./data/rolesData";
+import { technologiesData } from "./data/technologiesData";
+import { opportunitiesData } from "./data/opportunitiesData";
 
 // SASS
 import '../../../styles/pages/home_page/diagram_section.scss';
 
-const cardsInfo = [
-    {
-        title: "Select Field",
-        categories: ["Intelligence", "Commercial", "Political", "Research"],
-        description: [
-            "Intelligence professionals face an overwhelming data challenge - massive volumes of external open-source information combined with sensitive internal intelligence creates complex analytical bottlenecks. The scale and diversity of information sources makes it nearly impossible to maintain comprehensive situational awareness while ensuring analytical accuracy. Most intelligence organizations struggle with fragmented data systems that prevent effective correlation and pattern recognition across their complete information landscape.",
-            "Modern businesses are drowning in data from both internal operations and external market forces, creating significant competitive disadvantages for those who can't effectively harness this information. The complexity of managing comprehensive business intelligence across all data sources overwhelms traditional analytical approaches and prevents organizations from achieving their full market potential. Most commercial teams lack the capability to transform their complete data ecosystem into actionable strategic advantages.",
-            "Political organizations operate in an increasingly data-intensive environment where success depends on comprehensive information management, yet most campaigns struggle with fragmented data systems that prevent effective strategy development. The challenge of maintaining unified oversight across all internal campaign data while incorporating crucial external political intelligence creates strategic blind spots that can determine electoral outcomes. Traditional campaign management approaches fail to leverage the full scope of available political information.",
-            "Academic and scientific researchers work with increasingly complex data environments that combine proprietary research with extensive external information, creating methodological challenges that limit research impact and validity. The difficulty of maintaining comprehensive data oversight across all research sources prevents many studies from achieving their full analytical potential and slows scientific advancement. Current research tools fail to support the integrated approach that modern scholarship demands.",
-        ],
-    },
-
-    {
-        title: "Select Role",
-        categories: ["Voter Segment Analyst", "Field Director", "Message Testing Coordinator", "Media Monitor", "Social Sentiment Analyst", "Opposition Researcher", "Constituent Response Manager", "Campaign Volunteer Coordinator", "Ploicy Advisor"],
-        description: [
-            "Analyzes voter populations to identify key demographic groups and voting patterns. Creates voter segments based on demographics, voting history, and issue preferences to inform campaign targeting strategies.",
-            "Manages ground-level campaign operations across geographic regions. Tracks supporter distribution, coordinates canvassing efforts, and optimizes resource allocation to maximize campaign impact.",
-            "Evaluates campaign messaging effectiveness across different audiences. Tests message resonance with various demographic groups and geographic regions to optimize communication strategies.",
-            "Tracks campaign coverage across news outlets and digital platforms. Analyzes media tone, coverage patterns, and messaging opportunities to inform campaign communication strategies.",
-            "Monitors public opinion and voter sentiment across social media platforms. Tracks responses to campaign events, messaging, and policy positions to gauge campaign effectiveness.",
-            "Analyzes competing campaigns and political opponents. Tracks opposing messaging strategies, public statements, and campaign activities to inform responsive campaign strategies.",
-            "Manages communication with voters and constituents. Ensures consistent messaging based on approved policy positions and campaign platforms when responding to public inquiries.",
-            "Organizes and supports campaign volunteer activities. Provides training materials, talking points, and resources to ensure volunteers can effectively represent the campaign.",
-            "Provides issue expertise and policy guidance to campaign leadership. Maintains comprehensive knowledge of policy positions, supporting data, and issue briefings to inform candidate preparation."
-
-        ],
-    },
-
-    {
-        title: "Select Technology",
-        categories: ["Data Manager", "Monitoring", "PILA"],
-        description: [
-            "Complete data operations hub that transforms complex information management into simple point-and-click processes. Combines internal databases with external sources, applies predictive modeling without coding, and creates strategic audience segments automatically. Handles everything from data integration to advanced analytics through an intuitive interface that eliminates the need for technical expertise while delivering enterprise-grade analytical capabilities.",
-            "Objective-driven social listening platform that goes beyond traditional keyword tracking. Users define strategic goals in natural language, and the AI automatically adapts its monitoring approach to identify goal-relevant content across unlimited web sources. Features smart scoring that prioritizes information based on strategic relevance rather than volume, with customizable filters and continuous learning from user feedback to improve accuracy over time.",
-            "Advanced RAG-powered AI assistant that functions as a strategic advisor rather than a basic chatbot. Searches through both internal system data and external web sources to provide contextually relevant answers to complex questions. Translates simple user questions into sophisticated queries automatically, offering consultation-level insights while maintaining conversational simplicity that requires no prompt engineering skills."
-        ],
-    },
-
-    {
-        title: "Opportunities",
-        categories: ["Startup", "Enterprise", "Academia", "NGO"],
-        description: [
-            "Startups can leverage innovative technologies and agile methodologies to disrupt traditional markets and rapidly scale their operations. By embracing a culture of experimentation and continuous learning, startups can identify new opportunities, attract investment, and build resilient business models. Access to advanced analytics and collaborative platforms further enhances their ability to compete in dynamic environments.",
-            "Enterprises benefit from robust, scalable solutions that enhance efficiency, drive growth, and maintain a competitive edge in their industries. Implementing integrated technologies allows enterprises to streamline processes, improve customer experiences, and foster innovation at scale. Strategic partnerships and a focus on sustainability also contribute to long-term enterprise success.",
-            "Academic institutions can utilize advanced analytics and research tools to foster innovation, support scholarly work, and enhance educational outcomes. By collaborating with industry partners and leveraging data-driven insights, academia can address complex societal challenges and prepare students for future careers. Investment in technology infrastructure and interdisciplinary research is key to academic excellence.",
-            "NGOs can harness data-driven insights and collaborative platforms to maximize their impact, improve resource allocation, and achieve their missions more effectively. By adopting transparent practices and engaging with diverse stakeholders, NGOs can build trust and drive meaningful change. Technology empowers NGOs to measure outcomes, scale initiatives, and respond swiftly to emerging needs."
-        ],
-    },
-]
-
 export default function Diagram() {
+    // State management
+    const [selectedField, setSelectedField] = useState("Political"); // Default to Political
+    const [selectedFieldIndex, setSelectedFieldIndex] = useState(2);
+    const [selectedRole, setSelectedRole] = useState(rolesData["Political"].categories[0]);
+    const [selectedRoleIndex, setSelectedRoleIndex] = useState(0);
+    const [selectedTechnology, setSelectedTechnology] = useState(technologiesData.categories[0]);
+    const [selectedTechnologyIndex, setSelectedTechnologyIndex] = useState(0);
+    const [selectedOpportunity, setSelectedOpportunity] = useState(opportunitiesData["Political"][rolesData["Political"].categories[0]].categories[0]);
+    const [selectedOpportunityIndex, setSelectedOpportunityIndex] = useState(0);
+
+    // Shader configurations for each card type
+    const shaderConfigs = {
+        field: {
+            frequency: 0.175,
+            amplitude: 3.5,
+            maxDistance: 2.85,
+            timeSpeed: 0.5,
+            noiseScale: 1.0,
+            noiseDensity: 1.2,
+            particleSize: 1.0,
+            colorIntensity: 1.0,
+            mouseInfluenceStrength: 0.0,
+            particleColor: [1.0, 1.0, 1.0], // White
+            // Advanced noise controls
+            noiseOctaves: 3.0,
+            noiseLacunarity: 2.0,
+            noiseGain: 0.5,
+            turbulenceStrength: 0.8,
+            flowDirection: 0.0,
+            waveSpeed: 1.0,
+            distortionStrength: 1.0
+        },
+        role: {
+            frequency: 0.2,
+            amplitude: 4.0,
+            maxDistance: 3.0,
+            timeSpeed: 0.3,
+            noiseScale: 1.2,
+            noiseDensity: 0.8,
+            particleSize: 1.1,
+            colorIntensity: 1.0,
+            mouseInfluenceStrength: 0.0,
+            particleColor: [1.0, 1.0, 1.0], // White
+            // Advanced noise controls - more dynamic
+            noiseOctaves: 4.0,
+            noiseLacunarity: 2.2,
+            noiseGain: 0.6,
+            turbulenceStrength: 1.2,
+            flowDirection: 45.0,
+            waveSpeed: 0.8,
+            distortionStrength: 1.1
+        },
+        technology: {
+            frequency: 0.15,
+            amplitude: 2.8,
+            maxDistance: 2.5,
+            timeSpeed: 0.7,
+            noiseScale: 0.8,
+            noiseDensity: 1.5,
+            particleSize: 0.9,
+            colorIntensity: 1.0,
+            mouseInfluenceStrength: 0.0,
+            particleColor: [1.0, 1.0, 1.0], // White
+            // Advanced noise controls - precise/technical
+            noiseOctaves: 2.0,
+            noiseLacunarity: 1.8,
+            noiseGain: 0.4,
+            turbulenceStrength: 0.6,
+            flowDirection: 90.0,
+            waveSpeed: 1.5,
+            distortionStrength: 0.9
+        },
+        opportunities: {
+            frequency: 0.22,
+            amplitude: 3.2,
+            maxDistance: 2.7,
+            timeSpeed: 0.4,
+            noiseScale: 1.1,
+            noiseDensity: 1.0,
+            particleSize: 1.05,
+            colorIntensity: 1.0,
+            mouseInfluenceStrength: 0.0,
+            particleColor: [0.1, 0.1, 1.0], // Blue
+            // Advanced noise controls - complex/detailed
+            noiseOctaves: 5.0,
+            noiseLacunarity: 2.5,
+            noiseGain: 0.7,
+            turbulenceStrength: 1.4,
+            flowDirection: 270.0,
+            waveSpeed: 0.6,
+            distortionStrength: 1.3
+        }
+    };
+
+    // Refs for GSAP animations
+    const roleCardRef = useRef(null);
+    const opportunityCardRef = useRef(null);
+
+    // Handler for field selection changes
+    const handleFieldChange = useCallback((fieldName, fieldIndex) => {
+        if (fieldName === selectedField) return;
+
+        // Animate out current content
+        const timeline = gsap.timeline();
+        
+        timeline.to([roleCardRef.current?.querySelector('.description'), opportunityCardRef.current?.querySelector('.description')], {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.inOut"
+        });
+
+        timeline.call(() => {
+            // Update state after fade out
+            setSelectedField(fieldName);
+            setSelectedFieldIndex(fieldIndex);
+            setSelectedRole(rolesData[fieldName].categories[0]);
+            setSelectedRoleIndex(0);
+            setSelectedOpportunity(getCurrentOpportunityData(fieldName, rolesData[fieldName].categories[0]).categories[0]);
+            setSelectedOpportunityIndex(0);
+        });
+
+        // Animate in new content
+        timeline.to([roleCardRef.current?.querySelector('.description'), opportunityCardRef.current?.querySelector('.description')], {
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.inOut"
+        });
+    }, [selectedField]);
+
+    // Handler for role selection changes
+    const handleRoleChange = useCallback((roleName, roleIndex) => {
+        if (roleName === selectedRole) return;
+
+        // Animate out current opportunity content
+        const timeline = gsap.timeline();
+        
+        timeline.to(opportunityCardRef.current?.querySelector('.description'), {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.inOut"
+        });
+
+        timeline.call(() => {
+            setSelectedRole(roleName);
+            setSelectedRoleIndex(roleIndex);
+            setSelectedOpportunity(getCurrentOpportunityData(selectedField, roleName).categories[0]);
+            setSelectedOpportunityIndex(0);
+        });
+
+        // Animate in new opportunity content
+        timeline.to(opportunityCardRef.current?.querySelector('.description'), {
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.inOut"
+        });
+    }, [selectedRole, selectedField]);
+
+    // Handler for technology selection changes
+    const handleTechnologyChange = useCallback((technologyName, technologyIndex) => {
+        setSelectedTechnology(technologyName);
+        setSelectedTechnologyIndex(technologyIndex);
+    }, []);
+
+    // Handler for opportunity selection changes
+    const handleOpportunityChange = useCallback((opportunityName, opportunityIndex) => {
+        setSelectedOpportunity(opportunityName);
+        setSelectedOpportunityIndex(opportunityIndex);
+    }, []);
+
+    // Get current data based on selections
+    const getCurrentRoleData = () => ({
+        categories: rolesData[selectedField].categories,
+        descriptions: rolesData[selectedField].descriptions
+    });
+
+    const getCurrentOpportunityData = (field = selectedField, role = selectedRole) => {
+        // Get opportunities for the specific field and role combination
+        if (opportunitiesData[field] && opportunitiesData[field][role]) {
+            return {
+                categories: opportunitiesData[field][role].categories,
+                descriptions: opportunitiesData[field][role].descriptions
+            };
+        }
+        
+        // Fallback: if role doesn't exist, use first available role for the field
+        const availableRoles = Object.keys(opportunitiesData[field] || {});
+        if (availableRoles.length > 0) {
+            const firstRole = availableRoles[0];
+            return {
+                categories: opportunitiesData[field][firstRole].categories,
+                descriptions: opportunitiesData[field][firstRole].descriptions
+            };
+        }
+        
+        // Final fallback
+        return {
+            categories: ["Default Opportunity"],
+            descriptions: ["Opportunity data not available for this combination."]
+        };
+    };
+
     return (
         <section id='diagram-container' className="section">
             <div className="diagram-header-wrapper">
@@ -69,45 +227,69 @@ export default function Diagram() {
             </div>
             {/* <DiagramNavigation /> */}
             <div className="diagram-cards-wrapper">
+                {/* Field Selection Card */}
                 <DiagramCard
-                    key={0}
+                    key="field-card"
                     keyName={0}
-                    title={cardsInfo[0].title}
-                    categories={cardsInfo[0].categories}
-                    description={cardsInfo[0].description}
+                    title="Select Field"
+                    categories={fieldsData.categories}
+                    description={fieldsData.descriptions}
                     isOpportunities={false}
-                    defaultIndex={2}
-                    meshType={new THREE.IcosahedronGeometry(100, 136)}
+                    defaultIndex={selectedFieldIndex}
+                    selectedIndex={selectedFieldIndex}
+                    onSelectionChange={handleFieldChange}
+                    meshType={new THREE.IcosahedronGeometry(100, 80)}
+                    shaderProps={shaderConfigs.field}
                 />
+
+                {/* Role Selection Card */}
+                <div ref={roleCardRef}>
+                    <DiagramCard
+                        key={`role-card-${selectedField}`}
+                        keyName={1}
+                        title="Select Role"
+                        categories={getCurrentRoleData().categories}
+                        description={getCurrentRoleData().descriptions}
+                        isOpportunities={false}
+                        defaultIndex={selectedRoleIndex}
+                        selectedIndex={selectedRoleIndex}
+                        onSelectionChange={handleRoleChange}
+                        meshType={new THREE.IcosahedronGeometry(100, 80)}
+                        shaderProps={shaderConfigs.role}
+                    />
+                </div>
+
+                {/* Technology Selection Card */}
                 <DiagramCard
-                    key={1}
-                    keyName={1}
-                    title={cardsInfo[1].title}
-                    categories={cardsInfo[1].categories}
-                    description={cardsInfo[1].description}
-                    isOpportunities={false}
-                    defaultIndex={1}
-                    meshType={new THREE.OctahedronGeometry(100, 100, 100, 100)}
-                />
-                <DiagramCard
-                    key={2}
+                    key="technology-card"
                     keyName={2}
-                    title={cardsInfo[2].title}
-                    categories={cardsInfo[2].categories}
-                    description={cardsInfo[2].description}
+                    title="Select Technology"
+                    categories={technologiesData.categories}
+                    description={technologiesData.descriptions}
                     isOpportunities={false}
-                    defaultIndex={0}
-                    meshType={new THREE.CapsuleGeometry(50,100,100,100,100)}
+                    defaultIndex={selectedTechnologyIndex}
+                    selectedIndex={selectedTechnologyIndex}
+                    onSelectionChange={handleTechnologyChange}
+                    meshType={new THREE.IcosahedronGeometry(100, 80)}
+                    shaderProps={shaderConfigs.technology}
                 />
-                <DiagramCard
-                    key={3}
-                    keyName={3}
-                    title={cardsInfo[3].title}
-                    categories={cardsInfo[3].categories}
-                    description={cardsInfo[3].description}
-                    isOpportunities={true}
-                    defaultIndex={0}
-                />
+
+                {/* Opportunities Card */}
+                <div ref={opportunityCardRef}>
+                    <DiagramCard
+                        key={`opportunity-card-${selectedField}-${selectedRole}`}
+                        keyName={3}
+                        title="Opportunities"
+                        categories={getCurrentOpportunityData().categories}
+                        description={getCurrentOpportunityData().descriptions}
+                        isOpportunities={true}
+                        defaultIndex={selectedOpportunityIndex}
+                        selectedIndex={selectedOpportunityIndex}
+                        onSelectionChange={handleOpportunityChange}
+                        shaderProps={shaderConfigs.opportunities}
+                        meshType={new THREE.IcosahedronGeometry(100, 80)}
+                    />
+                </div>
             </div>
         </section>
     );

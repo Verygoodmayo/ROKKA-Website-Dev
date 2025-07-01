@@ -1,0 +1,11 @@
+export const Fields = {
+    title: "Select Field",
+    categories: ["Intelligence", "Commercial", "Political", "Research"],
+    description: [
+        "Intelligence professionals face an overwhelming data challenge - massive volumes of external open-source information combined with sensitive internal intelligence creates complex analytical bottlenecks. The scale and diversity of information sources makes it nearly impossible to maintain comprehensive situational awareness while ensuring analytical accuracy. Most intelligence organizations struggle with fragmented data systems that prevent effective correlation and pattern recognition across their complete information landscape.",
+        "Modern businesses are drowning in data from both internal operations and external market forces, creating significant competitive disadvantages for those who can't effectively harness this information. The complexity of managing comprehensive business intelligence across all data sources overwhelms traditional analytical approaches and prevents organizations from achieving their full market potential. Most commercial teams lack the capability to transform their complete data ecosystem into actionable strategic advantages.",
+        "Political organizations operate in an increasingly data-intensive environment where success depends on comprehensive information management, yet most campaigns struggle with fragmented data systems that prevent effective strategy development. The challenge of maintaining unified oversight across all internal campaign data while incorporating crucial external political intelligence creates strategic blind spots that can determine electoral outcomes. Traditional campaign management approaches fail to leverage the full scope of available political information.",
+        "Academic and scientific researchers work with increasingly complex data environments that combine proprietary research with extensive external information, creating methodological challenges that limit research impact and validity. The difficulty of maintaining comprehensive data oversight across all research sources prevents many studies from achieving their full analytical potential and slows scientific advancement. Current research tools fail to support the integrated approach that modern scholarship demands.",
+    ]
+}
+        

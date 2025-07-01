@@ -1,8 +1,27 @@
 uniform float u_time;
 uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_mouseInfluence;
+
+// Core animation controls
 uniform float frequency;
 uniform float amplitude;
 uniform float maxDistance;
+
+// Advanced noise controls
+uniform float noiseScale;
+uniform float noiseDensity;
+uniform float noiseOctaves;
+uniform float noiseLacunarity;
+uniform float noiseGain;
+uniform float turbulenceStrength;
+uniform float flowDirection;
+uniform float waveSpeed;
+uniform float distortionStrength;
+
+// Visual controls
+uniform float particleSize;
+uniform float colorIntensity;
 
 varying vec2 vUv;
 attribute vec2 reference;
@@ -90,49 +109,77 @@ g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 return 130.0 * dot(m, g);
 }
 
-vec3 curl(float	x,	float	y,	float	z)
+// Enhanced curl noise function with advanced controls
+vec3 curl(float x, float y, float z)
 {
+    float eps = 1.0 / noiseDensity, eps2 = 2.0 * eps;
+    float n1, n2, a, b;
 
-float	eps	= 1., eps2 = 2. * eps;
-float	n1,	n2,	a,	b;
+    // Apply time-based animation with wave speed control
+    float timeOffset = u_time * waveSpeed * 0.05;
+    x += timeOffset;
+    y += timeOffset;
+    z += timeOffset;
 
-x += u_time * .05;
-y += u_time * .05;
-z += u_time * .05;
+    // Apply flow direction (convert degrees to radians)
+    float flowRad = flowDirection * PI / 180.0;
+    vec2 flowVec = vec2(cos(flowRad), sin(flowRad)) * 0.1;
+    x += flowVec.x * u_time * waveSpeed;
+    y += flowVec.y * u_time * waveSpeed;
 
-vec3	curl = vec3(0.);
+    // Scale noise coordinates
+    x *= noiseScale;
+    y *= noiseScale;
+    z *= noiseScale;
 
-n1	=	noise(vec2( x,	y	+	eps ));
-n2	=	noise(vec2( x,	y	-	eps ));
-a	=	(n1	-	n2)/eps2;
+    vec3 curl = vec3(0.0);
 
-n1	=	noise(vec2( x,	z	+	eps));
-n2	=	noise(vec2( x,	z	-	eps));
-b	=	(n1	-	n2)/eps2;
+    // Compute curl with turbulence strength
+    n1 = noise(vec2(x, y + eps));
+    n2 = noise(vec2(x, y - eps));
+    a = (n1 - n2) / eps2;
 
-curl.x	=	a	-	b;
+    n1 = noise(vec2(x, z + eps));
+    n2 = noise(vec2(x, z - eps));
+    b = (n1 - n2) / eps2;
 
-n1	=	noise(vec2( y,	z	+	eps));
-n2	=	noise(vec2( y,	z	-	eps));
-a	=	(n1	-	n2)/eps2;
+    curl.x = (a - b) * turbulenceStrength;
 
-n1	=	noise(vec2( x	+	eps,	z));
-n2	=	noise(vec2( x	+	eps,	z));
-b	=	(n1	-	n2)/eps2;
+    n1 = noise(vec2(y, z + eps));
+    n2 = noise(vec2(y, z - eps));
+    a = (n1 - n2) / eps2;
 
-curl.y	=	a	-	b;
+    n1 = noise(vec2(x + eps, z));
+    n2 = noise(vec2(x - eps, z));
+    b = (n1 - n2) / eps2;
 
-n1	=	noise(vec2( x	+	eps,	y));
-n2	=	noise(vec2( x	-	eps,	y));
-a	=	(n1	-	n2)/eps2;
+    curl.y = (a - b) * turbulenceStrength;
 
-n1	=	noise(vec2(  y	+	eps,	z));
-n2	=	noise(vec2(  y	-	eps,	z));
-b	=	(n1	-	n2)/eps2;
+    n1 = noise(vec2(x + eps, y));
+    n2 = noise(vec2(x - eps, y));
+    a = (n1 - n2) / eps2;
 
-curl.z	=	a	-	b;
+    n1 = noise(vec2(y + eps, z));
+    n2 = noise(vec2(y - eps, z));
+    b = (n1 - n2) / eps2;
 
-return	curl;
+    curl.z = (a - b) * turbulenceStrength;
+
+    return curl;
+}
+
+// Multi-octave noise function
+float fbm(vec2 p) {
+    float value = 0.0;
+    float amplitude_local = noiseGain;
+    float frequency_local = 1.0;
+    
+    for (int i = 0; i < int(noiseOctaves); i++) {
+        value += amplitude_local * noise(p * frequency_local);
+        p *= noiseLacunarity;
+        amplitude_local *= noiseGain;
+    }
+    return value;
 }
 
 void main() {
@@ -140,20 +187,31 @@ void main() {
 
     vec3 newPos = position;
 
-    float f = frequency;
-    float amp = amplitude;
-    float maxD = maxDistance;
-    
-    vec3 target = position + curl(position.x * f, position.y * f, position.z * f) * amp;
-    float d = length( position - target ) / maxD;
+    // Apply mouse influence
+    vec2 mouseOffset = (u_mouse - 0.5) * u_mouseInfluence * 10.0;
+    vec3 mouseInfluencedPos = position + vec3(mouseOffset.x, mouseOffset.y, 0.0);
 
-    vec3 finalPos = mix(position, target, pow(d, 5.));
-
-    vec4 mvPosition = modelViewMatrix * vec4( finalPos, 1.0 ); 
+    // Enhanced noise calculation with multiple octaves
+    vec3 noisePos = mouseInfluencedPos * frequency * noiseScale;
+    vec3 curlForce = curl(noisePos.x, noisePos.y, noisePos.z);
     
-    gl_PointSize = 1. * ( 1. / - mvPosition.z );
+    // Add FBM noise for additional complexity
+    float fbmNoise = fbm(noisePos.xy + u_time * waveSpeed * 0.1);
+    curlForce += vec3(fbmNoise) * 0.5;
+
+    // Apply distortion strength as master control
+    vec3 target = position + curlForce * amplitude * distortionStrength;
+    
+    float d = length(position - target) / maxDistance;
+
+    vec3 finalPos = mix(position, target, pow(d, 5.0));
+
+    vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0); 
+    
+    // Apply particle size control
+    gl_PointSize = particleSize * (1.0 / -mvPosition.z);
     if (isMobile) {
-        gl_PointSize = 2. * ( 1. / - mvPosition.z );
+        gl_PointSize = particleSize * 2.0 * (1.0 / -mvPosition.z);
     }
     gl_Position = projectionMatrix * mvPosition;
 }

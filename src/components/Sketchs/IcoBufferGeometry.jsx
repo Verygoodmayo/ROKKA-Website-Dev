@@ -3,7 +3,7 @@ import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 
-export default function IcoBufferGeometry({geoComplexity = 136, meshType = new THREE.IcosahedronGeometry(100, geoComplexity)}) {
+export default function IcoBufferGeometry({meshType}) {
 
     const bufferGeometry = useRef();
 

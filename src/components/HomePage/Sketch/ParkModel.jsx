@@ -23,7 +23,9 @@ export default function ParkModel() {
 
     // Render Loop
     useFrame(({clock}) => {
+        if (shaderMaterial.current && shaderMaterial.current.uniforms.u_time) {
             shaderMaterial.current.uniforms.u_time.value = clock.elapsedTime;
+        }
     })
 
     // useEffect(() => {
@@ -37,7 +39,7 @@ export default function ParkModel() {
     //     }
     // }, [])
 
-     // Reset uniforms and camera on mount
+    // Initialize uniforms and camera on component mount only
     useEffect(() => {
         if (shaderMaterial.current) {
             shaderMaterial.current.uniforms.frequency.value = 0.015;
@@ -45,13 +47,32 @@ export default function ParkModel() {
             shaderMaterial.current.uniforms.maxDistance.value = 2.14;
             shaderMaterial.current.uniforms.u_time.value = 0;
             shaderMaterial.current.uniforms.u_resolution.value.set(size.width, size.height);
-             shaderMaterial.current.uniforms.isMobile.value = isMobile ? 1.0 : 0.0;
+            shaderMaterial.current.uniforms.isMobile.value = isMobile ? 1.0 : 0.0;
         }
         camera.position.set(-100, 20, 130);
         camera.rotation.set(0, 0.1, 0);
-    }, [size, isMobile, camera]);
+    }, []); // Remove dependencies to only run on mount
+
+    // Handle window resize - only update resolution uniform
+    useEffect(() => {
+        if (shaderMaterial.current && shaderMaterial.current.uniforms.u_resolution) {
+            shaderMaterial.current.uniforms.u_resolution.value.set(size.width, size.height);
+        }
+    }, [size]); // Only depend on size for resolution updates
+
+    // Handle mobile changes - only update isMobile uniform
+    useEffect(() => {
+        if (shaderMaterial.current && shaderMaterial.current.uniforms.isMobile) {
+            shaderMaterial.current.uniforms.isMobile.value = isMobile ? 1.0 : 0.0;
+        }
+    }, [isMobile]); // Only depend on isMobile for mobile detection updates
 
     useGSAP(() => {
+      // Ensure shader material is ready before creating animations
+      if (!shaderMaterial.current || !shaderMaterial.current.uniforms) {
+        return;
+      }
+
       let firstSectionTime = 4;
       let cameraTransitionTime = 10;
       let secondSectionTime = 5;
@@ -122,7 +143,7 @@ export default function ParkModel() {
             timeline.scrollTrigger && timeline.scrollTrigger.kill();
             timeline.kill();
         };
-    });
+    }, [shaderMaterial]);
 
     return (
         <points

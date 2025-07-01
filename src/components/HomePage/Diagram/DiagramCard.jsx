@@ -1,14 +1,34 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Canvas } from "@react-three/fiber";
 import IcoBufferMesh from "../../Sketchs/IcoBufferMesh";
 import * as THREE from "three";
 
-export default function DiagramCard({ keyName, title, categories, description, isOpportunities, defaultIndex = 0, meshType = new THREE.BoxGeometry(50, 50, 50, 50, 100, 100, 100), geoComplexity = 136 }) {
-    const [activeIndex, setActiveIndex] = useState(defaultIndex);
+export default function DiagramCard({ 
+    keyName, 
+    title, 
+    categories, 
+    description, 
+    isOpportunities, 
+    defaultIndex = 0, 
+    selectedIndex,
+    onSelectionChange,
+    meshType = new THREE.BoxGeometry(50, 50, 50, 50, 100, 100, 100), 
+    geoComplexity = 136,
+    // Shader control props
+    shaderProps = {}
+}) {
+    const [activeIndex, setActiveIndex] = useState(selectedIndex !== undefined ? selectedIndex : defaultIndex);
     const [fadeState, setFadeState] = useState("in");
     const descRef = useRef();
+
+    // Update activeIndex when selectedIndex prop changes
+    useEffect(() => {
+        if (selectedIndex !== undefined && selectedIndex !== activeIndex) {
+            setActiveIndex(selectedIndex);
+        }
+    }, [selectedIndex]);
 
     // Animate fade in/out
     useGSAP(() => {
@@ -25,6 +45,10 @@ export default function DiagramCard({ keyName, title, categories, description, i
         setTimeout(() => {
             setActiveIndex(index);
             setFadeState("in");
+            // Call the parent's selection change handler if provided
+            if (onSelectionChange) {
+                onSelectionChange(categories[index], index);
+            }
         }, 300); // match fade out duration
     };
 
@@ -50,9 +74,13 @@ export default function DiagramCard({ keyName, title, categories, description, i
             <div className="description">
                 <p ref={descRef}>{description[activeIndex]}</p>
             </div>
-            {/* <Canvas key={1} className="card-sketch-container">
-                <IcoBufferMesh meshType={meshType} geoComplexity={geoComplexity}></IcoBufferMesh>
-            </Canvas> */}
+            <Canvas key={1} className="card-sketch-container">
+                <IcoBufferMesh 
+                    meshType={meshType} 
+                    geoComplexity={geoComplexity}
+                    {...shaderProps}
+                />
+            </Canvas>
         </div>
     );
 }
