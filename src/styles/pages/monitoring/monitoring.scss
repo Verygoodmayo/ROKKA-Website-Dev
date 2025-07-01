@@ -7,24 +7,19 @@
     z-index: 2;
 
     .hero-content {
+        background: red;
         position: absolute;
+        height: auto;
         bottom: -1px;
         left: 0px;
         padding: vars.$size4;
-        height: 50vh;
-        width: 65vh;
         z-index: 2;
         @include mixins.border5-top;
         @include mixins.border5-right;
         display: flex;
         flex-direction: column;
         gap: vars.$size3;
-        background: vars.$bg;
-
-        .logo {
-            height: 30px;
-            width: 30px;
-        }
+        // background: vars.$bg;
 
         .hero-logo {
             display: flex;
@@ -33,7 +28,14 @@
             gap: vars.$size1;
             font-size: vars.$body1;
             font-weight: 400;
+
+            .logo {
+                height: 30px;
+                width: 30px;
+            }
         }
+
+        
 
         .hero-title {
             font-family: vars.$header-font;
@@ -101,44 +103,47 @@
     background: vars.$p-color;
 }
 
-// PILA PAGE - INDIVIDUAL IMAGE CONTROLS
+// MONITORING PAGE - INDIVIDUAL IMAGE CONTROLS
 // Customize each feature image individually
 .features-image {
     img {
-        // Feature 1: RAG
-        &.pila-feature-1 {
+        // Feature 1: Objective Oriented Approach
+        &.monitoring-feature-1 {
+            width: 80% !important;
+            transform: translateX(-2.5%) !important;
+            height: auto !important;
+            // object-fit: contain;
+            // Add custom styling here for the first image
+        }
+
+        // Feature 2: Monitor Any Source
+        &.monitoring-feature-2 {
+            // width: calc(100% - #{vars.$size3 * 2});
+            width: auto !important;
+            height: 100% !important;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 vars.$size3;
+            // Add custom styling here for the second image
+        }
+
+        // Feature 3: Data Collection (Tracker)
+        &.monitoring-feature-3 {
             width: auto;
             height: 100%;
             object-fit: contain;
-            // Add custom styling here for the RAG image
+            // Add custom styling here for the third image
         }
 
-        // Feature 2: Action Items
-        &.pila-feature-2 {
-            width: calc(100% - #{vars.$size3 * 2});
-            height: auto;
-            max-height: 100%;
-            object-fit: contain;
-            margin: 0 vars.$size3;
-            // Add custom styling here for the Action Items image
-        }
-
-        // Feature 3: PILA Mobile App
-        &.pila-feature-3 {
+        // Feature 4: Post Analysis
+        &.monitoring-feature-4 {
             width: 80% !important;
-            height: auto !important;
-            object-fit: contain;
-            // Add custom styling here for the Mobile App image
-        }
-
-        // Feature 4: Agents
-        &.pila-feature-4 {
-            width: calc(100% - #{vars.$size3 * 2});
+            transform: translateX(-5%) !important;
             height: auto;
             max-height: 100%;
             object-fit: contain;
             margin: 0 vars.$size3;
-            // Add custom styling here for the Agents image
+            // Add custom styling here for the fourth image
         }
     }
 }

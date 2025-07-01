@@ -233,37 +233,245 @@
         }
 
         .features-image {
-            position: relative;
+            position: absolute;
+            right: 0px;
             z-index: 2;
             @include mixins.border5-left;
             max-width: 600px !important;
             min-width: 600px !important;
+            width: 600px !important;
             height: 100%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             background: vars.$bg;
             overflow: hidden;
 
+            .features-image-header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                padding: vars.$size3;
+                background: vars.$bg;
+                @include mixins.border5-bottom;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                justify-content: flex-start;
+                gap: vars.$size2;
+
+                .features-image-title {
+                    font-family: vars.$p-font;
+                    font-size: vars.$body1;
+                    text-transform: capitalize;
+                    color: vars.$content;
+                    margin: 0;
+                    font-weight: 400;
+                }
+
+                .features-image-icon {
+                    position: relative;
+                    display: flex;
+                    height: 24px;
+                    width: 24px;
+                    // object-fit: contain;
+                }
+            }
+
             img {
-                width: 80%;
-                height: auto;
+                position: relative;
+                // Default behavior - fit height, auto width (for portrait and square)
+                width: auto;
+                height: 100%;
+                object-fit: cover;
 
-                // &.vertical {
-                //     width: 80%;
-                //     height: auto;
-                //     // object-fit: contain;
-                // }
+                &.image-portrait {
+                    // Portrait images (height > width): Full height, auto width
+                    width: auto;
+                    height: calc(100% - 60px);
+                    object-fit: contain;
+                }
 
-                // &.horizontal {
-                //     width: auto;
-                //     height: 100%;
-                // }
+                &.image-landscape {
+                    // Landscape images (width > height): Fit width with padding
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: calc(100% - 60px);
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
 
-                // &.square {
-                //     width: auto;
-                //     height: 100%;
-                // }
+                &.image-square {
+                    // Square images (height = width): Same as portrait
+                    width: auto;
+                    height: calc(100% - 60px);
+                    object-fit: contain;
+                }
+
+                // Fallback for images without specific class
+                &.image-default {
+                    width: auto;
+                    height: calc(100% - 60px);
+                    object-fit: cover;
+                }
+
+                // DATA MANAGER PAGE SPECIFIC IMAGES
+                &.data-manager-feature-1 {
+                    // Prediction Models image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.data-manager-feature-2 {
+                    // Database Aggregation image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                &.data-manager-feature-3 {
+                    // Segmentation image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.data-manager-feature-4 {
+                    // Visualization image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                // MONITORING PAGE SPECIFIC IMAGES
+                &.monitoring-feature-1 {
+                    // Objective Oriented Approach image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.monitoring-feature-2 {
+                    // Monitor Any Source image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                &.monitoring-feature-3 {
+                    // Data Collection (Tracker) image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.monitoring-feature-4 {
+                    // Post Analysis image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                // PILA PAGE SPECIFIC IMAGES
+                &.pila-feature-1 {
+                    // RAG image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.pila-feature-2 {
+                    // Action Items image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                &.pila-feature-3 {
+                    // PILA Mobile App image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.pila-feature-4 {
+                    // Agents image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                // PLUGINS PAGE SPECIFIC IMAGES
+                &.plugins-feature-1 {
+                    // API image
+                    width: 80% !important;
+                    height: auto;
+                    object-fit: contain;
+                }
+
+                &.plugins-feature-2 {
+                    // AI Driven Call Center image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                &.plugins-feature-3 {
+                    // Ecosystem Analyzer image
+                    width: 80% !important;
+                    height: auto !important;
+                    object-fit: contain;
+                }
+
+                &.plugins-feature-4 {
+                    // Mobile Command image
+                    width: 80% !important;
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
+
+                &.plugins-feature-5 {
+                    // Distribution Pad image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.plugins-feature-6 {
+                    // Parliament Regulation Dashboard image
+                    width: auto;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                &.plugins-feature-7 {
+                    // Hate Speech Detector image
+                    width: calc(100% - #{vars.$size3 * 2});
+                    height: auto;
+                    max-height: 100%;
+                    object-fit: contain;
+                    margin: 0 vars.$size3;
+                }
             }
             // background: #00000011;
         }

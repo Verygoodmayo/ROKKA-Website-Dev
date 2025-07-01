@@ -19,6 +19,7 @@ const feature1 = {
   title: "RAG",
   description: "Our system uses RAG - Retrieval Augmented Generation - which means it first retrieves precise information from your data, then generates clear answers based on that real information. Unlike standard chatbots that make up responses, PILA finds actual data and turns it into meaningful insights. Think of it as a smart librarian for your data - it knows exactly where to look, what to pull, and how to use it.",
   image: PILA_feature1_svg,
+  imageClass: "image-portrait", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Instead of fabricating data, RAG retrieves information from the campaign's uploaded voter databases, polling results, demographic files, and policy documents. When strategists ask about voter sentiment in specific districts, the system searches their actual uploaded campaign data and survey results."},
     social: {title: "Intelligence Need", description: "Instead of guessing, RAG searches through the analyst's own uploaded intelligence reports, threat databases, surveillance data, and source documents to provide fact-based answers. If an analyst uploads classified reports and asks about a specific threat actor, the system retrieves exact information from those uploaded documents rather than hallucinating details."},
@@ -31,6 +32,7 @@ const feature2  = {
   title: "Action Items",
   description: "PILA doesn't just analyze data - it transforms insights into actionable steps. The system  identifies key points requiring attention and turning your insights into practical action plans. Every analysis becomes a strategic roadmap, eliminating the gap between understanding and execution.",
   image: PILA_feature2_svg,
+  imageClass: "image-landscape", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Translates voter data and polling insights into concrete campaign strategies. Beyond showing demographic trends, the system identifies which voter segments require focused outreach, which messaging strategies need adjustment, and which resource allocations will maximize electoral impact. It transforms political analysis into executable campaign tactics."},
     intelleigence: {title: "Intelligence Need", description: "Transforms threat assessments and intelligence findings into structured operational responses. Instead of leaving analysts with raw intelligence data, the system identifies which threats require immediate attention, what resources need reallocation, and which security protocols need updating. It bridges the gap between intelligence analysis and operational security decisions."},
@@ -43,6 +45,7 @@ const feature3  = {
   title: "PILA Mobile App",
   description: "Stay connected to your data insights anywhere, anytime. PILA's mobile app keeps you in constant conversation with your data - whether you're in a meeting, commuting, or working remotely.  Simply speak or type your questions, and PILA responds with precise insights.",
   image: PILA_feature3_svg,
+  imageClass: "image-square", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Political queries set off a network of AI agents operating behind the scenes - some processing voter databases while others analyzing demographic shifts, some tracking polling patterns while others evaluating messaging effectiveness. This coordinated background activity produces comprehensive political insights from simple strategic questions."},
     social: {title: "Intelligence Need", description: "Intelligence queries activate a web of specialized AI agents working invisibly - some scanning threat databases while others cross-reference indicators, some validating source credibility while others building threat timelines. This orchestrated behind-the-scenes collaboration ensures no intelligence angle is missed, delivering comprehensive threat assessments from what appears to be a simple question."},
@@ -55,6 +58,7 @@ const feature4  = {
   title: "Agents",
   description: "At PILA's core lies a multi-agent architecture - the foundation of its unique capabilities. Each agent brings unique capabilities - from data cleaning to statistical analysis  - creating a powerful analytical team at your disposal. These agents collaborate seamlessly to break down complex queries into specialized tasks, ensuring thorough and accurate analysis across all dimensions of your data.",
   image: PILA_feature4_svg,
+  imageClass: "image-landscape", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Political queries set off a network of AI agents operating behind the scenes - some processing voter databases while others analyzing demographic shifts, some tracking polling patterns while others evaluating messaging effectiveness. This coordinated background activity produces comprehensive political insights from simple strategic questions."},
     social: {title: "Intelligence Need", description: "Intelligence queries activate a web of specialized AI agents working invisibly - some scanning threat databases while others cross-reference indicators, some validating source credibility while others building threat timelines. This orchestrated behind-the-scenes collaboration ensures no intelligence angle is missed, delivering comprehensive threat assessments from what appears to be a simple question."},

@@ -18,6 +18,7 @@ const feature1 = {
   title: "Prediction Models",
   description: "Build complex predictive models with simple clicks. No data science degree needed - just select your data and let our AI do the heavy lifting. From basic forecasting to advanced predictions, everything happens without writing a single line of code.",
   image: feature1_svg,
+  imageClass: "image-portrait", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Harness the power of predictive analytics for political decision-making. Our platform enables campaign strategists, policy makers, and political analysts to forecast election outcomes, analyze voter sentiment trends, and predict the impact of policy decisions. Track public opinion shifts, identify key demographic patterns, and optimize campaign messaging strategies using advanced machine learning models trained on political data."},
     intelligence: {title: "Intelligence Need", description: "Transform vast amounts of open-source information into actionable intelligence insights. Perfect for security analysts, researchers, and intelligence professionals who need to monitor social movements, predict emerging threats, and analyze public sentiment across digital platforms. Our AI processes social media data, news sources, and public records to identify patterns and forecast potential developments in areas of interest."},
@@ -30,6 +31,7 @@ const feature2  = {
   title: "Database Aggregation",
   description: "Connect and manage multiple data sources through an intuitive interface. No SQL, no database language - just point, click, and unify your data sources instantly.",
   image: feature2_svg,
+  imageClass: "image-landscape", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Transform scattered political data into strategic campaign advantages. Instead of juggling multiple voter databases and polling systems, campaigns get unified voter insights that reveal winning strategies. Identify key swing demographics faster by connecting voter behavior patterns across different data sources. Optimize campaign spending and messaging with complete voter profiles that would take months to compile manually, delivered instantly through automated data unification that eliminates information silos."},
     intelligence: {title: "Intelligence Need", description: "Transform fragmented intelligence gathering into comprehensive situational awareness. Instead of manually checking dozens of separate sources, analysts get unified data streams that reveal patterns invisible in isolated systems. Identify emerging threats faster by connecting dots across previously disconnected information sources. Gain complete intelligence pictures that would take weeks to assemble manually, delivered in minutes through automated data aggregation that eliminates blind spots and information gaps."},
@@ -42,6 +44,7 @@ const feature3  = {
   title: "Segmentation",
   description: "Create and manage sophisticated audience segments effortlessly. Combine automatic pattern discovery with powerful filtering - group users by behavior, preferences, or any custom criteria.",
   image: feature3_svg,
+  imageClass: "image-square", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "DStop wasting campaign dollars on voter segments that'll never switch sides. Automatically segment your electorate to discover which demographic combinations actually swing elections, not just theoretical voter blocks. Identify the crucial undecided voter segments who determine outcomes while filtering out audiences who've already made up their minds. Turn campaign guesswork into data-driven victories by segmenting voters into personality-driven groups, knowing exactly which messages resonate with each audience segment through precision targeting that traditional polls can't deliver."},
     intelligence: {title: "Intelligence Need", description: "Cut through information overload by segmenting threats into actionable risk categories. Automatically separate genuine security risk segments from background noise while ensuring no real threats slip through various audience clusters. Segment individuals and groups into behavioral patterns and network connections that human analysts miss in massive datasets. Save extensive manual investigation time by instantly segmenting populations into concerning pattern combinations, allowing security teams to focus on high-priority audience segments where they'll have maximum protective impact."},
@@ -54,6 +57,7 @@ const feature4  = {
   title: "Visualisation",
   description: "See your database clearly, instantly. Our system automatically mirrors your data in clear, easy-to-understand visual formats. No complex setup needed - your information is instantly transformed into intuitive visualizations that make sense. Direct reflection of your data, just easier to understand.",
   image: feature4_svg,
+  imageClass: "image-landscape", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Turn endless voter data into clear campaign insights you can actually use. See your electoral information transformed into visual formats that reveal patterns hiding in spreadsheets. Stop struggling with raw voter databases and start understanding what your data is telling you through automatic graphic representations. Make better campaign decisions when your information becomes immediately comprehensible instead of overwhelming."},
     intelligence: {title: "Intelligence Need", description: "Convert complex threat data into visual intelligence that makes sense immediately. See your information transformed into clear graphic formats that reveal what matters most in your datasets. Replace time-consuming data analysis with instant visual understanding of your intelligence information. Make faster security decisions when your data becomes immediately readable through automatic database visualization."},

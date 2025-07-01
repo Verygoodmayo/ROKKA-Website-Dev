@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLocation } from "react-router-dom";
 import FeaturesNavigation from "./FeaturesNavigation";
 import FeaturesImage from "./FeaturesImage";
 import FeatureCard from "./FeatureCard";
@@ -29,6 +30,46 @@ export default function FeaturesContainer({
   const wrapperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
+
+  // Create a mapping of anchor names to feature indices
+  const getFeatureIndexFromAnchor = (anchor) => {
+    const currentPath = window.location.pathname;
+    
+    if (currentPath.includes('/plugins')) {
+      const pluginAnchors = {
+        'api': 0,                              // API
+        'ai-driven-call-center': 1,            // AI Driven Call Center
+        'ecosystem-analyzer': 2,               // Ecosystem Analyzer
+        'mobile-command': 3,                   // Mobile Command
+        'distribution-pad': 4,                 // Distribution Pad
+        'parliament-regulation-dashboard': 5,   // Parliament Regulation Dashboard
+        'hate-speech-detector': 6              // Hate Speech Detector
+      };
+      return pluginAnchors[anchor] !== undefined ? pluginAnchors[anchor] : 0;
+    }
+    
+    // Add more mappings for other pages if needed
+    // if (currentPath.includes('/data-manager')) { ... }
+    // if (currentPath.includes('/monitoring')) { ... }
+    // if (currentPath.includes('/PILA')) { ... }
+    
+    return 0;
+  };
+
+  // Handle anchor navigation
+  useEffect(() => {
+    const hash = location.hash.substring(1); // Remove the # symbol
+    if (hash) {
+      const targetIndex = getFeatureIndexFromAnchor(hash);
+      setActiveIndex(targetIndex);
+      
+      // Scroll to the features container
+      if (wrapperRef.current) {
+        wrapperRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location.hash]);
 
   // Mobile detection
   useEffect(() => {

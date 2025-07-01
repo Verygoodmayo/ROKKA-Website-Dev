@@ -1,11 +1,11 @@
 import Button from "../../components/Button";
-// import dataManagerIcon from '../../../static/svg/products/Data_Management_B.svg'
+import monitoringIcon from '../../../static/svg/Products/Monitoring/Monitoring_Icon_B.svg'
 
 export default function HeroSection() {
   return (
     <div className="hero-section section">
       <div className="hero-content">
-        <img src={dataManagerIcon} alt="Data Manager Logo" className="logo" />
+        <img src={monitoringIcon} alt="Data Manager Logo" className="logo" />
         <div className="hero-title">
           NO CODE. <br/>
           Deep Analytics.

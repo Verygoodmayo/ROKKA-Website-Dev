@@ -1,0 +1,69 @@
+/* EXAMPLE: How to Customize Individual Images in SCSS */
+
+/* 
+Edit /src/styles/features/FeaturesContainer.scss to customize any specific image:
+*/
+
+/* Example 1: Make Data Manager's first image (Prediction Models) have rounded corners */
+&.data-manager-feature-1 {
+    width: 90%;
+    height: auto;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 15px;
+    margin: vars.$size2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Example 2: Make Monitoring's second image (Monitor Any Source) fill more space */
+&.monitoring-feature-2 {
+    width: 95%;
+    height: auto;
+    max-height: 95%;
+    object-fit: cover;
+    margin: vars.$size1;
+}
+
+/* Example 3: Add a subtle animation to PILA's third image (Mobile App) */
+&.pila-feature-3 {
+    width: auto;
+    height: 95%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* Example 4: Make Plugins first image (API) have a custom filter */
+&.plugins-feature-1 {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* Example 5: Custom styling for a specific image with background */
+&.data-manager-feature-3 {
+    width: 85%;
+    height: auto;
+    max-height: 85%;
+    object-fit: contain;
+    margin: vars.$size2;
+    padding: vars.$size1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/*
+Available variables you can use:
+- vars.$size1 (10px)
+- vars.$size2 (20px) 
+- vars.$size3 (30px)
+- vars.$size4 (45px)
+- vars.$bg (background color)
+- vars.$content (text color)
+- vars.$border5 (light border)
+*/

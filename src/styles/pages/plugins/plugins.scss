@@ -27,10 +27,10 @@
 
 #plugins-features {
   
-  .features-navigation {
-      // max-width: 400px !important;
-      // min-width: 400px !important;
-  }
+  // .features-navigation {
+  //     // max-width: 400px !important;
+  //     // min-width: 400px !important;
+  // }
 
   .feature-card-header {
       height: 100% !important;
@@ -40,6 +40,72 @@
 
   .features-image {
     border-left: none !important;
+    
+    // PLUGINS PAGE - INDIVIDUAL IMAGE CONTROLS
+    // Customize each plugin image individually
+    img {
+        // Plugin 1: API
+        &.plugins-feature-1 {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            // Add custom styling here for the API image
+        }
+
+        // Plugin 2: AI Driven Call Center
+        &.plugins-feature-2 {
+            width: calc(100% - #{vars.$size3 * 2});
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 vars.$size3;
+            // Add custom styling here for the AI Call Center image
+        }
+
+        // Plugin 3: Ecosystem Analyzer
+        &.plugins-feature-3 {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            // Add custom styling here for the Ecosystem Analyzer image
+        }
+
+        // Plugin 4: Mobile Command
+        &.plugins-feature-4 {
+            width: calc(100% - #{vars.$size3 * 2});
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 vars.$size3;
+            // Add custom styling here for the Mobile Command image
+        }
+
+        // Plugin 5: Distribution Pad
+        &.plugins-feature-5 {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            // Add custom styling here for the Distribution Pad image
+        }
+
+        // Plugin 6: Parliament Regulation Dashboard
+        &.plugins-feature-6 {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            // Add custom styling here for the Parliament Dashboard image
+        }
+
+        // Plugin 7: Hate Speech Detector
+        &.plugins-feature-7 {
+            width: calc(100% - #{vars.$size3 * 2});
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 vars.$size3;
+            // Add custom styling here for the Hate Speech Detector image
+        }
+    }
   }
 }
 

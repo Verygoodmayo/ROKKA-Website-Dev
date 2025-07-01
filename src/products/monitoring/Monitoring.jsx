@@ -1,8 +1,9 @@
 import Footer from '../../components/Footer/Footer'
-import '../../styles/pages/data_manager/data_manager.scss'
 import FeaturesContainer from '../features/FeaturesContainer'
 import HeroSection from './HeroSection'
 import * as THREE from 'three'
+
+import '../../styles/pages/monitoring/monitoring.scss'
 
 import moinitoring_feature1_svg from '../../../static/svg/Features/Monitoring/Objective.svg'
 import moinitoring_feature2_svg from '../../../static/svg/Features/Monitoring/AnySource.svg'
@@ -15,6 +16,7 @@ const feature1 = {
   title: "Objective Oriented Approach",
   description: "Got a goal? Our monitoring understands your objectives and delivers precisely the insights that matter to you, filtering out everything else to keep you focused on what's important.",
   image: moinitoring_feature1_svg,
+  imageClass: "image-portrait", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Political operatives use objective-oriented monitoring to focus on campaign-specific goals such as voter sentiment analysis, opposition research, or issue tracking. Campaigns can tailor their monitoring to specific demographics, geographic regions, or policy topics that align with their electoral strategy, ensuring that social media intelligence directly supports campaign messaging and voter outreach efforts."},
     social: {title: "Intelligence Need", description: "Intelligence analysts employ objective-oriented monitoring to focus on specific threats, entities, or information requirements. By defining clear intelligence objectives, analysts can filter through vast amounts of social media data to identify relevant security threats, track specific individuals or organizations, or monitor emerging situations that could impact national security or organizational safety."},
@@ -27,6 +29,7 @@ const feature2  = {
   title: "Monitor Any Source",
   description: "Look beyond traditional data sources. Our technology scans and analyzes content across the entire web, finding valuable insights wherever they exist - from social media to specialized platforms.",
   image: moinitoring_feature2_svg,
+  imageClass: "image-landscape", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Political campaigns use comprehensive source monitoring to track public opinion across all digital channels where voters engage. This includes mainstream social media, local community forums, news comment sections, and emerging platforms popular with specific voter demographics. Comprehensive monitoring ensures campaigns understand the full spectrum of public discourse and can respond to emerging narratives regardless of where they originate."},
     social: {title: "Intelligence Need", description: "Intelligence professionals require comprehensive source monitoring to avoid blind spots in their information gathering. Threats and important intelligence can emerge from any platform, including encrypted messaging apps, dark web forums, specialized communities, or regional platforms. Multi-source monitoring ensures complete situational awareness and prevents critical intelligence from being missed due to platform limitations."},
@@ -39,6 +42,7 @@ const feature3  = {
   title: "Data Collection (Tracker)",
   description: "Follow specific influencers, thought leaders, or key figures that matter to your organization. Get real-time insights about what they're saying and how they're affecting your market.",
   image: moinitoring_feature3_svg,
+  imageClass: "image-square", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: "Political campaigns track key political figures, journalists, activists, and influential voices who shape public opinion and media narratives. This tracking helps campaigns anticipate opposition moves, identify media opportunities, build relationships with key influencers, and respond quickly to emerging political developments that could impact electoral outcomes."},
     social: {title: "Intelligence Need", description: "Intelligence analysts use tracking to monitor persons of interest, organizations, or developing situations that pose potential security concerns. Continuous tracking enables the identification of behavioral patterns, network connections, and emerging threats. This capability is crucial for threat assessment, counter-intelligence operations, and maintaining awareness of evolving security situations."},
@@ -51,6 +55,7 @@ const feature4  = {
   title: "Post Analysis",
   description: "Get instant analysis of every post as it appears, understanding its impact and relevance immediately. Plus, dive deeper with custom questions about any aspect of your data - from broad trends to specific posts. Generate strategic reports or get immediate answers about what matters to you.",
   image: moinitoring_feature4_svg,
+  imageClass: "image-landscape", // Custom image sizing
   byNeed: {
     political: {title: "Political Need", description: 'Campaigns create election-focused analytical questions that align with their specific electoral strategy and voter research needs. A campaign might ask "How do voters in key demographics respond to policy announcements?" or "What concerns are most frequently mentioned by undecided voters?" These custom queries direct analysis toward voter sentiment and political intelligence that directly supports campaign messaging, targeting decisions, and strategic positioning efforts.'},
     social: {title: "Intelligence Need", description: 'Analysts formulate intelligence-specific questions that focus on their particular security concerns and information requirements. An analyst might ask "What coordination patterns appear in suspect communications?" or "How are threat narratives evolving over time?" These targeted queries direct the analytical process toward security-relevant insights, enabling efficient processing of large data volumes while maintaining focus on mission-critical intelligence objectives.'},

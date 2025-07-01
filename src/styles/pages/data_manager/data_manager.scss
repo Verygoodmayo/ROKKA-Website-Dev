@@ -102,3 +102,47 @@
     z-index: 1;
     background: vars.$p-color;
 }
+
+// DATA MANAGER PAGE - INDIVIDUAL IMAGE CONTROLS
+// Customize each feature image individually
+.features-image {
+    img {
+        // Feature 1: Prediction Models
+        &.data-manager-feature-1 {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            // Add custom styling here for the Prediction Models image
+        }
+
+        // Feature 2: Database Aggregation
+        &.data-manager-feature-2 {
+            width: 80% !important;
+            transform: translateX(-2.5%) !important;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 vars.$size3;
+            // Add custom styling here for the Database Aggregation image
+        }
+
+        // Feature 3: Segmentation
+        &.data-manager-feature-3 {
+            width: 80% !important;
+            height: auto;
+            object-fit: contain;
+            // Add custom styling here for the Segmentation image
+        }
+
+        // Feature 4: Visualization
+        &.data-manager-feature-4 {
+            width: 80% !important;
+            transform: translateX(-2.5%) !important;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 vars.$size3;
+            // Add custom styling here for the Visualization image
+        }
+    }
+}

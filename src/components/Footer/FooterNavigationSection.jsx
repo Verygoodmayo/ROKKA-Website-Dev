@@ -7,9 +7,9 @@ export default function FooterNavigationSection () {
         <div className="footer-navigation-section">
 
             <div id="products-section" className="navigation-section">
-                <p className="section-header">Products</p>
                 <div className="wrapper">
                     <div id="core-tech-section">
+                        <p className="section-header">Core Technology</p>
                         <Link to="/products/data-manager">
                             <NavigationItem label='Data Manager'></NavigationItem>
                         </Link>
@@ -21,27 +21,34 @@ export default function FooterNavigationSection () {
                         </Link>
                     </div>
                     <div id="plugins-section">
-                        <div className="wrapper">
-                            <NavigationItem label='Call Center'></NavigationItem>
-                            <NavigationItem label='Election Day'></NavigationItem>
-                            <NavigationItem label='Ecosystem Analyzer'></NavigationItem>
-                        </div>
+                        <p className="section-header">Plugins & Additional Products</p>
+                        <div className="h-wrapper">
+                            <div className="wrapper">
+                                <Link to="/plugins#ai-driven-call-center">
+                                    <NavigationItem label='Call Center'></NavigationItem>
+                                </Link>
+                                <Link to="/plugins#distribution-pad">
+                                    <NavigationItem label='Distribution Pad'></NavigationItem>
+                                </Link>
+                                <Link to="/plugins#ecosystem-analyzer">
+                                    <NavigationItem label='Ecosystem Analyzer'></NavigationItem>
+                                </Link>
+                            </div>
 
-                        <div className="wrapper">
-                            <NavigationItem label='API'></NavigationItem>
-                            <NavigationItem label='Parliment Regulation Dashboard'></NavigationItem>
-                            <NavigationItem label='Hate Speech Detector'></NavigationItem>
+                            <div className="wrapper">
+                                <Link to="/plugins#api">
+                                    <NavigationItem label='API'></NavigationItem>
+                                </Link>
+                                <Link to="/plugins#mobile-command">
+                                    <NavigationItem label='Mobile Command'></NavigationItem>
+                                </Link>
+                                <Link to="/plugins#hate-speech-detector">
+                                    <NavigationItem label='Hate Speech Detector'></NavigationItem>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="by-need-section" className="navigation-section">
-                <p className="section-header">By Need</p>
-                <NavigationItem label='Intelligence'></NavigationItem>
-                <NavigationItem label='Political'></NavigationItem>
-                <NavigationItem label='Commercial'></NavigationItem>
-                <NavigationItem label='Research'></NavigationItem>
             </div>
 
         </div>
