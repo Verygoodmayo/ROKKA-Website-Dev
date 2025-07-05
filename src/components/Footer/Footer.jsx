@@ -1,12 +1,9 @@
 import FooterItem from "./FooterItem";
 import logotype_white from '../../../static/svg/Logotype/Logotype_White.svg'
-import Button from "../Button";
+import Button from "../Button.jsx";
 import FooterSketch from "./Sketch/FooterSketch";
 import FooterNavigationSection from "./FooterNavigationSection";
 import { Link } from "react-router-dom";
-
-//SASS
-import '../../styles/footer/footer.scss';
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
@@ -35,7 +32,7 @@ export default function Footer() {
                         <Link to="/" className="logotype-link">
                             <img className="logotype-white" src={logotype_white}></img>
                         </Link>
-                        <Button label={"Let's Talk"} isPrimary={false} Outline={true} imgSrc={'./'}></Button>
+                        <Button label={"Let's Talk"} isPrimary={false} Outline={true}></Button>
                     </div>
                     <div className="info-wrapper">
                         <p className="info">Yiga'al Alon 108, Tel Aviv-Jaffa</p>

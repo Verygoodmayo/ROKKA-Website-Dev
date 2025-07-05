@@ -1,4 +1,3 @@
-@use '../../app.scss';
 @use '../../vars.scss';
 @use '../../mixins.scss';
 
@@ -147,12 +146,17 @@
     }
 }
 
-#monitoring-sketch {
-    position: absolute !important;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background: vars.$p-color;
+// Monitoring sketch styles are handled by inline Canvas styles
+// No CSS overrides needed - let Three.js Canvas control positioning
+
+// Ensure all page sections appear above the background sketch
+.features-container {
+    position: relative;
+    z-index: 2;
+    background: vars.$bg;
+}
+
+.footer {
+    position: relative;
+    z-index: 2;
 }

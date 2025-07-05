@@ -1,16 +1,13 @@
 import ROKKAFrame from "../ROKKAFrame/ROKKAFrame";
 import MenuItem from "./MenuItem";
 import logotype from '../../../static/png/Logotype.png'
-import { useContext, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react'
 import ProductsMenu from "./ProductsMenu";
 import { Link } from 'react-router-dom';
 import useIsMobile from '../Utils/UseIsMobile';
 import MobileMenu from "./MobileMenu";
-
-// SASS
-import '../../styles/menu/menu.scss';
 
 export default function Menu () {
     const isMobile = useIsMobile();
@@ -19,9 +16,6 @@ export default function Menu () {
     const [ProductsMenuState, changeProductsMenuState] = useState(false);
     const [menuState, chageMenuState] = useState(true);
     const [isProductsMenuHovered, setIsProductsMenuHovered] = useState(false);
-    const [isMenuHoverd, setMenuHoverd] = useState(false);
-    // About Context
-    const [ aboutState, setAboutState ] = useState(false);
 
     const menuContainer = useRef();
     const menuContent = useRef();
@@ -111,7 +105,7 @@ export default function Menu () {
         setIsProductsMenuHovered(false);
         productsMenuAnimation.current && productsMenuAnimation.current.play(0);
         changeProductsMenuState(false);
-        if (!isMenuHoverd) {
+        if (!isProductsMenuHovered) {
             menuAnimation.current && menuAnimation.current.play();
             chageMenuState(false)
         }

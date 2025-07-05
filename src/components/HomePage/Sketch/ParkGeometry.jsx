@@ -1,10 +1,12 @@
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, Suspense } from 'react'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import modelSrc from '../../../../static/glb/ParkModel.glb?url'
 
 export default function ParkGeometry() {
     const bufferGeometry = useRef();
+
+    // console.log('ParkGeometry: Model source:', modelSrc);
 
     // 1. Load the model ONCE
     const gltf = useLoader(GLTFLoader, modelSrc);

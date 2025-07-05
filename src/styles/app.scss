@@ -1,8 +1,39 @@
+// Core styles - must be imported first
 @use './vars';
 @use './classes';
 @use './mixins';
 @use './type/index';
 
+// Component styles in logical order
+// UI Components
+@use './Button/Button';
+@use './VideoOverlay/VideoOverlay';
+@use './loader/loader';
+
+// Layout Components
+@use './ROKKA_frame/ROKKA_frame';
+@use './menu/menu';
+@use './footer/footer';
+
+// Features
+@use './features/featuresContainer';
+
+// Pages
+@use './pages/home_page/home_page';
+@use './pages/home_page/hero_section';
+@use './pages/home_page/about_section';
+@use './pages/home_page/values_section';
+@use './pages/home_page/diagram_section';
+@use './about/about';
+@use './pages/data_manager/data_manager';
+@use './pages/monitoring/monitoring';
+@use './pages/PILA/PILA';
+@use './pages/plugins/plugins';
+
+// Animations - should be last
+@use './animations/animations';
+
+// Global resets and base styles
 *, *::after, *::before {
     padding: 0;
     margin: 0;

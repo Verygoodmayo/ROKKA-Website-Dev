@@ -5,13 +5,10 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
 // Data imports
-import { fieldsData } from "./data/fieldsData";
-import { rolesData } from "./data/rolesData";
-import { technologiesData } from "./data/technologiesData";
-import { opportunitiesData } from "./data/opportunitiesData";
-
-// SASS
-import '../../../styles/pages/home_page/diagram_section.scss';
+import { fieldsData } from "../../../data/diagram/fieldsData";
+import { rolesData } from "../../../data/diagram/rolesData";
+import { technologiesData } from "../../../data/diagram/technologiesData";
+import { opportunitiesData } from "../../../data/diagram/opportunitiesData";
 
 export default function Diagram() {
     // State management
@@ -292,22 +289,24 @@ export default function Diagram() {
             {/* <DiagramNavigation /> */}
             <div className="diagram-cards-wrapper">
                 {/* Field Selection Card */}
-                <DiagramCard
-                    key="field-card"
-                    keyName={0}
-                    title="Select Field"
-                    categories={fieldsData.categories}
-                    description={fieldsData.descriptions}
-                    isOpportunities={false}
-                    defaultIndex={selectedFieldIndex}
-                    selectedIndex={selectedFieldIndex}
-                    onSelectionChange={handleFieldChange}
-                    meshType={new THREE.IcosahedronGeometry(100, 80)}
-                    shaderProps={shaderConfigs.field}
-                />
+                <div className="ref-wrapper">
+                    <DiagramCard
+                        key="field-card"
+                        keyName={0}
+                        title="Select Field"
+                        categories={fieldsData.categories}
+                        description={fieldsData.descriptions}
+                        isOpportunities={false}
+                        defaultIndex={selectedFieldIndex}
+                        selectedIndex={selectedFieldIndex}
+                        onSelectionChange={handleFieldChange}
+                        meshType={new THREE.IcosahedronGeometry(100, 80)}
+                        shaderProps={shaderConfigs.field}
+                    />
+                </div>
 
                 {/* Role Selection Card */}
-                <div ref={roleCardRef}>
+                <div className="ref-wrapper" ref={roleCardRef}>
                     <DiagramCard
                         key={`role-card-${selectedField}`}
                         keyName={1}
@@ -324,22 +323,24 @@ export default function Diagram() {
                 </div>
 
                 {/* Technology Selection Card */}
-                <DiagramCard
-                    key="technology-card"
-                    keyName={2}
-                    title="Select Technology"
-                    categories={technologiesData.categories}
-                    description={technologiesData.descriptions}
-                    isOpportunities={false}
-                    defaultIndex={selectedTechnologyIndex}
-                    selectedIndex={selectedTechnologyIndex}
-                    onSelectionChange={handleTechnologyChange}
-                    meshType={new THREE.IcosahedronGeometry(100, 80)}
-                    shaderProps={shaderConfigs.technology}
-                />
+                <div className="ref-wrapper" ref={roleCardRef}>
+                    <DiagramCard
+                        key="technology-card"
+                        keyName={2}
+                        title="Select Technology"
+                        categories={technologiesData.categories}
+                        description={technologiesData.descriptions}
+                        isOpportunities={false}
+                        defaultIndex={selectedTechnologyIndex}
+                        selectedIndex={selectedTechnologyIndex}
+                        onSelectionChange={handleTechnologyChange}
+                        meshType={new THREE.IcosahedronGeometry(100, 80)}
+                        shaderProps={shaderConfigs.technology}
+                    />
+                </div>
 
                 {/* Opportunities Card */}
-                <div ref={opportunityCardRef}>
+                <div className="ref-wrapper" ref={opportunityCardRef}>
                     <DiagramCard
                         key={`opportunity-card-${selectedField}-${selectedRole}`}
                         keyName={3}

@@ -124,9 +124,17 @@
 
             .header {
                 font-weight: 400;
+                font-family: vars.$p-font;
+                text-transform: capitalize;
                 border-bottom: solid 1px vars.$border15;
                 padding-bottom: vars.$size1;
                 white-space: nowrap;
+
+                &.no-hover {
+                    &:hover {
+                        background: transparent;
+                    }
+                }
             }
 
             .menu-item {

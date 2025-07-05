@@ -14,6 +14,12 @@ export default function CameraController({
     const { camera } = useThree();
 
     useEffect(() => {
+        // Ensure camera exists before trying to manipulate it
+        if (!camera) {
+            console.warn('Camera not available in CameraController');
+            return;
+        }
+
         // Set camera position
         if (Array.isArray(position) && position.length === 3) {
             camera.position.set(position[0], position[1], position[2]);

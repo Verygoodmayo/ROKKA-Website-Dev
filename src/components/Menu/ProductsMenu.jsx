@@ -1,8 +1,7 @@
-import { useState } from "react";
 import ROKKAFrame from "../ROKKAFrame/ROKKAFrame";
 import MenuItem from "./MenuItem";
 
-export default function ProductsMenu({ menuRef, state, changeState, onMouseEnter, onMouseLeave }) {
+export default function ProductsMenu({ menuRef, state, onMouseEnter, onMouseLeave }) {
 
     return (
         <div 

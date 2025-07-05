@@ -5,10 +5,11 @@ import AboutSection from "./AboutSection";
 import ValuesSection from "./ValuesSection";
 import Diagram from "./Diagram/Diagram";
 import Footer from "../Footer/Footer";
-
-import '../../styles/pages/home_page/home_page.scss';
+import { useHomePageCleanup } from "../Utils/NavigationCleanup";
 
 export default function HomePage() {
+    // Add home page cleanup and navigation handling
+    useHomePageCleanup();
 
     return (
         <>

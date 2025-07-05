@@ -51,10 +51,15 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
     const currentTime = useRef(0); // Track current time for click events
 
     useFrame(({ clock }) => {
+        // Add error handling for clock and shader material
+        if (!clock || !shaderMaterial.current) {
+            return;
+        }
+        
         currentTime.current = clock.elapsedTime; // Always track current time
         
         // Shader updates (always run to keep animation flowing)
-        if (shaderMaterial.current) {
+        if (shaderMaterial.current && shaderMaterial.current.uniforms) {
             // Always update time - this should NEVER stop
             const newTime = clock.elapsedTime * timeSpeed;
             shaderMaterial.current.uniforms.u_time.value = newTime;
@@ -95,33 +100,55 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
 
     useEffect(() => {
         function handleMouseMove(e) {
-            // Normalize mouse position to [0,1]
-            const rect = e.target.getBoundingClientRect();
-            mouse.current.x = (e.clientX - rect.left) / rect.width;
-            mouse.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
-            // shaderMaterial.current.uniforms.u_mouse.value.set(mouse.current.x, mouse.current.y);
+            // Ensure event and target exist
+            if (!e || !e.target) return;
+            
+            try {
+                // Normalize mouse position to [0,1]
+                const rect = e.target.getBoundingClientRect();
+                if (!rect) return;
+                
+                mouse.current.x = (e.clientX - rect.left) / rect.width;
+                mouse.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
+            } catch (error) {
+                console.warn('Mouse move handler error:', error);
+            }
         }
         
         function handleMouseClick(e) {
-            // Only handle clicks on canvas elements (to avoid interference with other page interactions)
-            if (!e.target.tagName || (e.target.tagName !== 'CANVAS' && !e.target.closest('canvas'))) {
-                return;
-            }
+            // Ensure event and target exist
+            if (!e || !e.target) return;
             
-            // Normalize click position to [0,1]
-            const rect = e.target.getBoundingClientRect();
-            mouseClick.current.x = (e.clientX - rect.left) / rect.width;
-            mouseClick.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
-            mouseClick.current.time = currentTime.current; // Use consistent timing
-            mouseClick.current.active = true;
+            try {
+                // Only handle clicks on canvas elements (to avoid interference with other page interactions)
+                if (!e.target.tagName || (e.target.tagName !== 'CANVAS' && !e.target.closest('canvas'))) {
+                    return;
+                }
+                
+                // Normalize click position to [0,1]
+                const rect = e.target.getBoundingClientRect();
+                if (!rect) return;
+                
+                mouseClick.current.x = (e.clientX - rect.left) / rect.width;
+                mouseClick.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
+                mouseClick.current.time = currentTime.current; // Use consistent timing
+                mouseClick.current.active = true;
+            } catch (error) {
+                console.warn('Mouse click handler error:', error);
+            }
         }
         
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('click', handleMouseClick);
+        // Only add event listeners if window is available
+        if (typeof window !== 'undefined') {
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('click', handleMouseClick);
+        }
         
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('click', handleMouseClick);
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('click', handleMouseClick);
+            }
         };
     }, []); // No dependencies needed for mouse events
 
@@ -133,9 +160,6 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
                 particleColor[1], 
                 particleColor[2]
             );
-            
-            // Debug: Log color updates (remove in production)
-            console.log('🎨 Particle color updated:', particleColor);
         }
     }, [particleColor]);
 

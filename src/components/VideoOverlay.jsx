@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import '../styles/VideoOverlay/VideoOverlay.scss';
 
 export default function VideoOverlay({ isVisible, onClose, vimeoUrl }) {
   const overlayRef = useRef();

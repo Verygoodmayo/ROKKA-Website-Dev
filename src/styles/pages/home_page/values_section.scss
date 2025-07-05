@@ -157,7 +157,9 @@
           width: 100%;
           border-right: none;
           border-bottom: solid 1px #00000020;
+          display: flex;
           flex-direction: row;
+
           overflow: hidden;
 
           p {
@@ -165,7 +167,6 @@
           }
 
           #index {
-            position: absolute;
             margin-top: 0;
             font-size: 100pt;
             line-height: 100%;
@@ -192,8 +193,9 @@
 
 @media screen and (max-width: 768px) {
   #values-container {
+    height: auto;
     #wrapper {
-      height: 100%;
+      height: auto;
       width: 100%;
       padding: 0px;
       border-bottom: none;
@@ -202,10 +204,15 @@
         padding: vars.$size3;
         font-size: vars.$heading3;
         text-align: center;
+        
+        h1 {
+          line-height: 1 !important;
+        }
       }
 
       #content {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
 
         #info {
           width: 100%;
@@ -217,6 +224,7 @@
         //   padding-bottom: 20px;
           text-align: center;
           flex-direction: row;
+          justify-content: space-between;
 
           p {
             text-align: left;
@@ -225,8 +233,10 @@
           }
 
           #index {
-            margin-top: 15%;
-            font-size: 150pt;
+            position: absolute;
+            right: vars.$size3;
+            margin-top: 5%;
+            font-size: 100pt;
             line-height: 60%;
           }
         }

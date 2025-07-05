@@ -25,6 +25,11 @@ uniform float flowDirection;
 uniform float waveSpeed;
 uniform float distortionStrength;
 
+// Chaos-to-order effect uniforms
+uniform float mouseOrderRadius;
+uniform float mouseOrderStrength;
+uniform float chaosStrength;
+
 // Visual controls
 uniform float particleSize;
 uniform float colorIntensity;
@@ -199,8 +204,8 @@ vec3 calculateClickEffect(vec3 position) {
     // Calculate distance from vertex to click position
     float dist = distance(position.xy, clickPos3D.xy);
     
-    // Calculate time since click
-    float timeSinceClick = u_time - u_mouseClick.z;
+    // Use u_mouseClick.z directly as time since click (it's managed by the component)
+    float timeSinceClick = u_mouseClick.z;
     
     // Create expanding wave effect
     float waveRadius = timeSinceClick * u_clickWaveSpeed;
@@ -226,28 +231,63 @@ void main() {
 
     vec3 newPos = position;
 
-    // Apply mouse influence
-    vec2 mouseOffset = (u_mouse - 0.5) * u_mouseInfluence * 10.0;
-    vec3 mouseInfluencedPos = position + vec3(mouseOffset.x, mouseOffset.y, 0.0);
-
-    // Enhanced noise calculation with multiple octaves
-    vec3 noisePos = mouseInfluencedPos * frequency * noiseScale;
+    // **DRAMATIC CHAOS-TO-ORDER EFFECT**
+    // Calculate mouse influence using the same coordinate system as fragment shader
+    // Convert vertex position to screen space coordinates
+    vec4 screenPos = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    vec2 screenCoord = (screenPos.xy / screenPos.w) * 0.5 + 0.5; // Convert to [0,1] range
+    
+    // Calculate distance from vertex to mouse position (both in [0,1] range)
+    vec2 mousePos = u_mouse;
+    float distanceToMouse = length(screenCoord - mousePos);
+    
+    // Create smooth order field around mouse
+    float orderInfluence = 1.0 - smoothstep(0.0, mouseOrderRadius, distanceToMouse);
+    orderInfluence = smoothstep(0.0, 1.0, orderInfluence); // Smooth transition
+    
+    // DYNAMIC PARAMETER INTERPOLATION
+    // Chaos state (current values)
+    float chaosFrequency = frequency;           // 0.025
+    float chaosAmplitude = amplitude;           // 8.5
+    float chaosMaxDistance = maxDistance;       // 10.5
+    
+    // Order state (much more ordered) - refined values
+    float orderFrequency = 0.008;              // Even slower frequency for more order
+    float orderAmplitude = 2.0;                // Smaller amplitude for calmer movement
+    float orderMaxDistance = 3.0;              // Much smaller max distance for tight control
+    
+    // Interpolate parameters based on mouse proximity
+    float dynamicFrequency = mix(chaosFrequency, orderFrequency, orderInfluence);
+    float dynamicAmplitude = mix(chaosAmplitude, orderAmplitude, orderInfluence);
+    float dynamicMaxDistance = mix(chaosMaxDistance, orderMaxDistance, orderInfluence);
+    
+    // Also interpolate noise parameters for dramatic effect
+    float dynamicTurbulence = mix(turbulenceStrength, turbulenceStrength * 0.1, orderInfluence);
+    float dynamicDistortion = mix(distortionStrength, distortionStrength * 0.2, orderInfluence);
+    float dynamicNoiseScale = mix(noiseScale, noiseScale * 0.3, orderInfluence);
+    float dynamicWaveSpeed = mix(waveSpeed, waveSpeed * 0.3, orderInfluence);
+    
+    // Enhanced noise calculation with dynamic parameters
+    vec3 noisePos = newPos * dynamicFrequency * dynamicNoiseScale;
     vec3 curlForce = curl(noisePos.x, noisePos.y, noisePos.z);
     
-    // Add FBM noise for additional complexity
-    float fbmNoise = fbm(noisePos.xy + u_time * waveSpeed * 0.1);
-    curlForce += vec3(fbmNoise) * 0.5;
-
-    // Apply distortion strength as master control
-    vec3 target = position + curlForce * amplitude * distortionStrength;
+    // Scale curl force by dynamic turbulence
+    curlForce *= dynamicTurbulence;
+    
+    // Add FBM noise with dynamic scaling
+    float fbmNoise = fbm(noisePos.xy + u_time * dynamicWaveSpeed * 0.05);
+    curlForce += vec3(fbmNoise) * (0.5 * (1.0 - orderInfluence * 0.9)); // Much less FBM in ordered areas
+    
+    // Apply dynamic distortion
+    vec3 target = position + curlForce * dynamicAmplitude * dynamicDistortion;
     
     // Calculate and apply click effect
     vec3 clickEffect = calculateClickEffect(position);
     target += clickEffect;
     
-    float d = length(position - target) / maxDistance;
-
-    vec3 finalPos = mix(position, target, pow(d, 5.0));
+    // Use dynamic max distance for final blending
+    float d = length(position - target) / dynamicMaxDistance;
+    vec3 finalPos = mix(position, target, pow(d, 3.0)); // Reduced power for smoother blending
 
     vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0); 
     

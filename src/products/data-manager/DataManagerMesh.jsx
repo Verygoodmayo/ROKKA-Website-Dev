@@ -80,14 +80,35 @@ export default function DataManagerMesh({
 
     useEffect(() => {
         function handleMouseMove(e) {
-            // Normalize mouse position to [0,1]
-            const rect = e.target.getBoundingClientRect();
-            mouse.current.x = (e.clientX - rect.left) / rect.width;
-            mouse.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
-            shaderMaterial.current.uniforms.u_mouse.value.set(mouse.current.x, mouse.current.y);
+            // Ensure event and target exist
+            if (!e || !e.target) return;
+            
+            try {
+                // Normalize mouse position to [0,1]
+                const rect = e.target.getBoundingClientRect();
+                if (!rect) return;
+                
+                mouse.current.x = (e.clientX - rect.left) / rect.width;
+                mouse.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
+                
+                if (shaderMaterial.current && shaderMaterial.current.uniforms.u_mouse) {
+                    shaderMaterial.current.uniforms.u_mouse.value.set(mouse.current.x, mouse.current.y);
+                }
+            } catch (error) {
+                console.warn('Mouse move handler error in DataManagerMesh:', error);
+            }
         }
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        
+        // Only add event listeners if window is available
+        if (typeof window !== 'undefined') {
+            window.addEventListener('mousemove', handleMouseMove);
+        }
+        
+        return () => {
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('mousemove', handleMouseMove);
+            }
+        };
     }, []);
 
     return (

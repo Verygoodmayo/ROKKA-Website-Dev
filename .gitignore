@@ -22,3 +22,26 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Archive and deprecated code
+src/components/Archive/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Build artifacts
+build/
+.cache/
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+Thumbs.db

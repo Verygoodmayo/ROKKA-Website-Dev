@@ -13,21 +13,10 @@ export default function MorphingBufferGeometry({
     const bufferGeometry = useRef();
     const positionAttribute = useRef();
 
-    // Debug: Log prop changes
-    useEffect(() => {
-        console.log('🔄 MorphingBufferGeometry props updated:', {
-            isMorphing,
-            morphProgress,
-            hasSource: !!sourceGeometry,
-            hasTarget: !!targetGeometry
-        });
-    }, [isMorphing, morphProgress, sourceGeometry, targetGeometry]);
-
     // Prepare geometry data ONCE (expensive operation)
     const { sourceArray, targetArray, reference, vertexCount } = useMemo(() => {
         if (!sourceGeometry || !targetGeometry) {
-            console.warn('⚠️ Missing geometries for morphing');
-            return { 
+            return {
                 sourceArray: new Float32Array(), 
                 targetArray: new Float32Array(), 
                 reference: new Float32Array(), 
@@ -40,13 +29,6 @@ export default function MorphingBufferGeometry({
         
         const sourceCount = sourceGeometry.attributes.position.count;
         const targetCount = targetGeometry.attributes.position.count;
-        
-        console.log('🔧 Preparing morphing geometries:', {
-            sourceCount,
-            targetCount,
-            sourceType: sourceGeometry.type,
-            targetType: targetGeometry.type
-        });
         
         // Use the maximum vertex count for smooth morphing
         const maxCount = Math.max(sourceCount, targetCount);
@@ -79,7 +61,6 @@ export default function MorphingBufferGeometry({
             reference[i * 2 + 1] = ~~(i / maxCount) / maxCount;
         }
 
-        console.log('✅ Morphing geometry setup complete:', { maxCount });
         return { sourceArray, targetArray, reference, vertexCount: maxCount };
     }, [sourceGeometry, targetGeometry]); // Only recalculate when geometries change
 
@@ -97,11 +78,6 @@ export default function MorphingBufferGeometry({
             }
             
             positionAttribute.current.needsUpdate = true;
-            
-            // Debug: Log morph updates (throttled)
-            if (morphProgress === 0.0 || morphProgress === 1.0 || Math.random() < 0.01) {
-                console.log('🔄 Morph update:', { morphProgress, vertexCount });
-            }
         }
     }, [morphProgress, sourceArray, targetArray, vertexCount]);
 

@@ -5,6 +5,7 @@ import * as dat from "dat.gui";
 import IcoBufferMesh from "./IcoBufferMesh";
 import ParkBufferMesh from "./ParkBufferMesh";
 import CameraController from "./CameraController";
+import WebGLErrorBoundary from "../Utils/WebGLErrorBoundary";
 
 /**
  * Global page sketch component that can be used across different pages
@@ -151,10 +152,20 @@ export default function PageSketch({
         : cameraPosition;
 
     return (
-        <Canvas 
-            className={className}
-            id={id}
-        >
+        <WebGLErrorBoundary>
+            <Canvas 
+                className={className}
+                id={id}
+                gl={{
+                    antialias: true,
+                    alpha: true,
+                    powerPreference: "high-performance",
+                    preserveDrawingBuffer: false,
+                    failIfMajorPerformanceCaveat: false,
+                }}
+                dpr={[1, 2]}
+                camera={{ position: finalCameraPosition, fov: cameraFov, near: cameraNear, far: cameraFar }}
+            >
             <CameraController 
                 position={finalCameraPosition}
                 lookAt={cameraLookAt}
@@ -223,6 +234,7 @@ export default function PageSketch({
                     distortionStrength={distortionStrength}
                 />
             )}
-        </Canvas>    
+        </Canvas>
+        </WebGLErrorBoundary>    
     );
 }

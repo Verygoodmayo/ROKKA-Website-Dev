@@ -1,10 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import FooterSketch from '../Footer/Sketch/FooterSketch';
-
-
-import '../../styles/about/about.scss';
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function About() {
 

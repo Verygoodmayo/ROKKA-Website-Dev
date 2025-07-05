@@ -1,51 +1,67 @@
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
-
-import DataManagerSketch from "./MonitoringMesh";
+import { Suspense } from "react";
 import MonitoringMesh from "./MonitoringMesh";
-// import { GUI } from 'dat.gui'; // Uncomment if you want to use GUI for debugging
+import MonitoringSceneCamera from "./MonitoringSceneCamera";
+import WebGLErrorBoundary from "../../components/Utils/WebGLErrorBoundary";
 
 export default function MonitoringSketch({
-    geoComplexity = 136,
-    meshType = new THREE.IcosahedronGeometry(100, geoComplexity),
-    frequency = 0.426,
-    setFrequency,
-    amplitude = 1,
-    setAmplitude,
-    maxDistance = 0.5,
-    setMaxDistance,
-    isMobile = false,
-    setIsMobile,
-    cameraZ = 1.85,
-    setCameraZ
+    // Extract camera and mesh position props
+    cameraPositionX,
+    cameraPositionY,
+    cameraPositionZ,
+    meshPositionX,
+    meshPositionY,
+    meshPositionZ,
+    // Extract mesh rotation props
+    meshRotationX,
+    meshRotationY,
+    meshRotationZ,
+    // Pass through all other props to MonitoringMesh
+    ...props
 }) {
-
-    // Uncomment if you want to use GUI for debugging
-    // const gui = new GUI();
-    // gui.add({ frequency }, 'frequency', -1, 1, 0.001).onChange(setFrequency).name('Frequency');
-    // gui.add({ amplitude }, 'amplitude', -2, 2, 0.01).onChange(setAmplitude).name('Amplitude');
-    // gui.add({ maxDistance }, 'maxDistance', -4, 4, 0.01).onChange(setMaxDistance).name('Max Distance');  
-
     return (
-        <Canvas 
-            className="sketch-container"
-            id="data-manager-sketch"
-        >
-            <MonitoringMesh
-                geoComplexity={geoComplexity}
-                meshType={meshType}
-                frequency={frequency}
-                setFrequency={setFrequency}
-                amplitude={amplitude}
-                setAmplitude={setAmplitude}
-                maxDistance={maxDistance}
-                setMaxDistance={setMaxDistance}
-                isMobile={isMobile}
-                setIsMobile={setIsMobile}
-                cameraZ={cameraZ}
-                setCameraZ={setCameraZ}
-            ></MonitoringMesh>
-        </Canvas>    
+        <WebGLErrorBoundary>
+            <Canvas
+                id='monitoring-sketch'
+                className='sketch-container'
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    zIndex: 0,
+                    pointerEvents: 'auto'  // Enable pointer events
+                }}
+                resize={{ scroll: false, debounce: { scroll: 50, resize: 50 } }}
+                gl={{
+                    antialias: true,
+                    alpha: true,  // Restore transparent background
+                    powerPreference: "high-performance",
+                    preserveDrawingBuffer: false,
+                    failIfMajorPerformanceCaveat: false,
+                }}
+            >
+                <Suspense fallback={null}>
+                    <MonitoringSceneCamera 
+                        cameraPositionX={cameraPositionX}
+                        cameraPositionY={cameraPositionY}
+                        cameraPositionZ={cameraPositionZ}
+                        meshPositionX={meshPositionX}
+                        meshPositionY={meshPositionY}
+                        meshPositionZ={meshPositionZ}
+                    />
+                    <MonitoringMesh 
+                        meshPositionX={meshPositionX}
+                        meshPositionY={meshPositionY}
+                        meshPositionZ={meshPositionZ}
+                        meshRotationX={meshRotationX}
+                        meshRotationY={meshRotationY}
+                        meshRotationZ={meshRotationZ}
+                        {...props} 
+                    />
+                </Suspense>
+            </Canvas>
+        </WebGLErrorBoundary>
     )
-
 }

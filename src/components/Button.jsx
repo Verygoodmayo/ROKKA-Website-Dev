@@ -1,13 +1,23 @@
-
-import '../styles/Button/Button.scss'
+import calendarIcon from '../../static/svg/UI/CalendarIcon.svg'
+import calendarIconWhite from '../../static/svg/UI/CalendarIcon_W.svg'
 
 export default function Button({label, isPrimary, Outline, imgSrc, onClick}) {
 
     function handleClick() {
-        if (onClick) {
+        // Special handling for "Let's Talk" buttons
+        if (label === "Let's Talk") {
+            const subject = "Hi There. Let's Talk, this is my email.";
+            const mailto = `mailto:info@rokka.ai?subject=${encodeURIComponent(subject)}`;
+            window.location.href = mailto;
+        } 
+        // Special handling for "Book a Demo" buttons
+        else if (label === "Book a Demo") {
+            const subject = "Im intereset in a Demo, Let's Talk";
+            const mailto = `mailto:info@rokka.ai?subject=${encodeURIComponent(subject)}`;
+            window.location.href = mailto;
+        } 
+        else if (onClick) {
             onClick();
-        } else {
-            console.log('click');
         }
     }
     
@@ -17,6 +27,18 @@ export default function Button({label, isPrimary, Outline, imgSrc, onClick}) {
         Outline ? classString += ' outline' : classString += ''
         return classString
         
+    }
+
+    // Determine which icon to use for "Let's Talk" and "Book a Demo" buttons
+    function getIconSrc() {
+        if (label === "Let's Talk") {
+            // Use white calendar icon for secondary buttons (isPrimary=false)
+            return isPrimary === false ? calendarIconWhite : calendarIcon;
+        } else if (label === "Book a Demo") {
+            // Always use white calendar icon for "Book a Demo" buttons
+            return calendarIconWhite;
+        }
+        return imgSrc;
     }
 
     return (
@@ -33,7 +55,7 @@ export default function Button({label, isPrimary, Outline, imgSrc, onClick}) {
             <img
                 className="button-icon"
                 alt=""
-                src={imgSrc}
+                src={getIconSrc()}
             />
         </button>
     );

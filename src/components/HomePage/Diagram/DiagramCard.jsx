@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { Canvas } from "@react-three/fiber";
 import IcoBufferMesh from "../../Sketchs/IcoBufferMesh";
 import CameraController from "../../Sketchs/CameraController";
+import WebGLErrorBoundary from "../../Utils/WebGLErrorBoundary";
 import * as THREE from "three";
 
 export default function DiagramCard({ 
@@ -75,20 +76,55 @@ export default function DiagramCard({
             <div className="description">
                 <p ref={descRef}>{description[activeIndex]}</p>
             </div>
-            <Canvas key={1} className="card-sketch-container">
-                <CameraController 
-                    position={shaderProps.cameraPosition || [0, 0, 0.25]}
-                    lookAt={shaderProps.cameraLookAt || [0, 0, 0]}
-                    fov={shaderProps.cameraFov || 75}
-                    near={shaderProps.cameraNear || 0.1}
-                    far={shaderProps.cameraFar || 1000}
-                />
-                <IcoBufferMesh 
-                    meshType={meshType} 
-                    geoComplexity={geoComplexity}
-                    {...shaderProps}
-                />
-            </Canvas>
+            <WebGLErrorBoundary>
+                <Canvas 
+                    key={1} 
+                    className="card-sketch-container"
+                    gl={{
+                        antialias: true,
+                        alpha: true,
+                        powerPreference: "high-performance",
+                        preserveDrawingBuffer: false,
+                        failIfMajorPerformanceCaveat: false,
+                    }}
+                    onCreated={({ gl }) => {
+                        if (!gl || !gl.domElement) {
+                            console.error('WebGL context initialization failed in DiagramCard - domElement is null');
+                            return;
+                        }
+                        
+                        try {
+                            gl.domElement.addEventListener('webglcontextlost', (event) => {
+                                console.warn('WebGL context lost in DiagramCard');
+                                event.preventDefault();
+                            });
+                        } catch (error) {
+                            console.error('Error adding WebGL event listeners in DiagramCard:', error);
+                        }
+                        
+                        try {
+                            gl.domElement.addEventListener('webglcontextrestored', () => {
+                                console.log('WebGL context restored in DiagramCard');
+                            });
+                        } catch (error) {
+                            console.error('Error adding WebGL context restored listener in DiagramCard:', error);
+                        }
+                    }}
+                >
+                    <CameraController 
+                        position={shaderProps.cameraPosition || [0, 0, 0.25]}
+                        lookAt={shaderProps.cameraLookAt || [0, 0, 0]}
+                        fov={shaderProps.cameraFov || 75}
+                        near={shaderProps.cameraNear || 0.1}
+                        far={shaderProps.cameraFar || 1000}
+                    />
+                    <IcoBufferMesh 
+                        meshType={meshType} 
+                        geoComplexity={geoComplexity}
+                        {...shaderProps}
+                    />
+                </Canvas>
+            </WebGLErrorBoundary>
         </div>
     );
 }

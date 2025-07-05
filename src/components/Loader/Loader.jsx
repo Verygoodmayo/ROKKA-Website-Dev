@@ -1,5 +1,3 @@
-import '../../styles/loader/loader.scss'
-
 export default function Loader() {
   return (
     <div className="loader-overlay">

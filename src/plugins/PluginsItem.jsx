@@ -1,7 +1,4 @@
 export default function PluginsItem ({data}) {
-
-    console.log("Plugin Item Data:", data);
-
     return (
         <div className="plugin-item">
             <div className="content-wrapper">

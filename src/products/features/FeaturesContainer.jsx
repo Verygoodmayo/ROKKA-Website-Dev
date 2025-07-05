@@ -7,8 +7,6 @@ import FeaturesImage from "./FeaturesImage";
 import FeatureCard from "./FeatureCard";
 import * as THREE from "three";
 
-import '../../styles/features/FeaturesContainer.scss';
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaturesContainer({
