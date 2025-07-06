@@ -1,4 +1,4 @@
-import ScrollforMore from '../components/ScrollforMore';
+import { ScrollforMore } from '../components/UI';
 
 export default function HeroSection () {
     

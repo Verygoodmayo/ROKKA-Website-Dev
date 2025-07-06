@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import DataManagerSketchContainer from './DataManagerSketch'
 import { useState } from 'react'
 import { dataManagerFeatures } from '../../data/dataManagerFeatures'
-import resetPage from '../../components/Utils/resetPage'
+import { resetPage } from '../../components/Utils'
 
 const defaultSettings = {
     frequency: 1.426,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from "../../components/Button";
-import VideoOverlay from "../../components/VideoOverlay";
+import { Button } from "../../components/UI";
+import { VideoOverlay } from "../../components/UI";
 import monitoringIcon from '../../../static/svg/Products/Monitoring/Monitoring_Icon_B.svg'
 import videoIcon from '../../../static/svg/General/VideoIcon.svg'
 

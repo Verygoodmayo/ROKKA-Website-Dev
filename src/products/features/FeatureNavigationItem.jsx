@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import ScrollForMore from "../../components/ScrollforMore"; // Adjust the import path as necessary
+import { ScrollforMore as ScrollForMore } from "../../components/UI"; // Adjust the import path as necessary
 import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);

@@ -2,7 +2,7 @@ import Footer from '../../components/Footer/Footer'
 import FeaturesContainer from '../features/FeaturesContainer'
 import HeroSection from './HeroSection'
 import * as THREE from 'three'
-import PageSketch from '../../components/Sketchs/PageSketch'
+import { PageSketch } from '../../components/Sketchs'
 import { useState } from 'react'
 import { pilaFeatures } from '../../data/pilaFeatures'
 

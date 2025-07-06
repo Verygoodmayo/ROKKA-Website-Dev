@@ -5,7 +5,7 @@ import MonitoringSketch from './MonitoringSketch'
 import * as THREE from 'three'
 import { useState } from 'react'
 import { monitoringFeatures } from '../../data/monitoringFeatures'
-import { useMonitoringPageCleanup } from '../../components/Utils/NavigationCleanup'
+import { useMonitoringPageCleanup } from '../../components/Utils'
 
 // Default settings only for FeaturesContainer compatibility
 const defaultSettings = {

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import vertex from '../../../static/glsl/data_manager/vertex.glsl';
 import fragment from '../../../static/glsl/data_manager/fragment.glsl';
-import IcoBufferGeometry from "../../components/Sketchs/IcoBufferGeometry";
+import { IcoBufferGeometry } from "../../components/Sketchs";
 import { useEffect, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import GUI from 'lil-gui'; // Use 'lil-gui' as 'dat.gui' is deprecated

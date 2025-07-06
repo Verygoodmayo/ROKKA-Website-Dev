@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import ParkModel from "./ParkModel";
 import ParkSceneCamera from "./ParkSceneCamera";
-import WebGLErrorBoundary from "../../Utils/WebGLErrorBoundary";
+import { WebGLErrorBoundary } from "../../Utils";
 
 export default function ParkScene () {
 

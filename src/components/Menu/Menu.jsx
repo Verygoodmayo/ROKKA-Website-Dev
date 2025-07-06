@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from '@gsap/react'
 import ProductsMenu from "./ProductsMenu";
 import { Link } from 'react-router-dom';
-import useIsMobile from '../Utils/UseIsMobile';
+import { useIsMobile } from '../Utils';
 import MobileMenu from "./MobileMenu";
 
 export default function Menu () {
