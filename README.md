@@ -1,35 +1,14 @@
-# ROKKA Website | Alpha Production Ready 🚀
+# ROKKA.AI Website
 
-## 🎉 **Status: PRODUCTION READY**
+Development repository for ROKKA.AI Website. 2025
 
-A modern, professional website for ROKKA featuring advanced 3D visualizations, interactive components, and comprehensive WebGL error handling.
+## Description
 
-## ✨ **Key Features**
+A modern, interactive website for ROKKA featuring advanced 3D visualizations, responsive design, and comprehensive data analytics platform showcase. Built with React 18, Three.js, and modern web technologies.
 
-- **Advanced 3D Visualizations**: Professional Three.js/React Three Fiber scenes
-- **Responsive Design**: Mobile-first approach with seamless cross-device experience
-- **Modern Architecture**: React 18, Vite 7, modern build pipeline
-- **Error Resilience**: Comprehensive WebGL error handling and graceful degradation
-- **Performance Optimized**: Code splitting, lazy loading, and optimized bundles
-- **Professional UI/UX**: Clean, modern design with smooth animations
-
-## �️ **Technical Stack**
-
-- **Frontend**: React 18, JavaScript ES6+
-- **Build Tool**: Vite 7 with optimized configuration
-- **3D Graphics**: Three.js, React Three Fiber
-- **Styling**: SCSS with modern CSS features
-- **Routing**: React Router v6
-- **Animations**: GSAP, React Spring
-- **Icons**: Custom SVG icon system
-
-## �🚀 **Quick Start**
+## Quick Start
 
 ```bash
-# Clone the repository
-git clone [repository-url]
-cd ROKKA_Website/Dev-A
-
 # Install dependencies
 npm install
 
@@ -38,105 +17,50 @@ npm run dev
 
 # Build for production
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
-## 🔧 **Available Scripts**
-
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build optimized production bundle
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint for code quality
-
-## 📁 **Project Structure**
+## Project Structure
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── HomePage/       # Home page specific components
-│   ├── Products/       # Product page components
-│   ├── Menu/          # Navigation components
-│   ├── Footer/        # Footer components
-│   ├── Sketchs/       # 3D scene components
-│   └── Utils/         # Utility components & hooks
-├── products/          # Product-specific pages
-├── plugins/           # Plugin showcase components
-├── styles/            # SCSS stylesheets
-└── assets/            # Static assets
+├── components/           # Reusable React components
+│   ├── About/           # About modal component
+│   ├── Footer/          # Footer with navigation
+│   ├── HomePage/        # Home page sections
+│   ├── Menu/            # Navigation components
+│   ├── Sketchs/         # Three.js visualization components
+│   ├── UI/              # UI components (buttons, modals, etc.)
+│   └── Utils/           # Utility components
+├── data/                # Static data and configuration
+├── plugins/             # Plugin system components
+├── products/            # Product page components
+│   ├── data-manager/    # Data Manager product pages
+│   ├── monitoring/      # Monitoring product pages
+│   └── PILA/           # PILA product pages
+├── styles/              # SCSS stylesheets
+└── main.jsx            # Application entry point
 
 static/
-├── glb/              # 3D models
-├── glsl/             # Shader files
-├── fonts/            # Custom fonts
-├── svg/              # SVG icons and graphics
-└── videos/           # Video assets
+├── fonts/               # Font files
+├── glb/                 # 3D model files
+├── glsl/                # Shader files
+├── png/                 # PNG images
+├── svg/                 # SVG icons and graphics
+└── videos/              # Video assets
 ```
 
-## 🎯 **WebGL Error Resolution**
+## Key Features
 
-This project implements a comprehensive WebGL error handling system:
+- **Interactive 3D Visualizations**: Advanced Three.js scenes with shader effects
+- **Responsive Design**: Mobile-first approach with cross-device compatibility
+- **Modular Architecture**: Reusable components and modern React patterns
+- **Performance Optimized**: Code splitting and optimized build pipeline
+- **Professional UI/UX**: Clean design with smooth animations
 
-- **DOM Readiness Provider**: Ensures Canvas components only render when DOM is ready
-- **Error Boundaries**: Catches and gracefully handles WebGL errors
-- **Context Management**: Robust WebGL context lost/restored handling
-- **Fallback UI**: Professional fallback components for unsupported devices
+## Tech Stack
 
-See `WEBGL_ERROR_FIXES.md` for detailed technical implementation.
-
-## 🌐 **Browser Support**
-
-- **Chrome**: Full support with optimal performance
-- **Firefox**: Full support with WebGL enabled
-- **Safari**: Full support on modern versions
-- **Edge**: Full support on Chromium-based versions
-- **Graceful degradation**: Fallback UI for limited WebGL support
-
-## 📊 **Performance**
-
-- **Bundle Size**: Optimized with code splitting
-- **Loading**: Lazy loading for all routes
-- **3D Performance**: Efficient Three.js scene management
-- **Mobile**: Responsive design with touch optimization
-
-## 🔧 **Configuration**
-
-### Vite Configuration
-The project uses optimized Vite configuration with:
-- Manual chunk splitting for better caching
-- Static asset handling
-- SCSS preprocessing
-- Production optimizations
-
-### Build Output
-- Optimized bundles with tree shaking
-- Static assets properly hashed
-- CSS extraction and minification
-- Professional production build
-
-## 🚀 **Deployment**
-
-The project is ready for deployment to any static hosting service:
-
-1. **GitHub Pages**: Configured for GitHub Pages deployment
-2. **Netlify**: Direct deployment from repository
-3. **Vercel**: Zero-config deployment
-4. **AWS S3**: Static website hosting
-
-## 📝 **Documentation**
-
-- `WEBGL_ERROR_FIXES.md` - Comprehensive WebGL error handling documentation
-- `DEPLOYMENT_READY.md` - Production deployment summary
-- `INDIVIDUAL_IMAGE_CONTROLS_GUIDE.md` - Component customization guide
-
-## 🎊 **Production Ready**
-
-This project has been professionally refactored and is ready for production deployment with:
-- Zero WebGL errors
-- Comprehensive error handling
-- Professional code quality
-- Optimized performance
-- Modern development practices
-
-**Ready for alpha release and public deployment! 🚀**
+- React 18 + Vite 7
+- Three.js + React Three Fiber
+- SCSS + Modern CSS
+- GSAP for animations
+- React Router v6
