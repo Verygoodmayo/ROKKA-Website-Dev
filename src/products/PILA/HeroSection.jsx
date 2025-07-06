@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from "../../components/Button";
-import VideoOverlay from "../../components/VideoOverlay";
+import { Button } from "../../components/UI";
+import { VideoOverlay } from "../../components/UI";
 import HeroSectionSketch from "./PILASketchContainer";
 import PILAIcon from '../../../static/svg/Products/PILA/PILA_Icon_B.svg';
 import videoIcon from '../../../static/svg/General/VideoIcon.svg';

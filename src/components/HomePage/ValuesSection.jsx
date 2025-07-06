@@ -8,7 +8,7 @@ import arrowLeft from '../../../static/svg/UI/Arrow_Left.svg';
 import { values } from '../../data/valuesData';
 
 // Utils
-import useIsMobile from '../Utils/UseIsMobile';
+import { useIsMobile } from '../Utils';
 
 export default function ValuesSection() {
     const [current, setCurrent] = useState(0);

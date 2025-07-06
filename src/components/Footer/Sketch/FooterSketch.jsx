@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import FooterSketchMesh from "./FooterSketchMesh";
-import WebGLErrorBoundary from "../../Utils/WebGLErrorBoundary";
+import { WebGLErrorBoundary } from "../../Utils";
 
 export default function FooterSketch ({id, color = [1., 1., 1.]}) {
 

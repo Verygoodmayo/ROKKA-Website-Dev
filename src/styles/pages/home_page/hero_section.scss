@@ -24,6 +24,14 @@
     }
 }
 
+// Animation spacer for park model - extends scroll distance for smoother animation
+.park-model-animation-spacer {
+    height: 200vh; // 2x viewport height for longer scroll
+    width: 100vw;
+    position: relative;
+    z-index: 1;
+}
+
 @media screen and (max-width: 768px) {
     .hero-section {
       position: relative;

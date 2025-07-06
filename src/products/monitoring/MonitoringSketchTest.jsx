@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { UniversalCanvas } from "../../components/Utils/UniversalWebGLManager";
+import { UniversalCanvas } from "../../components/Utils/WebGL/UniversalWebGLManager";
 import * as THREE from 'three';
 
 function SimpleTestMesh() {

@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Canvas } from "@react-three/fiber";
-import IcoBufferMesh from "../../Sketchs/IcoBufferMesh";
-import CameraController from "../../Sketchs/CameraController";
-import WebGLErrorBoundary from "../../Utils/WebGLErrorBoundary";
+import { IcoBufferMesh } from "../../Sketchs";
+import { CameraController } from "../../Sketchs";
+import { WebGLErrorBoundary } from "../../Utils";
 import * as THREE from "three";
 
 export default function DiagramCard({ 

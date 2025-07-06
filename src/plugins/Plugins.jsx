@@ -2,7 +2,7 @@ import Footer from "../components/Footer/Footer";
 import HeroSection from "./HeroSection";
 import PluginsContainer from "./PluginsContainer";
 import FeaturesContainer from '../products/features/FeaturesContainer';
-import PageSketch from '../components/Sketchs/PageSketch';
+import { PageSketch } from '../components/Sketchs';
 import { pluginsData } from '../data/pluginsData';
 
 export default function Plugins() {

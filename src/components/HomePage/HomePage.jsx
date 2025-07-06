@@ -5,7 +5,7 @@ import AboutSection from "./AboutSection";
 import ValuesSection from "./ValuesSection";
 import Diagram from "./Diagram/Diagram";
 import Footer from "../Footer/Footer";
-import { useHomePageCleanup } from "../Utils/NavigationCleanup";
+import { useHomePageCleanup } from "../Utils";
 
 export default function HomePage() {
     // Add home page cleanup and navigation handling

@@ -3,7 +3,7 @@ import { useEffect, useState, Suspense, lazy } from 'react';
 import Menu from './components/Menu/Menu';
 import Loader from './components/Loader/Loader';
 import About from './components/About/About';
-import { useNavigationCleanup } from './components/Utils/NavigationCleanup';
+import { useNavigationCleanup } from './components/Utils';
 
 // Lazy load components for code splitting
 const HomePage = lazy(() => import('./components/HomePage/HomePage'));

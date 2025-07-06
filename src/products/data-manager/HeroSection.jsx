@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Button from "../../components/Button";
-import VideoOverlay from "../../components/VideoOverlay";
+import { Button } from "../../components/UI";
+import { VideoOverlay } from "../../components/UI";
 import HeroSectionSketch from "./DataManagerSketch";
 import dataManagerIcon from '../../../static/svg/Products/DataManager/Data_Manager_B.svg'
 import videoIcon from '../../../static/svg/General/VideoIcon.svg'
-import ScrollforMore from "../../components/ScrollforMore";
+import { ScrollforMore } from "../../components/UI";
 
 export default function HeroSection() {
   const [isVideoVisible, setIsVideoVisible] = useState(false);

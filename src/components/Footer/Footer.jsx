@@ -1,6 +1,6 @@
 import FooterItem from "./FooterItem";
 import logotype_white from '../../../static/svg/Logotype/Logotype_White.svg'
-import Button from "../Button.jsx";
+import { Button } from "../UI";
 import FooterSketch from "./Sketch/FooterSketch";
 import FooterNavigationSection from "./FooterNavigationSection";
 import { Link } from "react-router-dom";

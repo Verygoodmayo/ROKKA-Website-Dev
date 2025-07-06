@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import MonitoringMesh from "./MonitoringMesh";
 import MonitoringSceneCamera from "./MonitoringSceneCamera";
-import WebGLErrorBoundary from "../../components/Utils/WebGLErrorBoundary";
+import { WebGLErrorBoundary } from "../../components/Utils";
 
 export default function MonitoringSketch({
     // Extract camera and mesh position props
