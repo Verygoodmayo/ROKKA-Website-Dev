@@ -27,9 +27,9 @@ export class ParkModelAnimationController {
         // Animation configuration
         this.config = {
             phases: {
-                approach: { start: 0, end: 0.9, duration: 0.9 },      // 0-40%: Camera approach
-                transition: { start: 0, end: 0.3, duration: 0.3 },   // 0-75%: Chaos to order (starts at same time as camera)
-                rotation: { start: 0.5, end: 0.9, duration: 0.4 }      // 75-100%: Rotation & final chaos
+                approach: { start: 0, end: 1, duration: 1 },      // 0-40%: Camera approach
+                transition: { start: 0, end: 0.4, duration: 0.4 },   // 0-75%: Chaos to order (starts at same time as camera)
+                rotation: { start: 0.6, end: 1.1, duration: 0.5 }      // 75-100%: Rotation & final chaos
             },
             shaderStates: {
                 chaos: {
@@ -171,7 +171,7 @@ export class ParkModelAnimationController {
                 trigger: this.options.triggerElement,
                 start: "top bottom", // Start when spacer comes into view
                 end: "bottom top",   // End when spacer exits view
-                scrub: 3, // Slightly faster scrub for responsiveness
+                scrub: true, // Slightly faster scrub for responsiveness
                 anticipatePin: 1,
                 refreshPriority: 0,
                 onUpdate: (self) => {

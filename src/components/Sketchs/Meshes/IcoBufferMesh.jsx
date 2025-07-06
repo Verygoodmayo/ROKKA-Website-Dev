@@ -24,6 +24,12 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
     particleSize = 1.0,
     colorIntensity = 1.0,
     mouseInfluenceStrength = 1.0,
+    
+    // Mouse order/chaos control parameters
+    mouseOrderRadius = 0.3,         // Radius of mouse influence for order effect
+    mouseOrderStrength = 1.5,       // Strength of ordering effect near mouse
+    chaosStrength = 1.0,            // Base chaos level
+    
     // Mouse click control parameters
     clickInfluenceStrength = 2.0,  // Strength of click wave effect
     clickWaveSpeed = 3.0,          // Speed of click wave propagation
@@ -104,12 +110,24 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
             if (!e || !e.target) return;
             
             try {
-                // Normalize mouse position to [0,1]
-                const rect = e.target.getBoundingClientRect();
+                // Find the canvas element specifically
+                const canvas = e.target.closest('canvas') || document.querySelector('canvas');
+                if (!canvas) return;
+                
+                // Get canvas bounding rectangle
+                const rect = canvas.getBoundingClientRect();
                 if (!rect) return;
                 
-                mouse.current.x = (e.clientX - rect.left) / rect.width;
-                mouse.current.y = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
+                // Normalize mouse position to [0,1] based on canvas coordinates
+                const normalizedX = (e.clientX - rect.left) / rect.width;
+                const normalizedY = 1 - (e.clientY - rect.top) / rect.height; // invert y for GL coords
+                
+                // Clamp to [0,1] range to prevent values outside canvas
+                mouse.current.x = Math.max(0, Math.min(1, normalizedX));
+                mouse.current.y = Math.max(0, Math.min(1, normalizedY));
+                
+                // Debug logging (remove in production)
+                // console.log('Mouse coords:', { x: mouse.current.x, y: mouse.current.y, clientX: e.clientX, clientY: e.clientY });
             } catch (error) {
                 console.warn('Mouse move handler error:', error);
             }
@@ -213,6 +231,10 @@ const IcoBufferMesh = forwardRef(function IcoBufferMesh({
                     colorIntensity: { type: 'f', value: colorIntensity },
                     u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
                     u_mouseInfluence: { value: mouseInfluence },
+                    // Mouse order/chaos control uniforms
+                    mouseOrderRadius: { type: 'f', value: mouseOrderRadius },
+                    mouseOrderStrength: { type: 'f', value: mouseOrderStrength },
+                    chaosStrength: { type: 'f', value: chaosStrength },
                     // Mouse click uniforms
                     u_mouseClick: { value: new THREE.Vector4(0.5, 0.5, 0.0, 0.0) }, // x, y, time, active
                     u_clickInfluence: { value: clickInfluence },

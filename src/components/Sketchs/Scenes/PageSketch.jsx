@@ -36,6 +36,10 @@ export default function PageSketch({
     particleSize = 1.0,
     colorIntensity = 1.0,
     mouseInfluenceStrength = 1.0,
+    // Mouse order/chaos control parameters
+    mouseOrderRadius = 0.3,
+    mouseOrderStrength = 1.5,
+    chaosStrength = 1.0,
     // Mouse click control parameters
     clickInfluenceStrength = 2.0,
     clickWaveSpeed = 3.0,
@@ -222,6 +226,11 @@ export default function PageSketch({
                     particleSize={particleSize}
                     colorIntensity={colorIntensity}
                     mouseInfluenceStrength={mouseInfluenceStrength}
+                    // Mouse order/chaos control parameters
+                    mouseOrderRadius={mouseOrderRadius}
+                    mouseOrderStrength={mouseOrderStrength}
+                    chaosStrength={chaosStrength}
+                    // Mouse click parameters
                     clickInfluenceStrength={clickInfluenceStrength}
                     clickWaveSpeed={clickWaveSpeed}
                     clickDecayRate={clickDecayRate}

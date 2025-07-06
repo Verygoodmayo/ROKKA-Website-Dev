@@ -1,0 +1,144 @@
+@use '../vars';
+@use '../mixins';
+
+.modal-window-container {
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; 
+    width: 85%;
+    height: 85%;
+    opacity: 0;
+    transform: translateX(150%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 9999999;
+    @include mixins.glass;
+    padding: vars.$size5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: vars.$size4;
+    overflow-y: auto;
+    
+    .modal-background-scene {
+        position: absolute !important;
+        bottom: 0;
+        right: 0;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: -1;
+        opacity: 0.3;
+    }
+    
+    .modal-header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: vars.$size3;
+        
+        .modal-title {
+            @include mixins.header;
+            font-weight: 300;
+            color: vars.$content;
+            text-align: center;
+            margin: 0;
+            font-size: vars.$size4;
+        }
+    }
+    
+    .modal-content {
+        width: 100%;
+        max-width: 80ch;
+        display: flex;
+        flex-direction: column;
+        gap: vars.$size4;
+        z-index: 10;
+        
+        .legal-content,
+        .privacy-policy-content {
+            display: flex;
+            flex-direction: column;
+            gap: vars.$size4;
+            
+            .legal-section,
+            .privacy-section {
+                display: flex;
+                flex-direction: column;
+                gap: vars.$size2;
+                
+                h3 {
+                    @include mixins.header;
+                    font-weight: 500;
+                    color: vars.$content;
+                    margin: 0;
+                    margin-bottom: vars.$size1;
+                    font-size: vars.$size3;
+                }
+                
+                p {
+                    @include mixins.running-text;
+                    color: vars.$content;
+                    margin: 0;
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
+}
+
+.modal-close {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: vars.$size3;
+    right: vars.$size3;
+    z-index: 99999999;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    .close-line {
+        position: absolute;
+        width: 100%;
+        height: 1.5px;
+        background-color: vars.$content;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .close-line:nth-child(2) {
+        transform: translateY(-50%) rotate(-45deg);
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .modal-window-container {
+        width: 95%;
+        height: 95%;
+        padding: vars.$size3;
+        
+        .modal-content {
+            max-width: 100%;
+            
+            .legal-content,
+            .privacy-policy-content {
+                gap: vars.$size3;
+                
+                .legal-section,
+                .privacy-section {
+                    gap: vars.$size1;
+                }
+            }
+        }
+    }
+}

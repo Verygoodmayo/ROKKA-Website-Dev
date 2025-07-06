@@ -1,16 +1,26 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import FooterSketch from '../Footer/Sketch/FooterSketch';
 import { useRef } from "react";
+import { ModalBackgroundScene } from "../UI/ModalWindow";
 
 export default function About() {
-
     const showHideAnimation = useRef();
 
-    useGSAP(() => {
+    // About scene configuration
+    const aboutSceneConfig = {
+        particleColor: [0.1, 0.1, 0.9], // Blue particles
+        frequency: 0.175,
+        amplitude: 3.5,
+        timeSpeed: 0.5,
+        turbulenceStrength: 1.0,
+        noiseOctaves: 3.0,
+        flowDirection: 0.0,
+        waveSpeed: 1.0
+    };
 
+    useGSAP(() => {
         showHideAnimation.current = gsap.timeline({paused: true});
-        showHideAnimation.current.to(".about-container", { opacity: 1, x: '150%' });
+        showHideAnimation.current.to(".about-container", { opacity: 1, x: '0%' });
 
         return () => showHideAnimation.current.kill();
     }, []);
@@ -28,7 +38,10 @@ export default function About() {
             <p className="body1">
                 Today, ROKKA operates globally with over twenty employees across Israel and around the world, combining expertise from data science, artificial intelligence, and user experience design. With years of satisfied clients across multiple industries, we've proven our approach works. Our mission is to create a single, powerful platform that's genuinely accessible to everyone - whether you're conducting intelligence analysis, business strategy, political research, or academic studies. Instead of juggling multiple specialized tools, ROKKA provides one comprehensive solution that adapts to your specific domain and delivers sophisticated analysis through intelligent interfaces that understand your needs and provide results without unnecessary complexity.
             </p>
-            <FooterSketch id={'about-sketch'} color={[0.1,0.1,0.9]}/>
+            <ModalBackgroundScene 
+                id="about-sketch" 
+                config={aboutSceneConfig}
+            />
         </div>
     )
 }

@@ -26,7 +26,7 @@ Enhanced the ParkModel GSAP animation to provide a longer scroll feel by extendi
 ```scss
 // Animation spacer for park model - extends scroll distance for smoother animation
 .park-model-animation-spacer {
-    height: 200vh; // 2x viewport height for longer scroll
+    height: 100vh; // 2x viewport height for longer scroll
     width: 100vw;
     position: relative;
     z-index: 1;
